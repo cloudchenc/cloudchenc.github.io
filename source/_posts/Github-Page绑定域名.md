@@ -1,7 +1,10 @@
 ---
 title: Github Page绑定域名
 date: 2020-06-08 11:16:07
-tags:
+tags: 
+    - Blog
+    - Github Page
+categories: Blog
 ---
 
 ###购买域名
