@@ -1,5 +1,7 @@
 ---
 title: Android屏幕刷新机制
-tags:
+tags: 
 
 ---
+
+View requestLayout invalidate
