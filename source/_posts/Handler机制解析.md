@@ -6,12 +6,12 @@ tags:
 categories: Android
 ---
 
-说到Android消息机制，就不得不谈到Handler机制，那么本文以android-29的源码分析Handler机制的原理。
+说到 Android 消息机制，就不得不谈到 Handler 机制，接下来本文以 <u>android-29</u> 的源码分析 Handler 机制的原理。
 
-首先Handler是在 android.os 包下，与它在同一个包下的 Looper，Message，MessageQueue等就是本文的重点。
+首先 Handler 是在 android.os 包下，与它在同一个包下的 Looper，Message，MessageQueue 等就是本文的重点。
 
-```$xslt
-    //handler example
+```java
+    // 举个例子
     class LooperThread extends Thread {
          public Handler mHandler;
          public void run() {
@@ -25,15 +25,33 @@ categories: Android
          }
     }
 ```
+这是 handler 在子线程使用的典型实例，下面按步骤分析：
 
-1.Looper.prepare()调用后，创建了MessageQueue和Looper，并把looper的实例放入ThreadLocal中保存
+##1. Looper.prepare()
 
-2.创建handler
+```java
+static final ThreadLocal<Looper> sThreadLocal = new ThreadLocal<Looper>();
+    private static void prepare(boolean quitAllowed) {
+        // Looper.prepare()在每个线程只能调用一次，一个线程对应一个Looper
+        if (sThreadLocal.get() != null) {
+            throw new RuntimeException("Only one Looper may be created per thread");
+        }
+        sThreadLocal.set(new Looper(quitAllowed));
+    }
+    private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mThread = Thread.currentThread();
+    }
+```
+调用后创建了 MessageQueue 和 Looper，并把 looper 的实例放入 ThreadLocal 中保存
 
-Handler提供了两种使用方式，
-第一种方式是直接实例化，调用handler的构造函数。
+##2. 创建 handler
 
-```$xslt
+Handler提供了两种使用方式
+
+###第一种方式是直接实例化，调用handler的构造函数
+
+```java
     //Handler.java#构造函数一
     public Handler(@Nullable Callback callback, boolean async) {
         if (FIND_POTENTIAL_LEAKS) {
@@ -58,7 +76,7 @@ Handler提供了两种使用方式，
     }
 ```
 
-```$xslt
+```java
     //Handler.java#构造函数二
     public Handler(@NonNull Looper looper, @Nullable Callback callback, boolean async) {
         mLooper = looper;
@@ -70,16 +88,16 @@ Handler提供了两种使用方式，
 
 构造函数里有三个参数，分别是
 
-looper：创建了MessageQueue，在某个线程中遍历对应的消息队列，相当于发动机的角色。
-callback：定义了handleMessage()方法，对接收到的消息进行处理，相当于快递分拣员的角色。
-async：设置消息是否异步，默认是同步的，如果是异步将不受同步障碍的约束。
+looper：创建了 MessageQueue，在某个线程中遍历对应的消息队列，相当于发动机的角色。  
+callback：定义了 handleMessage() 方法，对接收到的消息进行处理，相当于快递分拣员的角色。  
+async：设置消息是否异步，默认是同步的，如果是异步将不受同步障碍的约束。  
 
 
-第二种方式是继承handler，重写handleMessage()方法。
+###第二种方式是继承 handler，重写 handleMessage() 方法。
 
-创建handler后，handler就持有了looper和messageQueue的引用，
-通过调用enqueueMessage()方法往messageQueue中发送消息，其实最终调用的是MessageQueue的enqueueMessage()方法
-```
+创建 handler 后，handler 就持有了 looper 和 messageQueue 的对象引用，
+通过调用 sendMessage() 方法往 messageQueue 中发送消息，其实最终调用的是 MessageQueue的enqueueMessage() 方法
+```java
     boolean enqueueMessage(Message msg, long when) {
         if (msg.target == null) {
             throw new IllegalArgumentException("Message must have a target.");
@@ -97,7 +115,7 @@ async：设置消息是否异步，默认是同步的，如果是异步将不受
                 return false;
             }
 
-            msg.markInUse();
+            msg.markInUse(); // 标记正在使用
             msg.when = when;
             Message p = mMessages;
             boolean needWake;
@@ -130,15 +148,14 @@ async：设置消息是否异步，默认是同步的，如果是异步将不受
         return true;
     }
 
-/frameworks/base/core/jni/android_os_MessageQueue.cpp#
+//frameworks/base/core/jni/android_os_MessageQueue.cpp#
 static void android_os_MessageQueue_nativeWake(JNIEnv* env, jclass clazz, jlong ptr) {
     NativeMessageQueue* nativeMessageQueue = reinterpret_cast<NativeMessageQueue*>(ptr);
     nativeMessageQueue->wake();
 }
 
-/system/core/libutils/Looper.cpp#
+//system/core/libutils/Looper.cpp#
 void Looper::wake() {
-
     uint64_t inc = 1;
     ssize_t nWrite = TEMP_FAILURE_RETRY(write(mWakeEventFd, &inc, sizeof(uint64_t)));
     if (nWrite != sizeof(uint64_t)) {
@@ -153,8 +170,8 @@ TEMP_FAILURE_RETRY(write(mWakeEventFd, &inc, sizeof(uint64_t)));
 这行代码会不断地调用write()方法，直到管道中的数据全部读完
 
 
-3.Looper.loop()
-```$xslt
+##3.Looper.loop()
+```java
         //Looper.java#裁剪代码
         public static void loop() {
             final Looper me = myLooper(); // 获取当前线程的looper实例
@@ -180,7 +197,7 @@ TEMP_FAILURE_RETRY(write(mWakeEventFd, &inc, sizeof(uint64_t)));
             }
         }
 
-    Handler.java#
+    //Handler.java#
     public void dispatchMessage(@NonNull Message msg) {
         if (msg.callback != null) {
             //当消息回调不为空时，执行回调的run方法
@@ -199,7 +216,7 @@ TEMP_FAILURE_RETRY(write(mWakeEventFd, &inc, sizeof(uint64_t)));
 ```
 
 这里重点分析 Message msg = queue.next();
-```$xslt
+```java
     Message next() {
         final long ptr = mPtr; // NativeMessageQueue对象id
         if (ptr == 0) {
@@ -299,8 +316,9 @@ TEMP_FAILURE_RETRY(write(mWakeEventFd, &inc, sizeof(uint64_t)));
 ```
 mPtr的赋值是nativeInit(),网上暂时没找到Android Q的在线查看，暂时以Android P来分析native层的逻辑。
 native层创建NativeMessageQueue对象后将对象id返回给java层，其中NativeMessageQueue创建时创建了Looper对象，
-与java层Looper对象在创建时创建了MessageQueue对象恰恰相反
-```
+与java层Looper对象在创建时创建了MessageQueue对象恰恰相反  
+
+```cpp
 static jlong android_os_MessageQueue_nativeInit(JNIEnv* env, jclass clazz) {
     NativeMessageQueue* nativeMessageQueue = new NativeMessageQueue();
     if (!nativeMessageQueue) {
@@ -313,7 +331,7 @@ static jlong android_os_MessageQueue_nativeInit(JNIEnv* env, jclass clazz) {
 }
 ```
 
-```$xslt
+```cpp
 NativeMessageQueue::NativeMessageQueue() :
         mPollEnv(NULL), mPollObj(NULL), mExceptionObj(NULL) {
     mLooper = Looper::getForThread();
@@ -325,19 +343,19 @@ NativeMessageQueue::NativeMessageQueue() :
 }
 ```
 
-nativePollOnce()调用到native层，
-```$xslt
+nativePollOnce()调用到native层，将mPtr根据id转为NativeMessageQueue对象
+```cpp
 static void android_os_MessageQueue_nativePollOnce(JNIEnv* env, jobject obj,
         jlong ptr, jint timeoutMillis) {
     NativeMessageQueue* nativeMessageQueue = reinterpret_cast<NativeMessageQueue*>(ptr);
     nativeMessageQueue->pollOnce(env, obj, timeoutMillis);
 }
 
-frameworks/base/core/jni/android_os_MessageQueue.cpp#
+//frameworks/base/core/jni/android_os_MessageQueue.cpp#
 void NativeMessageQueue::pollOnce(JNIEnv* env, jobject pollObj, int timeoutMillis) {
     mPollEnv = env;
     mPollObj = pollObj;
-    mLooper->pollOnce(timeoutMillis); 调用到了looper的pollOnce()方法
+    mLooper->pollOnce(timeoutMillis); // 调用到了looper的pollOnce()方法
     mPollObj = NULL;
     mPollEnv = NULL;
 
@@ -378,7 +396,7 @@ int Looper::pollOnce(int timeoutMillis, int* outFd, int* outEvents, void** outDa
     }
 }
 
-第一次会跳过对response的处理，直接调用pollInner()方法
+// 第一次会跳过对response的处理，直接调用pollInner()方法
 int Looper::pollInner(int timeoutMillis) {
     if (timeoutMillis != 0 && mNextMessageUptime != LLONG_MAX) {
         nsecs_t now = systemTime(SYSTEM_TIME_MONOTONIC);
@@ -501,17 +519,16 @@ Done: ;
 }
 ```
 
-总结
+至此流程分析结束，下面附上总结图
 
-    Looper: 每个线程只有一个Looper，负责管理MessageQueue,会不断地从MessageQueue中取出消息，并将消息分给对应的Handler处理。
+![handler_java](https://tvax4.sinaimg.cn/large/d7f9b0f4gy1gg15vq3yl4j20p20fatah.jpg)
 
-    MessageQueue:由Looper负责管理，采用先进先出的方式管理Message(消息队列)。
+Handler通过sendMessage()发送Message到MessageQueue队列；  
+Looper通过loop()，不断提取出达到触发条件的Message，并将Message交给target来处理；  
+经过dispatchMessage()后，交回给Handler的handleMessage()来进行相应地处理。  
+将Message加入MessageQueue时，处往管道写入字符，可以会唤醒loop线程；如果MessageQueue中没有Message，并处于Idle状态，则会执行IdelHandler接口中的方法，往往用于做一些清理性地工作。
 
-    Handler：把消息发送给Looper管理的MessageQueue并负责处理Looper分给它的消息。
-
-    消息只能在某个具体的Looper上消耗，因此每个Handler都会绑定一个Looper。但是多个Handler可以绑定同一个Looper（这也是在主线程中能够创建新的Handler的原因）。
-
-![handler](https://tvax4.sinaimg.cn/mw690/d7f9b0f4gy1gfz57es2lxj20iv0ec0vh.jpg)
+![java_native](https://tvax4.sinaimg.cn/large/d7f9b0f4gy1gg163yhgn5j21c00y4nfr.jpg)
 
 
 Tips:
@@ -519,7 +536,7 @@ Tips:
 1.为什么在主线程中使用handler不用调用Looper.prepareMainLooper()和Looper.loop()？
 这是因为 ActivityThread 在初始化时已经调用过了，具体见如下源码。
 
-```$xslt
+```java
     //ActivityThread.java#
     public static void main(String[] args) {
         ~~~~~~
@@ -530,31 +547,12 @@ Tips:
     }
 ```
 
-2.一个线程可以有几个Looper？为什么？
-这是因为Looper.prepare()在每个线程只能调用一次，在创建Looper时，是以线程作为key值保存的，
-所以第二次创建时，会从sThreadLocal中获取用当获取looper时会判断当前线程是否已经创建了looper，如果没有才会创建新的实例
-```$xslt
-static final ThreadLocal<Looper> sThreadLocal = new ThreadLocal<Looper>();
-    private static void prepare(boolean quitAllowed) {
-        if (sThreadLocal.get() != null) {
-            throw new RuntimeException("Only one Looper may be created per thread");
-        }
-        sThreadLocal.set(new Looper(quitAllowed));
-    }
-    public static @Nullable Looper myLooper() {
-        return sThreadLocal.get();
-    }
-    private Looper(boolean quitAllowed) {
-        mQueue = new MessageQueue(quitAllowed);
-        mThread = Thread.currentThread();
-    }
-```
-
-3.主线程中的Looper.loop()一直无限循环为什么不会造成ANR?
+2.主线程中的Looper.loop()一直无限循环为什么不会造成ANR?
 首先要明白ANR的定义，activity超时5s，service超时10s，broadcast超时20s，才会导致Application Not Response。
-
-4.HandlerThread 和 AsyncTask
+  
 
 参考资料：
-http://gityuan.com/2015/12/26/handler-message-framework/
-http://gityuan.com/2015/12/27/handler-message-native/
+
+http://androidxref.com/  
+http://gityuan.com/2015/12/26/handler-message-framework/  
+http://gityuan.com/2015/12/27/handler-message-native/  
