@@ -110,3 +110,10 @@ symbols_count_time:
   total_symbols: true
   total_time: true
 
+# 添加图片水印
+watermark:
+    enable: true
+    textEnable: true
+    rotate: -45
+    gravity: centre
+
