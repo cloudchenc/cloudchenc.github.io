@@ -1,5 +1,8 @@
 ---
-title: android-touch
+title: Android事件分发机制
 tags:
-categories:
+    - 事件分发机制
+    - 设计模式
+categories: Android
 ---
+
