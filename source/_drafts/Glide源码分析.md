@@ -76,8 +76,570 @@ Glide.with(this).load(url).into(imageView);
                         glide, requestTracker, lifecycle, optionsApplier));
     }
 ```
+分别调用了Glide.buildStreamModelLoader()方法和Glide.buildFileDescriptorModelLoader()方法来获得ModelLoader对象，
+ModelLoader对象是用于加载图片的。由于传入的参数是String.class, 所以得到的是StreamStringLoader和FileDescriptorModelLoader，
+最后构造了一个DrawableTypeRequest对象作为方法的返回值。
+```java
+public class DrawableTypeRequest<ModelType> extends DrawableRequestBuilder<ModelType> implements DownloadOptions {
+    private final ModelLoader<ModelType, InputStream> streamModelLoader;
+    private final ModelLoader<ModelType, ParcelFileDescriptor> fileDescriptorModelLoader;
+    private final RequestManager.OptionsApplier optionsApplier;
+
+    private static <A, Z, R> FixedLoadProvider<A, ImageVideoWrapper, Z, R> buildProvider(Glide glide,
+            ModelLoader<A, InputStream> streamModelLoader,
+            ModelLoader<A, ParcelFileDescriptor> fileDescriptorModelLoader, Class<Z> resourceClass,
+            Class<R> transcodedClass,
+            ResourceTranscoder<Z, R> transcoder) {
+        if (streamModelLoader == null && fileDescriptorModelLoader == null) {
+            return null;
+        }
+
+        if (transcoder == null) {
+            transcoder = glide.buildTranscoder(resourceClass, transcodedClass);
+        }
+        DataLoadProvider<ImageVideoWrapper, Z> dataLoadProvider = glide.buildDataProvider(ImageVideoWrapper.class,
+                resourceClass);
+        ImageVideoModelLoader<A> modelLoader = new ImageVideoModelLoader<A>(streamModelLoader,
+                fileDescriptorModelLoader);
+        return new FixedLoadProvider<A, ImageVideoWrapper, Z, R>(modelLoader, transcoder, dataLoadProvider);
+    }
+
+    DrawableTypeRequest(Class<ModelType> modelClass, ModelLoader<ModelType, InputStream> streamModelLoader,
+            ModelLoader<ModelType, ParcelFileDescriptor> fileDescriptorModelLoader, Context context, Glide glide,
+            RequestTracker requestTracker, Lifecycle lifecycle, RequestManager.OptionsApplier optionsApplier) {
+        super(context, modelClass,
+                buildProvider(glide, streamModelLoader, fileDescriptorModelLoader, GifBitmapWrapper.class,
+                        GlideDrawable.class, null),
+                glide, requestTracker, lifecycle);
+        this.streamModelLoader = streamModelLoader;
+        this.fileDescriptorModelLoader = fileDescriptorModelLoader;
+        this.optionsApplier = optionsApplier;
+    }
+
+    public BitmapTypeRequest<ModelType> asBitmap() {
+        return optionsApplier.apply(new BitmapTypeRequest<ModelType>(this, streamModelLoader,
+                fileDescriptorModelLoader, optionsApplier));
+    }
+
+    public GifTypeRequest<ModelType> asGif() {
+        return optionsApplier.apply(new GifTypeRequest<ModelType>(this, streamModelLoader, optionsApplier));
+    }
+}
+```
+针对加载静态图片，创建了BitmapTypeRequest  
+针对加载动态图片，创建了GifTypeRequest  
+默认是使用DrawableTypeRequest  
+
+fromString()方法返回了DrawableTypeRequest对象，接下来调用load()方法传入url，该方法在DrawableTypeRequest的父类DrawableRequestBuilder中。
+```java
+public class DrawableRequestBuilder<ModelType>
+        extends GenericRequestBuilder<ModelType, ImageVideoWrapper, GifBitmapWrapper, GlideDrawable>
+        implements BitmapOptions, DrawableOptions {
+
+    DrawableRequestBuilder(Context context, Class<ModelType> modelClass,
+            LoadProvider<ModelType, ImageVideoWrapper, GifBitmapWrapper, GlideDrawable> loadProvider, Glide glide,
+            RequestTracker requestTracker, Lifecycle lifecycle) {
+        super(context, modelClass, loadProvider, GlideDrawable.class, glide, requestTracker, lifecycle);
+        // Default to animating.
+        crossFade();
+    }
+
+    public DrawableRequestBuilder<ModelType> thumbnail(
+            DrawableRequestBuilder<?> thumbnailRequest) {
+        super.thumbnail(thumbnailRequest);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> thumbnail(
+            GenericRequestBuilder<?, ?, ?, GlideDrawable> thumbnailRequest) {
+        super.thumbnail(thumbnailRequest);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> thumbnail(float sizeMultiplier) {
+        super.thumbnail(sizeMultiplier);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> sizeMultiplier(float sizeMultiplier) {
+        super.sizeMultiplier(sizeMultiplier);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> decoder(ResourceDecoder<ImageVideoWrapper, GifBitmapWrapper> decoder) {
+        super.decoder(decoder);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> cacheDecoder(ResourceDecoder<File, GifBitmapWrapper> cacheDecoder) {
+        super.cacheDecoder(cacheDecoder);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> encoder(ResourceEncoder<GifBitmapWrapper> encoder) {
+        super.encoder(encoder);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> priority(Priority priority) {
+        super.priority(priority);
+        return this;
+    }
+
+    public DrawableRequestBuilder<ModelType> transform(BitmapTransformation... transformations) {
+        return bitmapTransform(transformations);
+    }
+
+    @SuppressWarnings("unchecked")
+    public DrawableRequestBuilder<ModelType> centerCrop() {
+        return transform(glide.getDrawableCenterCrop());
+    }
+
+    @SuppressWarnings("unchecked")
+    public DrawableRequestBuilder<ModelType> fitCenter() {
+        return transform(glide.getDrawableFitCenter());
+    }
+
+    public DrawableRequestBuilder<ModelType> bitmapTransform(Transformation<Bitmap>... bitmapTransformations) {
+        GifBitmapWrapperTransformation[] transformations =
+                new GifBitmapWrapperTransformation[bitmapTransformations.length];
+        for (int i = 0; i < bitmapTransformations.length; i++) {
+            transformations[i] = new GifBitmapWrapperTransformation(glide.getBitmapPool(), bitmapTransformations[i]);
+        }
+        return transform(transformations);
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> transform(Transformation<GifBitmapWrapper>... transformation) {
+        super.transform(transformation);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> transcoder(
+            ResourceTranscoder<GifBitmapWrapper, GlideDrawable> transcoder) {
+        super.transcoder(transcoder);
+        return this;
+    }
+
+    public final DrawableRequestBuilder<ModelType> crossFade() {
+        super.animate(new DrawableCrossFadeFactory<GlideDrawable>());
+        return this;
+    }
+
+    public DrawableRequestBuilder<ModelType> crossFade(int duration) {
+        super.animate(new DrawableCrossFadeFactory<GlideDrawable>(duration));
+        return this;
+    }
+
+    @Deprecated
+    public DrawableRequestBuilder<ModelType> crossFade(Animation animation, int duration) {
+        super.animate(new DrawableCrossFadeFactory<GlideDrawable>(animation, duration));
+        return this;
+    }
+
+    public DrawableRequestBuilder<ModelType> crossFade(int animationId, int duration) {
+        super.animate(new DrawableCrossFadeFactory<GlideDrawable>(context, animationId,
+                duration));
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> dontAnimate() {
+        super.dontAnimate();
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> animate(ViewPropertyAnimation.Animator animator) {
+        super.animate(animator);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> animate(int animationId) {
+        super.animate(animationId);
+        return this;
+    }
+
+    @Deprecated
+    @SuppressWarnings("deprecation")
+    @Override
+    public DrawableRequestBuilder<ModelType> animate(Animation animation) {
+        super.animate(animation);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> placeholder(int resourceId) {
+        super.placeholder(resourceId);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> placeholder(Drawable drawable) {
+        super.placeholder(drawable);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> fallback(Drawable drawable) {
+        super.fallback(drawable);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> fallback(int resourceId) {
+        super.fallback(resourceId);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> error(int resourceId) {
+        super.error(resourceId);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> error(Drawable drawable) {
+        super.error(drawable);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> listener(
+            RequestListener<? super ModelType, GlideDrawable> requestListener) {
+        super.listener(requestListener);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> diskCacheStrategy(DiskCacheStrategy strategy) {
+        super.diskCacheStrategy(strategy);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> skipMemoryCache(boolean skip) {
+        super.skipMemoryCache(skip);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> override(int width, int height) {
+        super.override(width, height);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> sourceEncoder(Encoder<ImageVideoWrapper> sourceEncoder) {
+        super.sourceEncoder(sourceEncoder);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> dontTransform() {
+        super.dontTransform();
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> signature(Key signature) {
+        super.signature(signature);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> load(ModelType model) {
+        super.load(model);
+        return this;
+    }
+
+    @Override
+    public DrawableRequestBuilder<ModelType> clone() {
+        return (DrawableRequestBuilder<ModelType>) super.clone();
+    }
+
+    @Override
+    public Target<GlideDrawable> into(ImageView view) {
+        return super.into(view);
+    }
+
+    @Override
+    void applyFitCenter() {
+        fitCenter();
+    }
+
+    @Override
+    void applyCenterCrop() {
+        centerCrop();
+    }
+}
+```
+这里的load()方法 `super.load(model);` 调用到了DrawableRequestBuilder的父类 GenericRequestBuilder 的load()方法中，
+将model(这里是url: String)赋值，并把标记isModelSet置为true。
 
 ###3. into()
+
+接下来调用的into()方法也是调用到了GenericRequestBuilder中
+```java
+    public Target<TranscodeType> into(ImageView view) {
+        Util.assertMainThread();
+        if (view == null) {
+            throw new IllegalArgumentException("You must pass in a non null View");
+        }
+
+        if (!isTransformationSet && view.getScaleType() != null) {
+            switch (view.getScaleType()) {
+                case CENTER_CROP:
+                    applyCenterCrop();
+                    break;
+                case FIT_CENTER:
+                case FIT_START:
+                case FIT_END:
+                    applyFitCenter();
+                    break;
+                //$CASES-OMITTED$
+                default:
+                    // Do nothing.
+            }
+        }
+
+        return into(glide.buildImageViewTarget(view, transcodeClass));
+    }
+```
+先根据view的裁剪类型对view进行裁剪，  
+然后调用glide的buildImageViewTarget构建了Target对象，Targer对象是用来最终展示图片用的。
+```java
+    <R> Target<R> buildImageViewTarget(ImageView imageView, Class<R> transcodedClass) {
+        return imageViewTargetFactory.buildTarget(imageView, transcodedClass);
+    }
+
+public class ImageViewTargetFactory {
+    @SuppressWarnings("unchecked")
+    public <Z> Target<Z> buildTarget(ImageView view, Class<Z> clazz) {
+        if (GlideDrawable.class.isAssignableFrom(clazz)) {
+            return (Target<Z>) new GlideDrawableImageViewTarget(view);
+        } else if (Bitmap.class.equals(clazz)) {
+            return (Target<Z>) new BitmapImageViewTarget(view);
+        } else if (Drawable.class.isAssignableFrom(clazz)) {
+            return (Target<Z>) new DrawableImageViewTarget(view);
+        } else {
+            throw new IllegalArgumentException("Unhandled class: " + clazz
+                    + ", try .as*(Class).transcode(ResourceTranscoder)");
+        }
+    }
+}
+```
+这个buildTarget()方法中clazz参数其实来自GenericRequestBuilder中的transcodeClass变量，赋值是在GenericRequestBuilder的构造函数中。
+由于我们最初的参数是url对应string类，所以这里buildTarget()创建的是GlideDrawableImageViewTarget对象，传参给into()方法。
+```java
+    public <Y extends Target<TranscodeType>> Y into(Y target) {
+        Util.assertMainThread();
+        if (target == null) {
+            throw new IllegalArgumentException("You must pass in a non null Target");
+        }
+        if (!isModelSet) {
+            throw new IllegalArgumentException("You must first set a model (try #load())");
+        }
+        // 获取目标的当前请求，如果不为null，就进行释放，回收资源
+        Request previous = target.getRequest();
+
+        if (previous != null) {
+            previous.clear();
+            requestTracker.removeRequest(previous);
+            previous.recycle();
+        }
+
+        Request request = buildRequest(target);
+        target.setRequest(request);
+        lifecycle.addListener(target);
+        requestTracker.runRequest(request);
+
+        return target;
+    }
+```
+通过buildRequest()方法构建Request对象，并开始执行
+```java
+// 通过buildRequest构建Request对象
+    private Request buildRequest(Target<TranscodeType> target) {
+        if (priority == null) {
+            priority = Priority.NORMAL;
+        }
+        return buildRequestRecursive(target, null);
+    }
+
+    private Request buildRequestRecursive(Target<TranscodeType> target, ThumbnailRequestCoordinator parentCoordinator) {
+        if (thumbnailRequestBuilder != null) {
+            if (isThumbnailBuilt) {
+                throw new IllegalStateException("You cannot use a request as both the main request and a thumbnail, "
+                        + "consider using clone() on the request(s) passed to thumbnail()");
+            }
+            // Recursive case: contains a potentially recursive thumbnail request builder.
+            if (thumbnailRequestBuilder.animationFactory.equals(NoAnimation.getFactory())) {
+                thumbnailRequestBuilder.animationFactory = animationFactory;
+            }
+
+            if (thumbnailRequestBuilder.priority == null) {
+                thumbnailRequestBuilder.priority = getThumbnailPriority();
+            }
+
+            if (Util.isValidDimensions(overrideWidth, overrideHeight)
+                    && !Util.isValidDimensions(thumbnailRequestBuilder.overrideWidth,
+                            thumbnailRequestBuilder.overrideHeight)) {
+              thumbnailRequestBuilder.override(overrideWidth, overrideHeight);
+            }
+
+            ThumbnailRequestCoordinator coordinator = new ThumbnailRequestCoordinator(parentCoordinator);
+            Request fullRequest = obtainRequest(target, sizeMultiplier, priority, coordinator);
+            // Guard against infinite recursion.
+            isThumbnailBuilt = true;
+            // Recursively generate thumbnail requests.
+            Request thumbRequest = thumbnailRequestBuilder.buildRequestRecursive(target, coordinator);
+            isThumbnailBuilt = false;
+            coordinator.setRequests(fullRequest, thumbRequest);
+            return coordinator;
+        } else if (thumbSizeMultiplier != null) {
+            // Base case: thumbnail multiplier generates a thumbnail request, but cannot recurse.
+            ThumbnailRequestCoordinator coordinator = new ThumbnailRequestCoordinator(parentCoordinator);
+            Request fullRequest = obtainRequest(target, sizeMultiplier, priority, coordinator);
+            Request thumbnailRequest = obtainRequest(target, thumbSizeMultiplier, getThumbnailPriority(), coordinator);
+            coordinator.setRequests(fullRequest, thumbnailRequest);
+            return coordinator;
+        } else {
+            // Base case: no thumbnail.
+            return obtainRequest(target, sizeMultiplier, priority, parentCoordinator);
+        }
+    }
+
+    private Request obtainRequest(Target<TranscodeType> target, float sizeMultiplier, Priority priority,
+            RequestCoordinator requestCoordinator) {
+        return GenericRequest.obtain(
+                loadProvider,
+                model,
+                signature,
+                context,
+                priority,
+                target,
+                sizeMultiplier,
+                placeholderDrawable,
+                placeholderId,
+                errorPlaceholder,
+                errorId,
+                fallbackDrawable,
+                fallbackResource,
+                requestListener,
+                requestCoordinator,
+                glide.getEngine(),
+                transformation,
+                transcodeClass,
+                isCacheable,
+                animationFactory,
+                overrideWidth,
+                overrideHeight,
+                diskCacheStrategy);
+    }
+```
+GenericRequest 调用了obtain方法创建了GenericRequest对象，并调用init()方法赋值一些参数，返回GenericRequest对象实例。
+
+接下来看Request对象是怎么执行的
+```java
+    public void runRequest(Request request) {
+        // 把request放入请求集合中
+        requests.add(request);
+        // 判断当前glide是否是暂停状态
+        if (!isPaused) {
+            // 如果不是，就开始执行
+            request.begin();
+        } else {
+            // 如果是，就把request放入待执行集合中，等待暂停状态解除再开始执行
+            pendingRequests.add(request);
+        }
+    }
+```
+这里执行调用的是 `request.begin();` 其实调用的是 GenericRequest 的begin()方法
+```java
+    @Override
+    public void begin() {
+        startTime = LogTime.getLogTime();
+        if (model == null) {
+            onException(null);
+            return;
+        }
+
+        status = Status.WAITING_FOR_SIZE;
+        if (Util.isValidDimensions(overrideWidth, overrideHeight)) {
+            onSizeReady(overrideWidth, overrideHeight);
+        } else {
+            target.getSize(this);
+        }
+
+        if (!isComplete() && !isFailed() && canNotifyStatusChanged()) {
+            // 设置加载占位图
+            target.onLoadStarted(getPlaceholderDrawable());
+        }
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logV("finished run method in " + LogTime.getElapsedMillis(startTime));
+        }
+    }
+```
+如果model为null，就调用onException方法，并返回。  
+在setErrorPlaceholder方法中，获取请求错误情况下的占位图，通过调用ImageViewTarget的onLoadFailed方法设置到ImageView中。
+```java
+    @Override
+    public void onException(Exception e) {
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "load failed", e);
+        }
+
+        status = Status.FAILED;
+        //TODO: what if this is a thumbnail request?
+        if (requestListener == null || !requestListener.onException(e, model, target, isFirstReadyResource())) {
+            setErrorPlaceholder(e);
+        }
+    }
+
+    private void setErrorPlaceholder(Exception e) {
+        if (!canNotifyStatusChanged()) {
+            return;
+        }
+
+        Drawable error = model == null ? getFallbackDrawable() : null;
+        if (error == null) {
+          error = getErrorDrawable();
+        }
+        if (error == null) {
+            error = getPlaceholderDrawable();
+        }
+        // 设置加载错误图片
+        target.onLoadFailed(e, error);
+    }
+
+public abstract class ImageViewTarget<Z> extends ViewTarget<ImageView, Z> implements GlideAnimation.ViewAdapter {
+    ...
+    @Override
+    public void onLoadStarted(Drawable placeholder) {
+        view.setImageDrawable(placeholder);
+    }
+
+    @Override
+    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+        view.setImageDrawable(errorDrawable);
+    }
+    ...
+}
+```
+ImageViewTarget中的onLoadStarted()和onLoadFailed()这两个方法其实就是placeholder()和error()这两个占位图API的底层实现原理
+
+
+
 
 参考资料：
 
