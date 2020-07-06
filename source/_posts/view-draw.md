@@ -1,7 +1,9 @@
 ---
 title: View绘制流程
 tags:
-categories:
+    - View绘制
+    - Window
+categories: Android
 ---
 
 一个activity对应一个window，mWindow的赋值是在activity的attach()方法中，
