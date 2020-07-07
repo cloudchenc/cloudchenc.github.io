@@ -1,7 +1,10 @@
 ---
 title: Glide源码分析-执行流程
 tags:
-categories:
+    - Glide
+    - 网络框架
+    - 源码分析
+categories: Android
 ---
 
 ```java
@@ -1654,6 +1657,10 @@ public abstract class ImageViewTarget<Z> extends ViewTarget<ImageView, Z> implem
 在GlideDrawableImageViewTarget的onResourceReady()方法中做了一些逻辑处理，包括如果是GIF图片的话，就调用resource.start()方法开始播放图片。
 `super.onResourceReady(resource, animation);`这句代码最后调用了 `view.setImageDrawable(resource);` 将图片加载到ImageView上。
 
+###总结
+Glide执行流程的时序图：
+
+
 
 参考资料：
 
@@ -1661,7 +1668,4 @@ https://mp.weixin.qq.com/s?__biz=MzI4NjY4MTU5Nw==&mid=2247485940&idx=1&sn=0fcb7b
 https://mp.weixin.qq.com/s?__biz=MzI4NjY4MTU5Nw==&mid=2247486204&idx=2&sn=eabf558413baf96c3474533605c40dbf&chksm=ebd87a6edcaff378d0682133904ad32517348cc797ae1906d0453a631bac0a02968dbea8af2d&mpshare=1&scene=1&srcid=0524IBWDjiBZodSxMnqGqTHq&sharer_sharetime=1590302161316&sharer_shareid=9216e6e62e990610fc0215dd4d76a033#rd
 https://juejin.im/post/5e2109e25188254c257c40c6  
 
-https://blog.csdn.net/guolin_blog/article/details/53759439  
 https://blog.csdn.net/guolin_blog/article/details/53939176   
-https://blog.csdn.net/guolin_blog/article/details/54895665  
-https://blog.csdn.net/guolin_blog/article/details/70215985   
