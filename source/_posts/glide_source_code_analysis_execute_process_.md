@@ -1654,6 +1654,10 @@ public abstract class ImageViewTarget<Z> extends ViewTarget<ImageView, Z> implem
 在GlideDrawableImageViewTarget的onResourceReady()方法中做了一些逻辑处理，包括如果是GIF图片的话，就调用resource.start()方法开始播放图片。
 `super.onResourceReady(resource, animation);`这句代码最后调用了 `view.setImageDrawable(resource);` 将图片加载到ImageView上。
 
+###总结
+Glide执行流程的时序图：
+
+
 
 参考资料：
 

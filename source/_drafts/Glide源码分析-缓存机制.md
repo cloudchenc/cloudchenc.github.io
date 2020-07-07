@@ -76,7 +76,7 @@ public class Engine implements EngineJobListener,
 ### 内存缓存
 
 `EngineResource<?> cached = loadFromCache(key, isMemoryCacheable);`
-
+获取到缓存图片后，就直接调用`cb.onResourceReady(cached);`进行加载。
 ```java
     // 注意这里的isMemoryCacheable默认值为true, 通过skipMemoryCache()方法可以关闭内存缓存
     private EngineResource<?> loadFromCache(Key key, boolean isMemoryCacheable) {
@@ -107,8 +107,58 @@ public class Engine implements EngineJobListener,
         return result;
     }
 ```
+这里的cache对象是 MemoryCache 接口的实现，赋值是在 GlideBuilder 对象的createGlide()方法中
+ `memoryCache = new LruResourceCache(calculator.getMemoryCacheSize());`
+本质上是LruCache对象，内部维护了一个LinkedHashMap来保存强引用(区别于下面的弱引用)下的缓存图片。
+```java
+public class LruResourceCache extends LruCache<Key, Resource<?>> implements MemoryCache {
+    private ResourceRemovedListener listener;
+
+    /**
+     * Constructor for LruResourceCache.
+     *
+     * @param size The maximum size in bytes the in memory cache can use.
+     */
+    public LruResourceCache(int size) {
+        super(size);
+    }
+
+    @Override
+    public void setResourceRemovedListener(ResourceRemovedListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    protected void onItemEvicted(Key key, Resource<?> item) {
+        if (listener != null) {
+            listener.onResourceRemoved(item);
+        }
+    }
+
+    @Override
+    protected int getSize(Resource<?> item) {
+        return item.getSize();
+    }
+
+    @SuppressLint("InlinedApi")
+    @Override
+    public void trimMemory(int level) {
+        if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_MODERATE) {
+            // Nearing middle of list of cached background apps
+            // Evict our entire bitmap cache
+            clearMemory();
+        } else if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND) {
+            // Entering list of cached background apps
+            // Evict oldest half of our bitmap cache
+            trimToSize(getCurrentSize() / 2);
+        }
+    }
+}
+```
+
 
 `EngineResource<?> active = loadFromActiveResources(key, isMemoryCacheable);`
+获取到缓存图片后，就直接调用`cb.onResourceReady(cached);`进行加载。
 ```java
     private EngineResource<?> loadFromActiveResources(Key key, boolean isMemoryCacheable) {
         if (!isMemoryCacheable) {
@@ -129,5 +179,10 @@ public class Engine implements EngineJobListener,
         return active;
     }
 ```
+这里的activeResources对象是本地维护的一个HashMap来保存弱引用下的缓存图片。  
+
+上面理清了从内存缓存读取的流程，接下来分析一下是如何把图片写入内存缓存的。
+
+
 
 ### 硬盘缓存
