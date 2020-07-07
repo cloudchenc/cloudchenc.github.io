@@ -1,5 +1,5 @@
 ---
-title: Glide源码分析
+title: Glide源码分析-执行流程
 tags:
 categories:
 ---
@@ -438,8 +438,8 @@ public class ImageViewTargetFactory {
     }
 }
 ```
-这个buildTarget()方法中clazz参数其实来自GenericRequestBuilder中的transcodeClass变量，赋值是在GenericRequestBuilder的构造函数中。
-由于我们最初的参数是url对应string类，所以这里buildTarget()创建的是GlideDrawableImageViewTarget对象，传参给into()方法。
+这个 buildTarget()方法中clazz参数其实来自GenericRequestBuilder中的transcodeClass变量，赋值是在 GenericRequestBuilder 的构造函数中。
+由于我们最初的参数是url对应string类，所以这里 buildTarget()创建的是 GlideDrawableImageViewTarget 对象，传参给 into()方法。
 ```java
     public <Y extends Target<TranscodeType>> Y into(Y target) {
         Util.assertMainThread();
@@ -1474,10 +1474,185 @@ class EngineJob implements EngineRunnable.EngineRunnableManager {
 public class Engine implements EngineJobListener,
         MemoryCache.ResourceRemovedListener,
         EngineResource.ResourceListener {
-    
+
+    public <T, Z, R> LoadStatus load(Key signature, int width, int height, DataFetcher<T> fetcher,
+            DataLoadProvider<T, Z> loadProvider, Transformation<Z> transformation, ResourceTranscoder<Z, R> transcoder,
+            Priority priority, boolean isMemoryCacheable, DiskCacheStrategy diskCacheStrategy, ResourceCallback cb) {
+        Util.assertMainThread();
+        long startTime = LogTime.getLogTime();
+
+        final String id = fetcher.getId();
+        EngineKey key = keyFactory.buildKey(id, signature, width, height, loadProvider.getCacheDecoder(),
+                loadProvider.getSourceDecoder(), transformation, loadProvider.getEncoder(),
+                transcoder, loadProvider.getSourceEncoder());
+
+        EngineJob engineJob = engineJobFactory.build(key, isMemoryCacheable);
+        DecodeJob<T, Z, R> decodeJob = new DecodeJob<T, Z, R>(key, width, height, fetcher, loadProvider, transformation,
+                transcoder, diskCacheProvider, diskCacheStrategy, priority);
+        EngineRunnable runnable = new EngineRunnable(engineJob, decodeJob, priority);
+        jobs.put(key, engineJob);
+        engineJob.addCallback(cb);
+        engineJob.start(runnable);
+
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Started new load", startTime, key);
+        }
+        return new LoadStatus(cb, engineJob);
+    }    
+}
+
+public final class GenericRequest<A, T, Z, R> implements Request, SizeReadyCallback,
+        ResourceCallback {
+    @Override
+    public void onSizeReady(int width, int height) {
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logV("Got onSizeReady in " + LogTime.getElapsedMillis(startTime));
+        }
+        if (status != Status.WAITING_FOR_SIZE) {
+            return;
+        }
+        status = Status.RUNNING;
+
+        width = Math.round(sizeMultiplier * width);
+        height = Math.round(sizeMultiplier * height);
+
+        ModelLoader<A, T> modelLoader = loadProvider.getModelLoader();
+        final DataFetcher<T> dataFetcher = modelLoader.getResourceFetcher(model, width, height);
+
+        if (dataFetcher == null) {
+            onException(new Exception("Failed to load model: \'" + model + "\'"));
+            return;
+        }
+        ResourceTranscoder<Z, R> transcoder = loadProvider.getTranscoder();
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logV("finished setup for calling load in " + LogTime.getElapsedMillis(startTime));
+        }
+        loadedFromMemoryCache = true;
+        loadStatus = engine.load(signature, width, height, dataFetcher, loadProvider, transformation, transcoder,
+                priority, isMemoryCacheable, diskCacheStrategy, this);
+        loadedFromMemoryCache = resource != null;
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logV("finished onSizeReady in " + LogTime.getElapsedMillis(startTime));
+        }
+    }
+
+    @Override
+    public void onResourceReady(Resource<?> resource) {
+        if (resource == null) {
+            onException(new Exception("Expected to receive a Resource<R> with an object of " + transcodeClass
+                    + " inside, but instead got null."));
+            return;
+        }
+
+        Object received = resource.get();
+        if (received == null || !transcodeClass.isAssignableFrom(received.getClass())) {
+            releaseResource(resource);
+            onException(new Exception("Expected to receive an object of " + transcodeClass
+                    + " but instead got " + (received != null ? received.getClass() : "") + "{" + received + "}"
+                    + " inside Resource{" + resource + "}."
+                    + (received != null ? "" : " "
+                        + "To indicate failure return a null Resource object, "
+                        + "rather than a Resource object containing null data.")
+            ));
+            return;
+        }
+
+        if (!canSetResource()) {
+            releaseResource(resource);
+            // We can't set the status to complete before asking canSetResource().
+            status = Status.COMPLETE;
+            return;
+        }
+
+        onResourceReady(resource, (R) received);
+    }
+
+    private void onResourceReady(Resource<?> resource, R result) {
+        // We must call isFirstReadyResource before setting status.
+        boolean isFirstResource = isFirstReadyResource();
+        status = Status.COMPLETE;
+        this.resource = resource;
+
+        if (requestListener == null || !requestListener.onResourceReady(result, model, target, loadedFromMemoryCache,
+                isFirstResource)) {
+            GlideAnimation<R> animation = animationFactory.build(loadedFromMemoryCache, isFirstResource);
+            target.onResourceReady(result, animation);
+        }
+
+        notifyLoadSuccess();
+
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logV("Resource ready in " + LogTime.getElapsedMillis(startTime) + " size: "
+                    + (resource.getSize() * TO_MEGABYTE) + " fromCache: " + loadedFromMemoryCache);
+        }
+    }
 }
 ```
+这里的 target 其实是 GlideDrawableImageViewTarget 对象。
+```java
+public class GlideDrawableImageViewTarget extends ImageViewTarget<GlideDrawable> {
+    private static final float SQUARE_RATIO_MARGIN = 0.05f;
+    private int maxLoopCount;
+    private GlideDrawable resource;
 
+    public GlideDrawableImageViewTarget(ImageView view) {
+        this(view, GlideDrawable.LOOP_FOREVER);
+    }
+
+    public GlideDrawableImageViewTarget(ImageView view, int maxLoopCount) {
+        super(view);
+        this.maxLoopCount = maxLoopCount;
+    }
+
+    @Override
+    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
+        if (!resource.isAnimated()) {
+            float viewRatio = view.getWidth() / (float) view.getHeight();
+            float drawableRatio = resource.getIntrinsicWidth() / (float) resource.getIntrinsicHeight();
+            if (Math.abs(viewRatio - 1f) <= SQUARE_RATIO_MARGIN
+                    && Math.abs(drawableRatio - 1f) <= SQUARE_RATIO_MARGIN) {
+                resource = new SquaringDrawable(resource, view.getWidth());
+            }
+        }
+        super.onResourceReady(resource, animation);
+        this.resource = resource;
+        resource.setLoopCount(maxLoopCount);
+        resource.start();
+    }
+
+    @Override
+    protected void setResource(GlideDrawable resource) {
+        view.setImageDrawable(resource);
+    }
+
+    @Override
+    public void onStart() {
+        if (resource != null) {
+            resource.start();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        if (resource != null) {
+            resource.stop();
+        }
+    }    
+}
+
+public abstract class ImageViewTarget<Z> extends ViewTarget<ImageView, Z> implements GlideAnimation.ViewAdapter {
+    @Override
+    public void onResourceReady(Z resource, GlideAnimation<? super Z> glideAnimation) {
+        if (glideAnimation == null || !glideAnimation.animate(resource, this)) {
+            setResource(resource);
+        }
+    }
+
+    protected abstract void setResource(Z resource);
+}
+```
+在GlideDrawableImageViewTarget的onResourceReady()方法中做了一些逻辑处理，包括如果是GIF图片的话，就调用resource.start()方法开始播放图片。
+`super.onResourceReady(resource, animation);`这句代码最后调用了 `view.setImageDrawable(resource);` 将图片加载到ImageView上。
 
 
 参考资料：
