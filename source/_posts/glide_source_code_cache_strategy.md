@@ -321,6 +321,213 @@ Glide.with(this)
      .diskCacheStrategy(DiskCacheStrategy.NONE)
      .into(imageView);
 ```
+diskCacheStrategy()方法基本上就是Glide硬盘缓存的开关，接收四种参数：  
++ DiskCacheStrategy.ALL：表示既缓存原始图片，也缓存转换后的图片  
++ DiskCacheStrategy.NONE：表示不缓存任何内容  
++ DiskCacheStrategy.SOURCE：表示只缓存原始图片
++ DiskCacheStrategy.RESULT：表示只缓存转换后的图片（默认值）
+
+当使用Glide加载一张图片的时候，默认并不会将原始图片展示出来，而是会对图片进行压缩和转换，Glide硬盘缓存默认保存的就是转换后的图片
+
+#### 1.读取硬盘缓存
+Glide开启线程来加载图片后会执行EngineRunnable的run()方法，run()方法中又会调用一个decode()方法
+```java
+class EngineRunnable implements Runnable, Prioritized {
+    private Resource<?> decode() throws Exception {
+        if (isDecodingFromCache()) {
+            return decodeFromCache();
+        } else {
+            return decodeFromSource();
+        }
+    }
+}
+```
+默认情况下Glide会调用decodeFromCache()方法从硬盘缓存中读取图片，
+当缓存中不存在要读取的图片时，才会调用onLoadFailed()方法，将`stage`赋值为`Stage.SOURCE`，
+重新执行EngineRunnable的run()方法，最终调用到decodeFromSource()方法去读取原始图片。
+
+那么分析下decodeFromCache()方法：
+```java
+    private Resource<?> decodeFromCache() throws Exception {
+        Resource<?> result = null;
+        try {
+            result = decodeJob.decodeResultFromCache();
+        } catch (Exception e) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Exception decoding result from cache: " + e);
+            }
+        }
+
+        if (result == null) {
+            result = decodeJob.decodeSourceFromCache();
+        }
+        return result;
+    }
+```
+先调用了decodeResultFromCache()方法获取缓存，如果获取不到，会再调用decodeSourceFromCache()方法获取缓存，
+对应DiskCacheStrategy.RESULT和DiskCacheStrategy.SOURCE这两个参数。
+```java
+    public Resource<Z> decodeResultFromCache() throws Exception {
+        if (!diskCacheStrategy.cacheResult()) {
+            return null;
+        }
+
+        long startTime = LogTime.getLogTime();
+        Resource<T> transformed = loadFromCache(resultKey);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Decoded transformed from cache", startTime);
+        }
+        startTime = LogTime.getLogTime();
+        Resource<Z> result = transcode(transformed);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Transcoded transformed from cache", startTime);
+        }
+        return result;
+    }
+
+    public Resource<Z> decodeSourceFromCache() throws Exception {
+        if (!diskCacheStrategy.cacheSource()) {
+            return null;
+        }
+
+        long startTime = LogTime.getLogTime();
+        Resource<T> decoded = loadFromCache(resultKey.getOriginalKey());
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Decoded source from cache", startTime);
+        }
+        return transformEncodeAndTranscode(decoded);
+    }
+```
+这两个方法都是调用了loadFromCache()方法从缓存中读取数据，
+只是 decodeResultFromCache()传入的是resultKey对应转换后的图片缓存key，
+而decodeSourceFromCache()传入的是resultKey.getOriginalKey()【也就是图片的url】对应原始图片的缓存key。
+
+当decodeResultFromCache()获取到缓存后，直接将数据转码为另一个图片类型并返回
+当decodeSourceFromCache()获取到缓存后，需要调用transformEncodeAndTranscode()方法先将数据转换一下宽高，再转码为另一个图片类型返回
+
+而loadFromCache()方法其实就是DiskLruCache方法的调用
+```java
+    private Resource<T> loadFromCache(Key key) throws IOException {
+        File cacheFile = diskCacheProvider.getDiskCache().get(key);
+        if (cacheFile == null) {
+            return null;
+        }
+
+        Resource<T> result = null;
+        try {
+            result = loadProvider.getCacheDecoder().decode(cacheFile, width, height);
+        } finally {
+            if (result == null) {
+                diskCacheProvider.getDiskCache().delete(key);
+            }
+        }
+        return result;
+    }
+```
+调用getDiskCache()方法获取到DiskLruCache的实例，根据key得到硬盘缓存的图片。
+如果是空，或解码失败，就返回null，同时删除key键对应的硬盘缓存资源，
+不为空就解码为Resource对象返回。
+
+#### 2.写入硬盘缓存
+上文分析，在没有缓存的情况下，会调用 decodeFromSource()方法来读取原始图片。
+```java
+    public Resource<Z> decodeFromSource() throws Exception {
+        Resource<T> decoded = decodeSource();
+        return transformEncodeAndTranscode(decoded);
+    }
+```
+decodeSource()方法是用来解码原始图片的，而transformEncodeAndTranscode()是对图片进行转换和转码的。
+所以硬盘缓存中的原始图片缓存是在decodeSource()方法中写入的：
+```java
+    private Resource<T> decodeSource() throws Exception {
+        Resource<T> decoded = null;
+        try {
+            long startTime = LogTime.getLogTime();
+            final A data = fetcher.loadData(priority);
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                logWithTimeAndKey("Fetched data", startTime);
+            }
+            if (isCancelled) {
+                return null;
+            }
+            decoded = decodeFromSourceData(data);
+        } finally {
+            fetcher.cleanup();
+        }
+        return decoded;
+    }
+
+    private Resource<T> decodeFromSourceData(A data) throws IOException {
+        final Resource<T> decoded;
+        if (diskCacheStrategy.cacheSource()) {
+            decoded = cacheAndDecodeSourceData(data);
+        } else {
+            long startTime = LogTime.getLogTime();
+            decoded = loadProvider.getSourceDecoder().decode(data, width, height);
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                logWithTimeAndKey("Decoded from source", startTime);
+            }
+        }
+        return decoded;
+    }
+
+    private Resource<T> cacheAndDecodeSourceData(A data) throws IOException {
+        long startTime = LogTime.getLogTime();
+        SourceWriter<A> writer = new SourceWriter<A>(loadProvider.getSourceEncoder(), data);
+        diskCacheProvider.getDiskCache().put(resultKey.getOriginalKey(), writer);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Wrote source to cache", startTime);
+        }
+
+        startTime = LogTime.getLogTime();
+        Resource<T> result = loadFromCache(resultKey.getOriginalKey());
+        if (Log.isLoggable(TAG, Log.VERBOSE) && result != null) {
+            logWithTimeAndKey("Decoded source from cache", startTime);
+        }
+        return result;
+    }
+```
+fetcher.loadData()读取原始数据 
+--> decodeFromSourceData()解码图片 
+--> 判断是否缓存原始图片 
+--> cacheAndDecodeSourceData()将原始图片写入硬盘缓存【使用的key是resultKey.getOriginalKey()】
+
+而硬盘缓存中的转换后的图片是在transformEncodeAndTranscode()方法中写入的：
+```java
+    private Resource<Z> transformEncodeAndTranscode(Resource<T> decoded) {
+        long startTime = LogTime.getLogTime();
+        Resource<T> transformed = transform(decoded);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Transformed resource from source", startTime);
+        }
+
+        writeTransformedToCache(transformed);
+
+        startTime = LogTime.getLogTime();
+        Resource<Z> result = transcode(transformed);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Transcoded transformed from source", startTime);
+        }
+        return result;
+    }
+
+    private void writeTransformedToCache(Resource<T> transformed) {
+        if (transformed == null || !diskCacheStrategy.cacheResult()) {
+            return;
+        }
+        long startTime = LogTime.getLogTime();
+        SourceWriter<Resource<T>> writer = new SourceWriter<Resource<T>>(loadProvider.getEncoder(), transformed);
+        diskCacheProvider.getDiskCache().put(resultKey, writer);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            logWithTimeAndKey("Wrote transformed from source to cache", startTime);
+        }
+    }
+```
+transform()方法对图片进行转换
+--> writeTransformedToCache()将转换后的图片写入硬盘缓存【使用的key是resultKey】
+
+至此，Glide缓存机制分析结束，送上一张流程图：
+
 
 
 参考资料：  

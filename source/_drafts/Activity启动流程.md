@@ -6,7 +6,7 @@ categories:
 
 1. 使用代理模式启动到ActivityManagerService中执行
 2. 创建ActivityRecord到mHistory记录中
-3. 通过socket通信到Zgote相关类创建process
+3. 通过socket通信到 Zygote 相关类创建process
 4. 通过ApplicatonThread与ActivityManagerService建立通信
 5. ActivityManagerService通知ActiveThread启动Activity的创建
 6. ActivityThread创建Activity加入到mActivities中并开始调度Activity执行

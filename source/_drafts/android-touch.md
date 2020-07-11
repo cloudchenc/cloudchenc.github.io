@@ -12,7 +12,11 @@ view, viewgroup, activity
 
 ViewGroup.requestDisallowInterceptTouchEvent阻止父view调用onInterceptTouchEvent进行拦截，解决嵌套view的滑动冲突
 
-view的dispatchPointerEvent方法 --> decorview的dispatchTouchEvent方法 --> activity的dispatchTouchEvent方法
+view的dispatchPointerEvent方法 
+--> decorview的dispatchTouchEvent方法 
+--> activity的dispatchTouchEvent方法
+
+decorview --> activity --> window --> activity
 
 事件分发 activity --> viewgroup --> view
 事件处理 view --> viewgroup --> activity

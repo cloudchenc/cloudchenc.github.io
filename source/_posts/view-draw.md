@@ -23,7 +23,7 @@ activityThread.handleLaunchActivity()
 —> activity.attach()   
 —> activity.onCreate()  
 —> activityThread.handleResumeActivity()   
-—>activityThread.performResumeActivity()   
+—> activityThread.performResumeActivity()   
 —> activity.onResume()   
 —> windowManager.addView()  
 
