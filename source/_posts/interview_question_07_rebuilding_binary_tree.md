@@ -3,10 +3,10 @@ title: 面试题07.重建二叉树
 date: 2020-06-14 22:27:40
 tags:
     - LeetCode
-    - 剑指offer
+    - 剑指Offer
     - 树
     - 递归
-categories: 剑指offer
+categories: 剑指Offer
 ---
 
 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。

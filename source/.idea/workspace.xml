@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="690a53c6-0d5b-4cd0-9629-bcb3b4357986" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_drafts/Android屏幕刷新机制.md" beforeDir="false" afterPath="$PROJECT_DIR$/_drafts/Android屏幕刷新机制.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_drafts/算法总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/_drafts/算法总结.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../themes/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/../themes/themes/next" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,7 +58,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
