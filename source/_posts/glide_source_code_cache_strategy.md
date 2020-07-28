@@ -78,7 +78,7 @@ public class Engine implements EngineJobListener,
 
 ### 内存缓存
 
-#### 1. 读取内存缓存
+#### 读取内存缓存
 
 `EngineResource<?> cached = loadFromCache(key, isMemoryCacheable);`
 获取到缓存图片后，就直接调用`cb.onResourceReady(cached);`进行加载。
@@ -192,7 +192,7 @@ public class LruResourceCache extends LruCache<Key, Resource<?>> implements Memo
 在执行图片加载请求前，会先调用 loadFromCache()和loadFromActiveResources()两个方法来获取内存缓存，loadFromCache()使用的是LruCache算法，保存了强引用下的缓存图片；
 而loadFromActiveResources()保存了弱引用下的缓存图片。只有在获取不到缓存的情况下，才会向下执行，开启线程来加载图片。
 
-#### 2. 写入内存缓存
+#### 写入内存缓存
 
 上面理清了从内存缓存读取的流程，接下来分析一下是如何把图片写入内存缓存的。
 
@@ -329,7 +329,7 @@ diskCacheStrategy()方法基本上就是Glide硬盘缓存的开关，接收四�
 
 当使用Glide加载一张图片的时候，默认并不会将原始图片展示出来，而是会对图片进行压缩和转换，Glide硬盘缓存默认保存的就是转换后的图片
 
-#### 1.读取硬盘缓存
+#### 读取硬盘缓存
 Glide开启线程来加载图片后会执行EngineRunnable的run()方法，run()方法中又会调用一个decode()方法
 ```java
 class EngineRunnable implements Runnable, Prioritized {
@@ -428,7 +428,7 @@ class EngineRunnable implements Runnable, Prioritized {
 如果是空，或解码失败，就返回null，同时删除key键对应的硬盘缓存资源，
 不为空就解码为Resource对象返回。
 
-#### 2.写入硬盘缓存
+#### 写入硬盘缓存
 上文分析，在没有缓存的情况下，会调用 decodeFromSource()方法来读取原始图片。
 ```java
     public Resource<Z> decodeFromSource() throws Exception {

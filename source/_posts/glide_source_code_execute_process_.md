@@ -11,7 +11,7 @@ categories: Android
 Glide.with(this).load(url).into(imageView);
 ```
 
-###1. with()
+### with()
 
 ```java
     public static RequestManager with(Context context) {
@@ -52,7 +52,7 @@ Glide.with(this).load(url).into(imageView);
 当在子线程时，非Application类型的参数会被强制转为Application类型来处理
 
 
-###2. load()
+### load()
 
 以load图片url举例，
 ```java
@@ -389,7 +389,7 @@ public class DrawableRequestBuilder<ModelType>
 这里的load()方法 `super.load(model);` 调用到了DrawableRequestBuilder的父类 GenericRequestBuilder 的load()方法中，
 将model(这里是url: String)赋值，并把标记isModelSet置为true。
 
-###3. into()
+### into()
 
 接下来调用的into()方法也是调用到了GenericRequestBuilder中
 ```java
@@ -1657,7 +1657,7 @@ public abstract class ImageViewTarget<Z> extends ViewTarget<ImageView, Z> implem
 在GlideDrawableImageViewTarget的onResourceReady()方法中做了一些逻辑处理，包括如果是GIF图片的话，就调用resource.start()方法开始播放图片。
 `super.onResourceReady(resource, animation);`这句代码最后调用了 `view.setImageDrawable(resource);` 将图片加载到ImageView上。
 
-###总结
+### 总结
 Glide执行流程的时序图：
 
 
