@@ -1,5 +1,6 @@
 ---
 title: View绘制流程
+date: 2020-06-28 18:49:50
 tags:
     - View绘制
     - Window

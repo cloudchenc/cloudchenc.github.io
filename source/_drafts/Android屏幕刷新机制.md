@@ -4,6 +4,12 @@ tags:
 
 ---
 
+绘制的三种方式：Canvas，OpenGL，Vulkan
+
+CPU负责收集绘制指令
+
+GPU负责绘制渲染
+
 View requestLayout invalidate
 
 为什么使用双缓冲技术？
