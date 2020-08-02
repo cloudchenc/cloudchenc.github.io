@@ -3,20 +3,19 @@ title: Github Page绑定域名
 date: 2020-06-08 11:16:07
 tags: 
     - Blog
-    - Github Page
-categories: Blog
+categories: Other
 ---
 
-###购买域名
+### 购买域名
 默认的域名是 xxx.github.io, 如果github的名字不够响亮，就显得很没有排面。
 所以研究了一番域名后缀，选择了 .me 后缀, 我是在Godaddy入坑的，第一年价格不高。
 具体买什么后缀，这里不再赘述，全凭个人爱好。
 
-###设置域名
+### 设置域名
 打开Github博客项目，进入settings menu，下拉到Custom domain，输入你刚才购买的域名，点击保存即可。
 ![Custom domain](https://tva1.sinaimg.cn/large/d7f9b0f4gy1gfkwjy4eicj20k702zwep.jpg)
 
-###解析域名
+### 解析域名
 这里以Godaddy为例，由于Godaddy在国内的DNS解析不是很好，所以更换为了DNSPod
 
 进入DNSPod网站，注册登陆，添加域名，点击解析按钮，添加两条解析记录 如下：
@@ -37,5 +36,5 @@ categories: Blog
 
 完成以上步骤，即可在浏览器输入之前购买的域名测试是否成功跳转
 
-参考链接：
+参考链接： 
 `https://cyclechen.me/2019/03/13/2019-03-13-setup-github-page-personal-with-godaddy/`

@@ -534,7 +534,7 @@ Looper通过loop()，不断提取出达到触发条件的Message，并将Message
 
 Tips:
 
-1.为什么在主线程中使用handler不用调用Looper.prepareMainLooper()和Looper.loop()？
+1. 为什么在主线程中使用handler不用调用Looper.prepareMainLooper()和Looper.loop()？
 这是因为 ActivityThread 在初始化时已经调用过了，具体见如下源码。
 
 ```java
@@ -548,7 +548,7 @@ Tips:
     }
 ```
 
-2.主线程中的Looper.loop()一直无限循环为什么不会造成ANR?
+2. 主线程中的Looper.loop()一直无限循环为什么不会造成ANR?
 首先要明白ANR的定义，activity超时5s，service超时10s，broadcast超时20s，才会导致Application Not Response。
   
 

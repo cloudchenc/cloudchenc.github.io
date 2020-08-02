@@ -4,6 +4,16 @@ tags:
 categories:
 ---
 
+Instrumentation
+
+ActivityThread
+
+ActivityManagerService
+
+启动 Activity 的请求会由 Instrumentation 来处理，
+它通过 Binder 向 AMS 发起请求，AMS 内部维护了一个 ActivityStack 并负责栈内的 Activity 状态同步，
+AMS 通过 ActivityThread 去同步 Activity 的状态从而完成生命周期的回调。
+
 1. 使用代理模式启动到ActivityManagerService中执行
 2. 创建ActivityRecord到mHistory记录中
 3. 通过socket通信到 Zygote 相关类创建process
