@@ -18,6 +18,10 @@ View requestLayout invalidate
 
 双缓冲意味着要使用两个缓冲区（在上文提及的SharedBufferStack中），其中一个称为Front Buffer，另一个称为Back Buffer。UI总是先在Back Buffer中绘制，然后再和Front Buffer交换，渲染到显示设备中。即只有当另一个buffer的数据准备好后，通过io_ctl来通知显示设备切换Buffer。
 
+ViewRootImpl
+
+Choreographer
+
 参考资料：
 
 https://www.jianshu.com/p/0a54aa33ba7d
