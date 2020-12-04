@@ -1,10 +1,12 @@
 ---
-title: what_is_context
+title: what is Context
 tags: Context
 categories: Android
 ---
 
-What is Context?   
+### 概述
+
+what is Context?   
 这是一个好问题，官方的解释是这样:
 ```
 /**
@@ -26,12 +28,13 @@ What is Context?
 应用里有 Activity 、Service、Application 这些 Context ，我们先说说它们的共同点，它们都是 ContextWrapper 的子类，而 ContextWrapper 的成员变量 mBase 可以用来存放系统实现的 ContextImpl，这样我们在调用如 Activity 的 Context 方法时，都是通过静态代理的方式最终调用到 ContextImpl 的方法。我们调用 ContextWrapper 的 getBaseContext 方法就能拿到 ContextImpl 的实例
 再说它们的不同点，它们有各自不同的生命周期；在功能上，只有 Activity 显示界面，正因为如此，Activity 继承的是 ContextThemeWrapper 提供一些关于主题，界面显示的能力，间接继承了 ContextWrapper ； 而 Applicaiton 、Service 都是直接继承 ContextWrapper ，所以我们要记住一点，凡是跟 UI 有关的，都应该用 Activity 作为 Context 来处理，否则要么会报错，要么 UI 会使用系统默认的主题。
 
-接下来我们就来看看四大组件是如何初始化的，另外由于组件是依托于Application的，同时就研究下Application的初始化过程
+接下来我们就来看看四大组件是如何初始化的，另外由于组件是依托于Application的，同时就研究下Application的初始化过程  
+
 p.s. Android Environment: API-28
 
 ### 组件创建流程
 
-#### Activity创建-performLaunchActivity
+#### Activity创建-->performLaunchActivity
 
 ```java
 public final class ActivityThread {
@@ -44,19 +47,7 @@ public final class ActivityThread {
             r.packageInfo = getPackageInfo(aInfo.applicationInfo, r.compatInfo,
                     Context.CONTEXT_INCLUDE_CODE);
         }
-
-        ComponentName component = r.intent.getComponent();
-        if (component == null) {
-            component = r.intent.resolveActivity(
-                mInitialApplication.getPackageManager());
-            r.intent.setComponent(component);
-        }
-
-        if (r.activityInfo.targetActivity != null) {
-            component = new ComponentName(r.activityInfo.packageName,
-                    r.activityInfo.targetActivity);
-        }
-
+        // ...
         // 2. 创建 ContextImpl 对象
         ContextImpl appContext = createBaseContextForActivity(r);
         Activity activity = null;
@@ -82,14 +73,6 @@ public final class ActivityThread {
         try {
             // 4. 创建 Application 对象
             Application app = r.packageInfo.makeApplication(false, mInstrumentation);
-
-            if (localLOGV) Slog.v(TAG, "Performing launch of " + r);
-            if (localLOGV) Slog.v(
-                    TAG, r + ": app=" + app
-                    + ", appName=" + app.getPackageName()
-                    + ", pkg=" + r.packageInfo.getPackageName()
-                    + ", comp=" + r.intent.getComponent().toShortString()
-                    + ", dir=" + r.packageInfo.getAppDir());
 
             if (activity != null) {
                 CharSequence title = r.activityInfo.loadLabel(appContext.getPackageManager());
@@ -156,14 +139,15 @@ public final class ActivityThread {
     }
 }
 ```
-Activity创建流程总结：
+#### Activity创建流程
+
 1. 获取 LoadedApk 对象
 2. 创建 ContextImpl 对象
 3. 通过 ContextImpl 获取类加载器，传入 Instrumentation 创建 Activity 对象
 4. 将 ContextImpl 与 Activity 绑定
 5. 执行 Activity 的 onCreate()方法回调
 
-#### Service创建-handleCreateService
+#### Service创建-->handleCreateService
 
 ```java
 public final class ActivityThread{
@@ -219,7 +203,9 @@ public final class ActivityThread{
     }
 }
 ```
-Service创建流程总结：
+
+#### Service创建流程
+
 1. 获取 LoadedApk 对象
 2. 通过 LoadedApk 获取类加载器，创建 Service 对象
 3. 创建 ContextImpl 对象
@@ -228,7 +214,7 @@ Service创建流程总结：
 6. 执行 Service 的 onCreate()方法回调
 7. 通知 ActivityManagerService 当前 Service 异步执行
 
-#### BroadcastReceiver创建-handleReceiver
+#### BroadcastReceiver创建-->handleReceiver
 
 ```java
 public final class ActivityThread{
@@ -272,14 +258,6 @@ public final class ActivityThread{
         }
 
         try {
-            if (localLOGV) Slog.v(
-                TAG, "Performing receive of " + data.intent
-                + ": app=" + app
-                + ", appName=" + app.getPackageName()
-                + ", pkg=" + packageInfo.getPackageName()
-                + ", comp=" + data.intent.getComponent().toShortString()
-                + ", dir=" + packageInfo.getAppDir());
-
             sCurrentBroadcastIntent.set(data.intent);
             receiver.setPendingResult(data);
             // 5. 执行 BroadcastReceiver 的 onReceive()方法回调
@@ -304,14 +282,15 @@ public final class ActivityThread{
     }
 }
 ```
-BroadcastReceiver创建流程总结：
+#### BroadcastReceiver创建流程
+
 1. 获取 LoadedApk 对象
 2. 创建 Application 对象
 3. 获取 ContextImpl 对象
 4. 通过 ContextImpl 获取类加载器，创建 BroadcastReceiver 对象
 5. 执行 BroadcastReceiver 的 onReceive()方法回调
 
-#### ContentProvider创建-installProvider
+#### ContentProvider创建-->installProvider
 
 ```java
 public final class ActivityThread {
@@ -322,10 +301,6 @@ public final class ActivityThread {
         ContentProvider localProvider = null;
         IContentProvider provider;
         if (holder == null || holder.provider == null) {
-            if (DEBUG_PROVIDER || noisy) {
-                Slog.d(TAG, "Loading provider " + info.authority + ": "
-                        + info.name);
-            }
             Context c = null;
             ApplicationInfo ai = info.applicationInfo;
             // 1. 获取 Context 对象
@@ -342,21 +317,6 @@ public final class ActivityThread {
                     // Ignore
                 }
             }
-            if (c == null) {
-                Slog.w(TAG, "Unable to get context for package " +
-                      ai.packageName +
-                      " while loading content provider " +
-                      info.name);
-                return null;
-            }
-
-            if (info.splitName != null) {
-                try {
-                    c = c.createContextForSplit(info.splitName);
-                } catch (NameNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
 
             try {
                 // 2. 通过 Context 获取类加载器，创建 ContentProvider 对象
@@ -369,15 +329,6 @@ public final class ActivityThread {
                 localProvider = packageInfo.getAppFactory()
                         .instantiateProvider(cl, info.name);
                 provider = localProvider.getIContentProvider();
-                if (provider == null) {
-                    Slog.e(TAG, "Failed to instantiate class " +
-                          info.name + " from sourceDir " +
-                          info.applicationInfo.sourceDir);
-                    return null;
-                }
-                if (DEBUG_PROVIDER) Slog.v(
-                    TAG, "Instantiating local provider " + info.name);
-                // XXX Need to create the correct context for this provider.
                 // 3. 将 Context 与 ContentProvider 绑定
                 localProvider.attachInfo(c, info);
             } catch (java.lang.Exception e) {
@@ -390,340 +341,34 @@ public final class ActivityThread {
             }
         } else {
             provider = holder.provider;
-            if (DEBUG_PROVIDER) Slog.v(TAG, "Installing external provider " + info.authority + ": "
-                    + info.name);
         }
-
-        ContentProviderHolder retHolder;
-
-        synchronized (mProviderMap) {
-            if (DEBUG_PROVIDER) Slog.v(TAG, "Checking to add " + provider
-                    + " / " + info.name);
-            IBinder jBinder = provider.asBinder();
-            if (localProvider != null) {
-                ComponentName cname = new ComponentName(info.packageName, info.name);
-                ProviderClientRecord pr = mLocalProvidersByName.get(cname);
-                if (pr != null) {
-                    if (DEBUG_PROVIDER) {
-                        Slog.v(TAG, "installProvider: lost the race, "
-                                + "using existing local provider");
-                    }
-                    provider = pr.mProvider;
-                } else {
-                    holder = new ContentProviderHolder(info);
-                    holder.provider = provider;
-                    holder.noReleaseNeeded = true;
-                    pr = installProviderAuthoritiesLocked(provider, localProvider, holder);
-                    mLocalProviders.put(jBinder, pr);
-                    mLocalProvidersByName.put(cname, pr);
-                }
-                retHolder = pr.mHolder;
-            } else {
-                ProviderRefCount prc = mProviderRefCountMap.get(jBinder);
-                if (prc != null) {
-                    if (DEBUG_PROVIDER) {
-                        Slog.v(TAG, "installProvider: lost the race, updating ref count");
-                    }
-                    // We need to transfer our new reference to the existing
-                    // ref count, releasing the old one...  but only if
-                    // release is needed (that is, it is not running in the
-                    // system process).
-                    if (!noReleaseNeeded) {
-                        incProviderRefLocked(prc, stable);
-                        try {
-                            ActivityManager.getService().removeContentProvider(
-                                    holder.connection, stable);
-                        } catch (RemoteException e) {
-                            //do nothing content provider object is dead any way
-                        }
-                    }
-                } else {
-                    ProviderClientRecord client = installProviderAuthoritiesLocked(
-                            provider, localProvider, holder);
-                    if (noReleaseNeeded) {
-                        prc = new ProviderRefCount(holder, client, 1000, 1000);
-                    } else {
-                        prc = stable
-                                ? new ProviderRefCount(holder, client, 1, 0)
-                                : new ProviderRefCount(holder, client, 0, 1);
-                    }
-                    mProviderRefCountMap.put(jBinder, prc);
-                }
-                retHolder = prc.holder;
-            }
-        }
+        // ...
         return retHolder;
     }
 }
 ```
-ContentProvider创建流程总结：
+
+#### ContentProvider创建流程
+
 1. 获取 Context 对象
 2. 通过 Context 获取类加载器，创建 ContentProvider 对象
 3. 将 Context 与 ContentProvider 绑定
 
-#### Application创建-handleBindApplication
+#### Application创建-->handleBindApplication
 ```java
 public final class ActivityThread {
 
     private void handleBindApplication(AppBindData data) {
-        // Register the UI Thread as a sensitive thread to the runtime.
-        VMRuntime.registerSensitiveThread();
-        if (data.trackAllocation) {
-            DdmVmInternal.enableRecentAllocations(true);
-        }
-
-        // Note when this process has started.
-        Process.setStartTimes(SystemClock.elapsedRealtime(), SystemClock.uptimeMillis());
-
-        mBoundApplication = data;
-        mConfiguration = new Configuration(data.config);
-        mCompatConfiguration = new Configuration(data.config);
-
-        mProfiler = new Profiler();
-        String agent = null;
-        if (data.initProfilerInfo != null) {
-            mProfiler.profileFile = data.initProfilerInfo.profileFile;
-            mProfiler.profileFd = data.initProfilerInfo.profileFd;
-            mProfiler.samplingInterval = data.initProfilerInfo.samplingInterval;
-            mProfiler.autoStopProfiler = data.initProfilerInfo.autoStopProfiler;
-            mProfiler.streamingOutput = data.initProfilerInfo.streamingOutput;
-            if (data.initProfilerInfo.attachAgentDuringBind) {
-                agent = data.initProfilerInfo.agent;
-            }
-        }
-
-        // send up app name; do this *before* waiting for debugger
-        Process.setArgV0(data.processName);
-        android.ddm.DdmHandleAppName.setAppName(data.processName,
-                                                UserHandle.myUserId());
-        VMRuntime.setProcessPackageName(data.appInfo.packageName);
-
-        if (mProfiler.profileFd != null) {
-            mProfiler.startProfiling();
-        }
-
-        // If the app is Honeycomb MR1 or earlier, switch its AsyncTask
-        // implementation to use the pool executor.  Normally, we use the
-        // serialized executor as the default. This has to happen in the
-        // main thread so the main looper is set right.
-        if (data.appInfo.targetSdkVersion <= android.os.Build.VERSION_CODES.HONEYCOMB_MR1) {
-            AsyncTask.setDefaultExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        }
-
-        Message.updateCheckRecycle(data.appInfo.targetSdkVersion);
-
-        // Prior to P, internal calls to decode Bitmaps used BitmapFactory,
-        // which may scale up to account for density. In P, we switched to
-        // ImageDecoder, which skips the upscale to save memory. ImageDecoder
-        // needs to still scale up in older apps, in case they rely on the
-        // size of the Bitmap without considering its density.
-        ImageDecoder.sApiLevel = data.appInfo.targetSdkVersion;
-
-        /*
-         * Before spawning a new process, reset the time zone to be the system time zone.
-         * This needs to be done because the system time zone could have changed after the
-         * the spawning of this process. Without doing this this process would have the incorrect
-         * system time zone.
-         */
-        TimeZone.setDefault(null);
-
-        /*
-         * Set the LocaleList. This may change once we create the App Context.
-         */
-        LocaleList.setDefault(data.config.getLocales());
-
-        synchronized (mResourcesManager) {
-            /*
-             * Update the system configuration since its preloaded and might not
-             * reflect configuration changes. The configuration object passed
-             * in AppBindData can be safely assumed to be up to date
-             */
-            mResourcesManager.applyConfigurationToResourcesLocked(data.config, data.compatInfo);
-            mCurDefaultDisplayDpi = data.config.densityDpi;
-
-            // This calls mResourcesManager so keep it within the synchronized block.
-            applyCompatConfiguration(mCurDefaultDisplayDpi);
-        }
+        // ...
         // 1. 获取 LoadedApk 对象
         data.info = getPackageInfoNoCheck(data.appInfo, data.compatInfo);
-
-        if (agent != null) {
-            handleAttachAgent(agent, data.info);
-        }
-
-        /**
-         * Switch this process to density compatibility mode if needed.
-         */
-        if ((data.appInfo.flags&ApplicationInfo.FLAG_SUPPORTS_SCREEN_DENSITIES)
-                == 0) {
-            mDensityCompatMode = true;
-            Bitmap.setDefaultDensity(DisplayMetrics.DENSITY_DEFAULT);
-        }
-        updateDefaultDensity();
-
-        final String use24HourSetting = mCoreSettings.getString(Settings.System.TIME_12_24);
-        Boolean is24Hr = null;
-        if (use24HourSetting != null) {
-            is24Hr = "24".equals(use24HourSetting) ? Boolean.TRUE : Boolean.FALSE;
-        }
-        // null : use locale default for 12/24 hour formatting,
-        // false : use 12 hour format,
-        // true : use 24 hour format.
-        DateFormat.set24HourTimePref(is24Hr);
-
-        View.mDebugViewAttributes =
-                mCoreSettings.getInt(Settings.Global.DEBUG_VIEW_ATTRIBUTES, 0) != 0;
-
-        StrictMode.initThreadDefaults(data.appInfo);
-        StrictMode.initVmDefaults(data.appInfo);
-
-        // We deprecated Build.SERIAL and only apps that target pre NMR1
-        // SDK can see it. Since access to the serial is now behind a
-        // permission we push down the value and here we fix it up
-        // before any app code has been loaded.
-        try {
-            Field field = Build.class.getDeclaredField("SERIAL");
-            field.setAccessible(true);
-            field.set(Build.class, data.buildSerial);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            /* ignore */
-        }
-
-        if (data.debugMode != ApplicationThreadConstants.DEBUG_OFF) {
-            // XXX should have option to change the port.
-            Debug.changeDebugPort(8100);
-            if (data.debugMode == ApplicationThreadConstants.DEBUG_WAIT) {
-                Slog.w(TAG, "Application " + data.info.getPackageName()
-                      + " is waiting for the debugger on port 8100...");
-
-                IActivityManager mgr = ActivityManager.getService();
-                try {
-                    mgr.showWaitingForDebugger(mAppThread, true);
-                } catch (RemoteException ex) {
-                    throw ex.rethrowFromSystemServer();
-                }
-
-                Debug.waitForDebugger();
-
-                try {
-                    mgr.showWaitingForDebugger(mAppThread, false);
-                } catch (RemoteException ex) {
-                    throw ex.rethrowFromSystemServer();
-                }
-
-            } else {
-                Slog.w(TAG, "Application " + data.info.getPackageName()
-                      + " can be debugged on port 8100...");
-            }
-        }
-
-        // Allow application-generated systrace messages if we're debuggable.
-        boolean isAppDebuggable = (data.appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
-        Trace.setAppTracingAllowed(isAppDebuggable);
-        ThreadedRenderer.setDebuggingEnabled(isAppDebuggable || Build.IS_DEBUGGABLE);
-        if (isAppDebuggable && data.enableBinderTracking) {
-            Binder.enableTracing();
-        }
-
-        /**
-         * Initialize the default http proxy in this process for the reasons we set the time zone.
-         */
-        Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, "Setup proxies");
-        final IBinder b = ServiceManager.getService(Context.CONNECTIVITY_SERVICE);
-        if (b != null) {
-            // In pre-boot mode (doing initial launch to collect password), not
-            // all system is up.  This includes the connectivity service, so don't
-            // crash if we can't get it.
-            final IConnectivityManager service = IConnectivityManager.Stub.asInterface(b);
-            try {
-                final ProxyInfo proxyInfo = service.getProxyForNetwork(null);
-                Proxy.setHttpProxySystemProperty(proxyInfo);
-            } catch (RemoteException e) {
-                Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
-                throw e.rethrowFromSystemServer();
-            }
-        }
-        Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
-
-        // Instrumentation info affects the class loader, so load it before
-        // setting up the app context.
-        final InstrumentationInfo ii;
-        if (data.instrumentationName != null) {
-            try {
-                ii = new ApplicationPackageManager(null, getPackageManager())
-                        .getInstrumentationInfo(data.instrumentationName, 0);
-            } catch (PackageManager.NameNotFoundException e) {
-                throw new RuntimeException(
-                        "Unable to find instrumentation info for: " + data.instrumentationName);
-            }
-
-            // Warn of potential ABI mismatches.
-            if (!Objects.equals(data.appInfo.primaryCpuAbi, ii.primaryCpuAbi)
-                    || !Objects.equals(data.appInfo.secondaryCpuAbi, ii.secondaryCpuAbi)) {
-                Slog.w(TAG, "Package uses different ABI(s) than its instrumentation: "
-                        + "package[" + data.appInfo.packageName + "]: "
-                        + data.appInfo.primaryCpuAbi + ", " + data.appInfo.secondaryCpuAbi
-                        + " instrumentation[" + ii.packageName + "]: "
-                        + ii.primaryCpuAbi + ", " + ii.secondaryCpuAbi);
-            }
-
-            mInstrumentationPackageName = ii.packageName;
-            mInstrumentationAppDir = ii.sourceDir;
-            mInstrumentationSplitAppDirs = ii.splitSourceDirs;
-            mInstrumentationLibDir = getInstrumentationLibrary(data.appInfo, ii);
-            mInstrumentedAppDir = data.info.getAppDir();
-            mInstrumentedSplitAppDirs = data.info.getSplitAppDirs();
-            mInstrumentedLibDir = data.info.getLibDir();
-        } else {
-            ii = null;
-        }
+        // ...
         // 2. 创建 ContextImpl 对象
         final ContextImpl appContext = ContextImpl.createAppContext(this, data.info);
         updateLocaleListFromAppContext(appContext,
                 mResourcesManager.getConfiguration().getLocales());
-
-        if (!Process.isIsolated()) {
-            final int oldMask = StrictMode.allowThreadDiskWritesMask();
-            try {
-                setupGraphicsSupport(appContext);
-            } finally {
-                StrictMode.setThreadPolicyMask(oldMask);
-            }
-        } else {
-            ThreadedRenderer.setIsolatedProcess(true);
-        }
-
-        // If we use profiles, setup the dex reporter to notify package manager
-        // of any relevant dex loads. The idle maintenance job will use the information
-        // reported to optimize the loaded dex files.
-        // Note that we only need one global reporter per app.
-        // Make sure we do this before calling onCreate so that we can capture the
-        // complete application startup.
-        if (SystemProperties.getBoolean("dalvik.vm.usejitprofiles", false)) {
-            BaseDexClassLoader.setReporter(DexLoadReporter.getInstance());
-        }
-
-        // Install the Network Security Config Provider. This must happen before the application
-        // code is loaded to prevent issues with instances of TLS objects being created before
-        // the provider is installed.
-        Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, "NetworkSecurityConfigProvider.install");
-        NetworkSecurityConfigProvider.install(appContext);
-        Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
-
-        // Continue loading instrumentation.
+        // ...
         if (ii != null) {
-            ApplicationInfo instrApp;
-            try {
-                instrApp = getPackageManager().getApplicationInfo(ii.packageName, 0,
-                        UserHandle.myUserId());
-            } catch (RemoteException e) {
-                instrApp = null;
-            }
-            if (instrApp == null) {
-                instrApp = new ApplicationInfo();
-            }
-            ii.copyTo(instrApp);
-            instrApp.initForUser(UserHandle.myUserId());
             final LoadedApk pi = getPackageInfo(instrApp, data.compatInfo,
                     appContext.getClassLoader(), false, true, false);
             final ContextImpl instrContext = ContextImpl.createAppContext(this, pi);
@@ -742,33 +387,12 @@ public final class ActivityThread {
             final ComponentName component = new ComponentName(ii.packageName, ii.name);
             mInstrumentation.init(this, instrContext, appContext, component,
                     data.instrumentationWatcher, data.instrumentationUiAutomationConnection);
-
-            if (mProfiler.profileFile != null && !ii.handleProfiling
-                    && mProfiler.profileFd == null) {
-                mProfiler.handlingProfiling = true;
-                final File file = new File(mProfiler.profileFile);
-                file.getParentFile().mkdirs();
-                Debug.startMethodTracing(file.toString(), 8 * 1024 * 1024);
-            }
         } else {
             mInstrumentation = new Instrumentation();
             mInstrumentation.basicInit(this);
         }
 
-        if ((data.appInfo.flags&ApplicationInfo.FLAG_LARGE_HEAP) != 0) {
-            dalvik.system.VMRuntime.getRuntime().clearGrowthLimit();
-        } else {
-            // Small heap, clamp to the current growth limit and let the heap release
-            // pages after the growth limit to the non growth limit capacity. b/18387825
-            dalvik.system.VMRuntime.getRuntime().clampGrowthLimit();
-        }
-
-        // Allow disk access during application and provider setup. This could
-        // block processing ordered broadcasts, but later processing would
-        // probably end up doing the same disk access.
         Application app;
-        final StrictMode.ThreadPolicy savedPolicy = StrictMode.allowThreadDiskWrites();
-        final StrictMode.ThreadPolicy writesAllowedPolicy = StrictMode.getThreadPolicy();
         try {
             // If the app is being launched for full backup or restore, bring it up in
             // a restricted environment with the base application class.
@@ -803,7 +427,7 @@ public final class ActivityThread {
                     + data.instrumentationName + ": " + e.toString(), e);
             }
             try {
-                // 5. 执行 Application 的 onCreate()方法回调
+                // 6. 执行 Application 的 onCreate()方法回调
                 mInstrumentation.callApplicationOnCreate(app);
             } catch (Exception e) {
                 if (!mInstrumentation.onException(app, e)) {
@@ -812,39 +436,13 @@ public final class ActivityThread {
                       + ": " + e.toString(), e);
                 }
             }
-        } finally {
-            // If the app targets < O-MR1, or doesn't change the thread policy
-            // during startup, clobber the policy to maintain behavior of b/36951662
-            if (data.appInfo.targetSdkVersion < Build.VERSION_CODES.O_MR1
-                    || StrictMode.getThreadPolicy().equals(writesAllowedPolicy)) {
-                StrictMode.setThreadPolicy(savedPolicy);
-            }
-        }
-
-        // Preload fonts resources
-        FontsContract.setApplicationContextForResources(appContext);
-        if (!Process.isIsolated()) {
-            try {
-                final ApplicationInfo info =
-                        getPackageManager().getApplicationInfo(
-                                data.appInfo.packageName,
-                                PackageManager.GET_META_DATA /*flags*/,
-                                UserHandle.myUserId());
-                if (info.metaData != null) {
-                    final int preloadedFontsResource = info.metaData.getInt(
-                            ApplicationInfo.METADATA_PRELOADED_FONTS, 0);
-                    if (preloadedFontsResource != 0) {
-                        data.info.getResources().preloadFonts(preloadedFontsResource);
-                    }
-                }
-            } catch (RemoteException e) {
-                throw e.rethrowFromSystemServer();
-            }
         }
     }
 }
 ```
-Application创建流程总结：
+
+#### Application创建流程
+
 1. 获取 LoadedApk 对象
 2. 创建 ContextImpl 对象
 3. 通过 ContextImpl 获取类加载器，创建 Instrumentation 对象
@@ -912,11 +510,6 @@ public final class ActivityThread {
             LoadedApk packageInfo = ref != null ? ref.get() : null;
             if (packageInfo == null || (packageInfo.mResources != null
                     && !packageInfo.mResources.getAssets().isUpToDate())) {
-                if (localLOGV) Slog.v(TAG, (includeCode ? "Loading code package "
-                        : "Loading resource-only package ") + aInfo.packageName
-                        + " (in " + (mBoundApplication != null
-                                ? mBoundApplication.processName : null)
-                        + ")");
                 // 创建 LoadedApk 对象
                 packageInfo =
                     new LoadedApk(this, aInfo, compatInfo, baseLoader,
@@ -1008,21 +601,6 @@ public final class LoadedApk {
                 }
             }
         }
-
-        // Rewrite the R 'constants' for all library apks.
-        SparseArray<String> packageIdentifiers = getAssets().getAssignedPackageIdentifiers();
-        final int N = packageIdentifiers.size();
-        for (int i = 0; i < N; i++) {
-            final int id = packageIdentifiers.keyAt(i);
-            if (id == 0x01 || id == 0x7f) {
-                continue;
-            }
-
-            rewriteRValues(getClassLoader(), packageIdentifiers.valueAt(i), id);
-        }
-
-        Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
-
         return app;
     }    
 }
@@ -1066,12 +644,13 @@ public class AppComponentFactory {
 #### ContextImpl 创建
 
 根据以上创建流程，可以发现不同组件创建 ContextImpl 的方法不同
-Activity: ActivityThread.createBaseContextForActivity()
-Service/Application: ContextImpl.createAppContext()
-BroadcastReceiver: Application.getBaseContext()
-ContentProvider: Context.createPackageContext()
 
-##### Activity-ActivityThread.createBaseContextForActivity
+- Activity: ActivityThread.createBaseContextForActivity()
+- Service/Application: ContextImpl.createAppContext()
+- BroadcastReceiver: Application.getBaseContext()
+- ContentProvider: Context.createPackageContext()
+
+##### Activity-->ActivityThread.createBaseContextForActivity
 ```java
 public final class ActivityThread {
     private ContextImpl createBaseContextForActivity(ActivityClientRecord r) {
@@ -1114,35 +693,12 @@ class ContextImpl extends Context {
 
         ContextImpl context = new ContextImpl(null, mainThread, packageInfo, activityInfo.splitName,
                 activityToken, null, 0, classLoader);
-
-        // Clamp display ID to DEFAULT_DISPLAY if it is INVALID_DISPLAY.
-        displayId = (displayId != Display.INVALID_DISPLAY) ? displayId : Display.DEFAULT_DISPLAY;
-
-        final CompatibilityInfo compatInfo = (displayId == Display.DEFAULT_DISPLAY)
-                ? packageInfo.getCompatibilityInfo()
-                : CompatibilityInfo.DEFAULT_COMPATIBILITY_INFO;
-
-        final ResourcesManager resourcesManager = ResourcesManager.getInstance();
-
-        // Create the base resources for which all configuration contexts for this Activity
-        // will be rebased upon.
-        context.setResources(resourcesManager.createBaseActivityResources(activityToken,
-                packageInfo.getResDir(),
-                splitDirs,
-                packageInfo.getOverlayDirs(),
-                packageInfo.getApplicationInfo().sharedLibraryFiles,
-                displayId,
-                overrideConfiguration,
-                compatInfo,
-                classLoader));
-        context.mDisplay = resourcesManager.getAdjustedDisplay(displayId,
-                context.getResources());
         return context;
     }
 }
 ```
 
-##### Service/Application-ContextImpl.createAppContext
+##### Service/Application-->ContextImpl.createAppContext
 ```java
 class ContextImpl extends Context{
     static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo) {
@@ -1154,7 +710,7 @@ class ContextImpl extends Context{
     }
 }
 ```
-##### BroadcastReceiver-Application.getBaseContext
+##### BroadcastReceiver-->Application.getBaseContext
 getBaseContext()返回的mBase对象，就是在Application在创建时赋值的ContextImpl对象
 ```java
 public class ContextWrapper extends Context {
@@ -1164,7 +720,7 @@ public class ContextWrapper extends Context {
 }
 ```
 
-##### ContentProvider-Context.createPackageContext
+##### ContentProvider-->Context.createPackageContext
 其实是调用了mBase的createPackageContext()方法，而mBase就是ContextImpl对象
 ```java
 class ContextImpl extends Context {
@@ -1209,7 +765,7 @@ class ContextImpl extends Context {
 
 ### Context attach
 从以上创建过程，可以看到Context的身影无处不在，那么Context是如何与四大组件和Application绑定的呢？
-#### Activity-Context
+#### Activity & Context
 ```java
 public class Activity extends ContextThemeWrapper {
     final void attach(Context context, ActivityThread aThread,
@@ -1248,36 +804,12 @@ public class Activity extends ContextThemeWrapper {
         mTitle = title;
         mParent = parent;
         mEmbeddedID = id;
-        mLastNonConfigurationInstances = lastNonConfigurationInstances;
-        if (voiceInteractor != null) {
-            if (lastNonConfigurationInstances != null) {
-                mVoiceInteractor = lastNonConfigurationInstances.voiceInteractor;
-            } else {
-                mVoiceInteractor = new VoiceInteractor(voiceInteractor, this, this,
-                        Looper.myLooper());
-            }
-        }
-
-        mWindow.setWindowManager(
-                (WindowManager)context.getSystemService(Context.WINDOW_SERVICE),
-                mToken, mComponent.flattenToString(),
-                (info.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0);
-        if (mParent != null) {
-            mWindow.setContainer(mParent.getWindow());
-        }
-        mWindowManager = mWindow.getWindowManager();
-        mCurrentConfig = config;
-
-        mWindow.setColorMode(info.colorMode);
-
-        setAutofillCompatibilityEnabled(application.isAutofillCompatibilityEnabled());
-        enableAutofillCompatibilityIfNeeded();
     }
 }
 ```
 将创建的ContextImpl对象赋值给父亲类ContextWrapper的mBase变量
 
-#### Service-Context
+#### Service & Context
 ```java
 public abstract class Service extends ContextWrapper {
     public final void attach(
@@ -1297,7 +829,7 @@ public abstract class Service extends ContextWrapper {
 ```
 将创建的ContextImpl对象赋值给父亲类ContextWrapper的mBase变量
 
-#### BroadcastReceiver-Context
+#### BroadcastReceiver & Context
 `receiver.onReceive(context.getReceiverRestrictedContext(),data.intent);`
 是将getOuterContext()获得的ContextImpl对象封装到ReceiverRestrictedContext对象里面，
 然后通过onReceive()方法传递过去
@@ -1312,7 +844,7 @@ class ContextImpl extends Context {
 }
 ```
 
-#### ContentProvider-Context
+#### ContentProvider & Context
 ```java
 public abstract class ContentProvider {
     public void attachInfo(Context context, ProviderInfo info) {
@@ -1350,7 +882,7 @@ public abstract class ContentProvider {
 1. 将创建的ContextImpl对象赋值给ContentProvider的mContext变量
 2. 执行ContentProvider的onCreate()方法回调
 
-#### Application-Context
+#### Application & Context
 绑定过程发生在创建Application时，在Instrumentation类newApplication()方法中调用了attach()
 ```java
 public class Application extends ContextWrapper {
@@ -1364,6 +896,7 @@ public class Application extends ContextWrapper {
 2. 将当前的LoadedApk对象赋值给Application的mLoadedApk变量
 
 #### Context 核心方法
+
 1. Activity.getApplication() 返回Application 即当前Activity所属的Application
 2. Service.getApplication() 返回Application 即当前Service所属的Application
 3. ContextWrapper.getBaseContext() 返回ContextImpl 即mBase变量
@@ -1376,22 +909,96 @@ public class Application extends ContextWrapper {
 - Activity 的 mApplication 变量是在 ActivityThread 类 performLaunchActivity()方法中调用 makeApplication()创建的，赋值是在 Activity 调用 attach()方法
 - Service 的 mApplication 变量是在 ActivityThread 类 handleCreateService()方法中调用 makeApplication()创建的，赋值是在 Service 调用 attach() 方法
 - BroadcastReceiver 虽然没有直接保存 mApplication 变量，但可以通过 onReceive()方法中的ContextImpl对象指向当前所在的Application
-- ContentProvider 无法获取Application，因为其所在application不一定初始化
+- ContentProvider 无法获取Application，因为Provider创建时并没有初始化application，所以其所在application不一定初始化
 
 ##### getApplicationContext
-
+`ContextWrapper.getApplicationContext()`是通过mBase变量，也就是ContextImpl对象去获取applicationContext的
+```java
+class ContextImpl extends Context {
+    @Override
+    public Context getApplicationContext() {
+        return (mPackageInfo != null) ?
+                mPackageInfo.getApplication() : mMainThread.getApplication();
+    }
+}
+```
+mPackageInfo就是LoadedApk对象
+```java
+public final class LoadedApk {
+    Application getApplication() {
+        return mApplication;
+    }
+}
+```
+mMainThread就是ActivityThread对象
+```java
+public final class ActivityThread {
+    public Application getApplication() {
+        return mInitialApplication;
+    }
+}
+```
+- mPackageInfo.getApplication(): 返回的是LoadedApk.mApplication, 该变量初始化是在makeApplication()方法中，对于同一个apk只会执行一次
+- mMainThread.getApplication(): 返回的是ActivityThread.mInitialApplication, 该变量赋值方法有两个：
+-- ActivityThread.handleBindApplication()赋值;
+-- system_server进程的ActivityThread.attach()赋值;
 
 ##### getOuterContext
+ContextImpl的mOuterContext对象默认是在ContextImpl创建时初始化的，另外也可以通过setOuterContext()方法进行赋值。
+
+- performLaunchActivity的createBaseContextForActivity过程, mOuterContext指向Activity;
+- handleCreateService()过程, mOuterContext指向Service;
+- BroadcastReceiver/Provider则采用默认值ContextImpl;
+- makeApplication过程, mOuterContext指向Application;
 
 ### 总结
 
-#### 
+#### 组件创建
+![component-initialization](https://tva1.sinaimg.cn/large/d7f9b0f4gy1glbxt9886qj20jp06kgm7.jpg)
 
-### Q&A
+每个Apk都对应唯一的Application对象和LoadedApk对象, 当Apk中任意组件的创建过程中, 当其所对应的的LoadedApk和Application没有初始化则会创建, 且只会创建一次.
+
+另外大家会注意到唯有Provider在初始化过程并不会去创建所相应的Application对象.也就意味着当有多个Apk运行在同一个进程的情况下, 
+第二个Apk通过Provider初始化过程再调用getContext().getApplicationContext()返回的并非Application对象, 而是NULL. 这里要注意会抛出空指针异常.
+
+#### Context attach
+Application:
+- 调用attachBaseContext()将新创建ContextImpl赋值到父类ContextWrapper.mBase变量;
+- 可通过getBaseContext()获取该ContextImpl;
+
+Activity/Service:
+- 调用attachBaseContext() 将新创建ContextImpl赋值到父类ContextWrapper.mBase变量;
+- 可通过getBaseContext()获取该ContextImpl;
+- 可通过getApplication()获取其所在的Application对象;
+
+ContentProvider:
+- 调用attachInfo()将新创建ContextImpl保存到ContentProvider.mContext变量;
+- 可通过getContext()获取该ContextImpl;
+
+BroadcastReceiver:
+- 在onCreate过程通过参数将ReceiverRestrictedContext传递过去的.
+
+ContextImpl:
+- 可通过getApplicationContext()获取Application;
+
+#### getApplicationContext
+绝大多数情况下, getApplication()和getApplicationContext()这两个方法完全一致, 返回值也相同;
+ 那么两者到底有什么区别呢? 真正理解这个问题的人非常少. 接下来彻底地回答下这个问题:
+
+getApplicationContext()这个的存在是Android历史原因. 我们都知道getApplication()只存在于Activity和Service对象;
+那么对于BroadcastReceiver和ContentProvider却无法获取Application, 这时就需要一个能在Context上下文直接使用的方法, 那便是getApplicationContext().
+
+两者对比:
+
+对于Activity/Service来说, getApplication()和getApplicationContext()的返回值完全相同; 除非厂商修改过接口;
+BroadcastReceiver在onReceive的过程, 能使用getBaseContext().getApplicationContext获取所在Application, 而无法使用getApplication;
+ContentProvider能使用getContext().getApplicationContext()获取所在Application. 绝大多数情况下没有问题, 但是有可能会出现空指针的问题, 情况如下:
+当同一个进程有多个apk的情况下, 对于第二个apk是由provider方式拉起的, 前面介绍过provider创建过程并不会初始化所在application,
+此时执行 getContext().getApplicationContext()返回的结果便是NULL. 所以对于这种情况要做好判空.
+
+Tips: 如果对于Application理解不够深刻, 建议getApplicationContext()方法谨慎使用, 做好是否为空的判定,防止出现空指针异常.
 
 ### 参考资料
 
 http://gityuan.com/2017/04/09/android_context/  
 https://www.yuque.com/beesx/beesandroid/sfzs75#d696d2a6  
-https://www.jianshu.com/p/492ec35ea552  
-https://juejin.im/post/5ec09a0a6fb9a0437f73bf4e
