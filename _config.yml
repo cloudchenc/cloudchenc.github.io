@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: cloud's blog
 subtitle: ''
-description: ''
+description: 'Less is more.'
 keywords:
-author: John Doe
-language: en
+author: cloud
+language: zh-Hans
 timezone: ''
 
 # URL
@@ -93,11 +93,27 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: themes/next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:cloudchenc/cloudchenc.github.io.git
+  repo: git@github.com:cloudchenc/cloudchenc.github.io.git
   branch: master
+
+# 文章字数统计
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+
+# 添加图片水印
+watermark:
+    enable: true
+    textEnable: true
+    rotate: -45
+    gravity: centre
+
