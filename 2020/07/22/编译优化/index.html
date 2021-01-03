@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="性能优化,Gradle," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="历史优化方案 maven 代理优化 sync 时间 背景 gradle 工程中会在 repositories 中 添加一些 maven 仓库地址，作为组件依赖获取的查找路径， 是按照 maven 仓库配置的顺序依次查找的，如果某个组件存在于最后一个仓库中，那前面的多个仓库会依次发起网络请求查找，并且在请求失败后才查找下一个，如果大多数组件存在位置比较靠后，就会造成累加的查找时间过长。 优化方案 搭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译优化">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="cloud&#39;s blog">
+<meta property="og:description" content="历史优化方案 maven 代理优化 sync 时间 背景 gradle 工程中会在 repositories 中 添加一些 maven 仓库地址，作为组件依赖获取的查找路径， 是按照 maven 仓库配置的顺序依次查找的，如果某个组件存在于最后一个仓库中，那前面的多个仓库会依次发起网络请求查找，并且在请求失败后才查找下一个，如果大多数组件存在位置比较靠后，就会造成累加的查找时间过长。 优化方案 搭">
+<meta property="article:published_time" content="2020-07-22T10:14:46.000Z">
+<meta property="article:modified_time" content="2021-01-03T12:18:35.245Z">
+<meta property="article:author" content="cloud">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="Gradle">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/22/编译优化/"/>
+
+
+
+
+
+  <title>编译优化 | cloud's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cloud's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编译优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T18:14:46+08:00">
+                2020-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="历史优化方案"><a href="# 历史优化方案" class="headerlink" title="历史优化方案"></a>历史优化方案 </h3><h4 id="maven- 代理优化 -sync- 时间"><a href="#maven- 代理优化 -sync- 时间" class="headerlink" title="maven 代理优化 sync 时间"></a>maven 代理优化 sync 时间</h4><h5 id="背景"><a href="# 背景" class="headerlink" title="背景"></a> 背景 </h5><p>gradle 工程中会在 repositories 中 添加一些 maven 仓库地址，作为组件依赖获取的查找路径，<br> 是按照 maven 仓库配置的顺序依次查找的，如果某个组件存在于最后一个仓库中，那前面的多个仓库会依次发起网络请求查找，<br>并且在请求失败后才查找下一个，如果大多数组件存在位置比较靠后，就会造成累加的查找时间过长。</p>
+<h5 id="优化方案"><a href="# 优化方案" class="headerlink" title="优化方案"></a>优化方案</h5><ol>
+<li><p>搭建公司 maven 私服，设置代理仓库，为 google，jcenter，mavenCentral 等仓库配置代理，<br>在代理仓库创建好后，在 Negative Cache 配置项中关闭 cache 开关：<br>如果查找时没有找到依赖库时会缓存失败结果，一段时间内不会重新去 maven 仓库查找对应依赖库，<br>即使 maven 仓库中已经有该版本的依赖库，查找时仍然返回失败的结果。</p>
+</li>
+<li><p>建立仓库组，统一管理所有仓库，依赖查找时只需要在这个仓库组内查找，降低遍历仓库时的网络请求耗时</p>
+</li>
+</ol>
+<h4 id="模块 -aar- 化"><a href="# 模块 -aar- 化" class="headerlink" title="模块 aar 化"></a>模块 aar 化 </h4><h5 id="背景 -1"><a href="# 背景 -1" class="headerlink" title="背景"></a> 背景 </h5><p> 项目如果使用了组件化和模块化开发时，会产生大量的子模块，如果这些子模块都 inclue 在项目中，在 clean build 的过程中，<br>就需要重新编译所有的子模块代码。在团队开发时，开发人员往往只负责少数几个模块，无需改动大多数模块的代码，<br>所以别的模块的配置和编译时间就成了负担。</p>
+<h5 id="优化方案 -1"><a href="# 优化方案 -1" class="headerlink" title="优化方案"></a>优化方案 </h5><p> 将所有模块打包成 aar，在项目中默认通过 maven 依赖这些编译好的组件，<br>而在改动模块代码时，通过配置项将该模块的依赖形式调整为源码依赖，做到编译时只编译改动的模块。<br>弊端是需要开发人员自觉将模块打包成 aar，并在该模块修改完成后，改回依赖形式。</p>
+<p>更新方案：</p>
+<ol>
+<li>开发过程中，master 分支上的代码一定是全部依赖 aar 的，除了 app 模块 没有任何子模块是源码引入的</li>
+<li>需要修改对应模块时，通过修改 local.properties 里的 INCLUDES 参数指定源码引入的模块</li>
+<li>开发完成后，push 代码到远端，触发代码合并流程后，在 ci 预编译过程与合并目标分支做对比，检测修改的模块，<br> 将这些模块按照依赖关系打包成新的 aar 替换原来的旧版本，这就保证了每次代码合并后，master 分支上的依赖全部是 aar 依赖</li>
+</ol>
+<p>Tips：<br>    ci / cb ：Continuous Integration 持续集成, Continuous Delivery 持续交付, 都是 GitLab 提供的服务</p>
+<h5 id="收益"><a href="# 收益" class="headerlink" title="收益"></a>收益 </h5><p> 将源码依赖改为 aar 依赖后，clean build 耗时从 7，8 分钟降低至 4，5 分钟，接近 50%</p>
+<h4 id="增量 -java-kotlin- 编译"><a href="# 增量 -java-kotlin- 编译" class="headerlink" title="增量 java/kotlin 编译"></a>增量 java/kotlin 编译 </h4><h5 id="背景 -2"><a href="# 背景 -2" class="headerlink" title="背景"></a> 背景 </h5><p> 在非 clean build 的情况下，更改 java/kotlin 代码虽然会做增量编译， 但是 gradle 会根据依赖关系，<br>为了保证编译的正确性，可能选择重新编译代码，这就导致了增量编译的失效。</p>
+<h5 id="优化方案 -2"><a href="# 优化方案 -2" class="headerlink" title="优化方案"></a>优化方案 </h5><p> 所以为了快速编译展示结果，可以在编译正确性和编译速度上做一个折中：</p>
+<ol>
+<li>禁用原始的 javac/kotlinCompile 等 task, 手动实现代码增量修改判断，只编译修改的代码。</li>
+<li>动态禁用 kapt 相关的 task，降低 kapt，kaptGenerateStub 等 task 的耗时。</li>
+</ol>
+<h5 id="小结"><a href="# 小结" class="headerlink" title="小结"></a>小结 </h5><p> 上述三个方案虽然在涉及常量修改，方法签名变更等方面存在一些并不常见的问题（如常量内联），<br>但极大的提升了编译效率，利大于弊。</p>
+<p>Tips：<br>kapt：Kotlin Annotation Processing Tool（Kotlin 注释处理工具）<br>常量内联：静态编译器 javac 在编译时会内联一些静态最终变量，并把值直接放入常量池中。</p>
+<h3 id="编译耗时恶化"><a href="# 编译耗时恶化" class="headerlink" title="编译耗时恶化"></a>编译耗时恶化</h3><ol>
+<li>kotlin 大量使用，kapt 新增了很多注解处理逻辑。</li>
+<li>引入 java8 支持，语法糖增加了编译耗时</li>
+<li>大量的字节码插桩需求，添加了很多 transform，大幅度提升了增量编译耗时</li>
+</ol>
+<h3 id="近期优化方案"><a href="# 近期优化方案" class="headerlink" title="近期优化方案"></a>近期优化方案 </h3><h4 id="app- 壳模块 -kapt- 优化"><a href="#app- 壳模块 -kapt- 优化" class="headerlink" title="app 壳模块 kapt 优化"></a>app 壳模块 kapt 优化</h4><h5 id="背景 -3"><a href="# 背景 -3" class="headerlink" title="背景"></a> 背景 </h5><p> 经历过模块化，组件化重构后，app 模块只是一个空壳。<br>但从 build profile（执行 gradle 命令时添加 –profile 参数会在编译完成后输出相关 task 耗时的统计文件）的数据来看：<br>只有 2 个类的 app 模块 kapt (annotationProcessor 注解处理) 却耗时近 1 分钟。</p>
+<p>通过分析这 2 个类的代码发现，使用了 6 种 kapt 库，但实际生效的只是其中 ServiceImpl 一个注解（内部的 SerivceManager 框架，<br>用于指定生产 Proxy 类，对模块之间代码调用进行解耦），最终编译得到的是 2 个固定的 Proxy 类。</p>
+<h5 id="优化方案 -3"><a href="# 优化方案 -3" class="headerlink" title="优化方案"></a>优化方案 </h5><p> 把固定生成的 Proxy 类从 generate 目录下移动到 src 目录下，同时禁止 app 模块中 kapt 相关的 task, 并添加管控方案，<br>检测到不合理的情况马上抛出异常，防止其他人添加新增的 kapt 库。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">project.afterEvaluate&#123;</span><br><span class="line">    android.applicationVariants.each &#123; variant -&gt;</span><br><span class="line">        project.tasks.getByName(<span class="string">"kapt$&#123;variant.name.capitalize()&#125;Kotlin"</span>).enabled = <span class="keyword">false</span></span><br><span class="line">        project.tasks.getByName(<span class="string">"kaptGenerateStubs$&#123;variant.name.capitalize()&#125;Kotlin"</span>).enabled = <span class="keyword">false</span></span><br><span class="line">    &#125;   </span><br><span class="line">    def set = <span class="keyword">new</span> HashSet&lt;String&gt;()</span><br><span class="line">    android.applicationVariants.each &#123; variant -&gt;</span><br><span class="line">        configurations.getByName(<span class="string">"kapt"</span>).dependencies.each &#123; depend -&gt;</span><br><span class="line">            set.add(<span class="string">"$&#123;depend.getGroup()&#125;:$&#123;depend.getName()&#125;:$&#123;depend.getVersion()&#125;"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!set.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalThreadException((<span class="string">"已禁止 app 模块所有 kapt, 请勿添加新的 kapt"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="收益 -1"><a href="# 收益 -1" class="headerlink" title="收益"></a>收益</h5><ol>
+<li>mac clean build 减少了 40s 耗时</li>
+<li>ci clean build 减少了 20s 耗时</li>
+</ol>
+<h4 id="kapt- 隔离优化"><a href="#kapt- 隔离优化" class="headerlink" title="kapt 隔离优化"></a>kapt 隔离优化 </h4><h5 id="背景 -4"><a href="# 背景 -4" class="headerlink" title="背景"></a> 背景 </h5><p> 项目中为了方便，定义了 library.gradle, 作用是定义项目中通用的 Android dsl (domain-specific language) 和共有的基础依赖，<br>因此所有的子模块都 apply 了这个文件，但是后续的开发中，这个文件被不同的业务添加新的 kapt 注解处理库，在全源码编译时，所有子模块 <br> 都得执行 library 模块中定义的全部 kapt, 即使该模块不需要用到注解处理。</p>
+<p>问题的根源在于：相比纯 java 模块的注解处理，kotlin 代码需要先通过 kaptGenerateStub 将 kt 文件转换为 java，让 apt 处理程序能够统一的面向 java 做注解扫描和处理。<br>但实际上很多模块没有任何 kapt 处理操作，所以就白白做了一次 kt 到 java 的转化操作，这就导致引入的模块越多，累计的无效耗时越多。</p>
+<h5 id="优化方案 -4"><a href="# 优化方案 -4" class="headerlink" title="优化方案"></a>优化方案 </h5><p> 需要扫描所有子模块，区分哪些模块用到了 kapt，而没有用到的就禁用掉 kapt 相关 task：</p>
+<ol>
+<li>获取 kapt configuration 的所有依赖，可以得到 kapt 依赖库的 jar 包，利用 asm 获取所有 annotation</li>
+<li>遍历所有 subproject 的 sourceset 下所有 java 文件，kt 文件，解析 import 信息，看是否有前面解析到的 annotation</li>
+<li>package task 完成后遍历所有的 subproject 中 generate/apt, generate/kapt 目录下生成的 java 文件</li>
+</ol>
+<p>获取到不实际生成 kapt 内容的模块后，开始拆分这些模块，从 apply library.gradle 改为没有 kapt 相关的 apply library-api.gradle, 该文件除了禁用 kapt 外，其他与 library 保持一致。<br>为了避免后续新添了注解却没有任何输出，对 library-api 模块依赖的注解做隔离优化，即把这些注解库全部 exclude 掉，在尝试使用注解时会因为获取不到引用，发现依赖的注解库被移除的问题。<br>另外当编译出现错误时，gradle 插件对注解符号进行解析，如果发现是被隔离优化的注解库，就提示将 apply library-api.gradle 替换为 apply library.gradle，减少优化方案对业务层的侵入。</p>
+<h5 id="收益 -2"><a href="# 收益 -2" class="headerlink" title="收益"></a>收益</h5><ol>
+<li>mac 全源码编译 减少了 58s 耗时</li>
+<li>ci 机器由于 cpu 核数更多, task 并发性能更好，减少了 10s 耗时</li>
+</ol>
+<h4 id="transform- 优化"><a href="#transform- 优化" class="headerlink" title="transform 优化"></a>transform 优化 </h4><h5 id="背景 -5"><a href="# 背景 -5" class="headerlink" title="背景"></a> 背景 </h5><h5 id="优化方案 -5"><a href="# 优化方案 -5" class="headerlink" title="优化方案"></a> 优化方案 </h5><h5 id="收益 -3"><a href="# 收益 -3" class="headerlink" title="收益"></a> 收益 </h5><p> 参考:<br><a href="https://juejin.im/post/5f144b2f6fb9a07e6f7b7fce" target="_blank" rel="noopener">https://juejin.im/post/5f144b2f6fb9a07e6f7b7fce</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          
+            <a href="/tags/Gradle/" rel="tag"># Gradle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/22/%E5%89%91%E6%8C%87-Offer-59-I-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/" rel="next" title="剑指 Offer 59 - I. 滑动窗口的最大值">
+                <i class="fa fa-chevron-left"></i> 剑指 Offer 59 - I. 滑动窗口的最大值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/28/okhttp_source_code_analysis/" rel="prev" title="OkHttp 源码分析">
+                OkHttp 源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cloud</p>
+              <p class="site-description motion-element" itemprop="description">Less is more.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#历史优化方案"><span class="nav-number">1.</span> <span class="nav-text">历史优化方案 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maven- 代理优化 -sync- 时间"><span class="nav-number">1.1.</span> <span class="nav-text">maven 代理优化 sync 时间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案"><span class="nav-number">1.1.2.</span> <span class="nav-text">优化方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块 -aar- 化"><span class="nav-number">1.2.</span> <span class="nav-text">模块 aar 化 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景 -1"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案 -1"><span class="nav-number">1.2.2.</span> <span class="nav-text">优化方案 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收益"><span class="nav-number">1.2.3.</span> <span class="nav-text">收益 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量 -java-kotlin- 编译"><span class="nav-number">1.3.</span> <span class="nav-text">增量 java&#x2F;kotlin 编译 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景 -2"><span class="nav-number">1.3.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案 -2"><span class="nav-number">1.3.2.</span> <span class="nav-text">优化方案 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">1.3.3.</span> <span class="nav-text">小结 </span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译耗时恶化"><span class="nav-number">2.</span> <span class="nav-text">编译耗时恶化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近期优化方案"><span class="nav-number">3.</span> <span class="nav-text">近期优化方案 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app- 壳模块 -kapt- 优化"><span class="nav-number">3.1.</span> <span class="nav-text">app 壳模块 kapt 优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景 -3"><span class="nav-number">3.1.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案 -3"><span class="nav-number">3.1.2.</span> <span class="nav-text">优化方案 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收益 -1"><span class="nav-number">3.1.3.</span> <span class="nav-text">收益</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kapt- 隔离优化"><span class="nav-number">3.2.</span> <span class="nav-text">kapt 隔离优化 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景 -4"><span class="nav-number">3.2.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案 -4"><span class="nav-number">3.2.2.</span> <span class="nav-text">优化方案 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收益 -2"><span class="nav-number">3.2.3.</span> <span class="nav-text">收益</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transform- 优化"><span class="nav-number">3.3.</span> <span class="nav-text">transform 优化 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景 -5"><span class="nav-number">3.3.1.</span> <span class="nav-text"> 背景 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化方案 -5"><span class="nav-number">3.3.2.</span> <span class="nav-text"> 优化方案 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收益 -3"><span class="nav-number">3.3.3.</span> <span class="nav-text"> 收益 </span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cloud</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

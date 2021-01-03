@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Activity," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="LaunchModeStandard标准模式 or 默认模式。每次启动一个 activity 都会重新创建一个新的实例，不管这个实例是否已经存在。  当使用 ApplicationContext 启动 Standard 模式的 Activity 的时候会报错，这是因为 Standard 模式 的 activity 默认会进入启动它的 activity 所在的任务栈中，但是非 activity 类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activity 启动模式">
+<meta property="og:url" content="http://yoursite.com/2020/06/28/activity_launch_mode/index.html">
+<meta property="og:site_name" content="cloud&#39;s blog">
+<meta property="og:description" content="LaunchModeStandard标准模式 or 默认模式。每次启动一个 activity 都会重新创建一个新的实例，不管这个实例是否已经存在。  当使用 ApplicationContext 启动 Standard 模式的 Activity 的时候会报错，这是因为 Standard 模式 的 activity 默认会进入启动它的 activity 所在的任务栈中，但是非 activity 类型">
+<meta property="article:published_time" content="2020-06-28T08:50:13.000Z">
+<meta property="article:modified_time" content="2021-01-03T12:18:35.236Z">
+<meta property="article:author" content="cloud">
+<meta property="article:tag" content="Activity">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/28/activity_launch_mode/"/>
+
+
+
+
+
+  <title>Activity 启动模式 | cloud's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cloud's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_launch_mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Activity 启动模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-28T16:50:13+08:00">
+                2020-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="LaunchMode"><a href="#LaunchMode" class="headerlink" title="LaunchMode"></a>LaunchMode</h3><h4 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h4><p>标准模式 or 默认模式。每次启动一个 activity 都会重新创建一个新的实例，不管这个实例是否已经存在。</p>
+<blockquote>
+<p>当使用 ApplicationContext 启动 Standard 模式的 Activity 的时候会报错，<br>这是因为 Standard 模式 的 activity 默认会进入启动它的 activity 所在的任务栈中，但是非 activity 类型的 Context 并没有任务栈。<br>解决方法是 为待启动的 activity 指定标记为 FLAG_ACTIVITY_NEW_TASK，这样启动的时候就会创建一个新的任务栈，实际上是以 SingleTask 模式启动的。</p>
+</blockquote>
+<h4 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h4><p>栈顶复用模式。如果新 activity 已经位于任务栈的顶部，那么此 activity 不会被重新创建，同时回调 onNewIntent 方法。<br>如果新 activity 的实例已经存在但不是在栈顶，那么新的 activity 仍然会重新创建。</p>
+<h4 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h4><p>栈内复用模式。只要 Activity 在一个栈内存在，那么多次启动该 Activity 都不会重新创建实例，同时回调 onNewIntent 方法。</p>
+<blockquote>
+<p>当一个具有 SingleTask 模式的 Activity 请求启动后，比如 Activity A, 系统首先会寻找是否存在 A <code>想要的任务栈 </code><br> 如果不存在，就重新创建一个任务栈，然后创建 A 的实例后放入栈中。<br>如果存在 A <code>所需的任务栈 </code>，就查看栈中是否存在 A 的实例，<br> 如果不存在，就创建 A 的实例后放入栈中，<br>如果存在，就会弹出 A 上面的 activity，把 A 调到栈顶(具有 clearTop 的效果)，并回调 onNewIntent 方法。</p>
+</blockquote>
+<p>p.s. 这里有提到所需的任务栈，其实就是参数 TaskAffinity，标示了一个 Activity 所需要的任务栈的名字。<br>默认情况下，所有 Activity 所需的任务栈的名字是应用的包名。自定义的话，属性值是字符串，且中间必须含有包名分隔符 <code>.</code></p>
+<p>一般情况下 TaskAffinity 结合 singleTask 启动模式 或者 allowTaskReparenting 属性一起使用。</p>
+<ul>
+<li>TaskAffinity and singleTask ：待启动的 Activity 会运行在名字和 TaskAffinity 相同的任务栈中。</li>
+<li>TaskAffinity and allowTaskReparenting ：跨应用启动 Activity 时，allowTaskReparenting 如果为 true，待启动的 Activity 会转移到该应用的任务栈中。</li>
+</ul>
+<p>任务栈分为前台任务栈和后台任务栈，后台任务栈中的 Activity 处于暂停状态，可以通过启动后台任务栈中的 Activity，将后台任务栈再次调到前台。</p>
+<h4 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h4><p>单实例模式。具有此种模式的 Activity 只能单独位于一个任务栈中，当被复用时，同样会回调 onNewIntent 方法。</p>
+<h3 id="Intent-Flag"><a href="#Intent-Flag" class="headerlink" title="Intent Flag"></a>Intent Flag</h3><p>通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高</p>
+<ul>
+<li><p>FLAG_ACTIVITY_NEW_TASK<br>等同 SingleTask</p>
+</li>
+<li><p>FLAG_ACTIVITY_SINGLE_TOP<br>等同 SingleTop</p>
+</li>
+<li><p>FLAG_ACTIVITY_CLEAR_TOP<br>具有此标记的 Activity 启动时，在同一个任务栈内所有位于它上面的 Activity 都要出栈。</p>
+</li>
+<li><p>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS<br>具有此标记的 Activity 不会出现在历史 Activity 的列表中。等同 XML 中指定 Activity 的属性 <code>android:excludeFromRecents=&quot;true&quot;&quot;</code></p>
+</li>
+</ul>
+<h3 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h3><p> 以上就是给 Activity 指定启动模式的两种方式了。当两种同时存在时，优先级以 Intent Flag 为准。  </p>
+<p>另外，LaunchMode 无法 <code> 直接 </code> 给 Activity 设置 FLAG_ACTIVITY_CLEAR_TOP 标示，而 Intent Flag 无法为 Activity 指定 SingleInstance 模式。</p>
+<p>注意上面说的是 直接，其实 SingleTask 默认具有 clearTop 的效果。</p>
+<h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h3><p>《Android 开发艺术探索》</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Activity/" rel="tag"># Activity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/28/activity_life_cycle/" rel="next" title="Activity 生命周期">
+                <i class="fa fa-chevron-left"></i> Activity 生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/28/volley_source_code_analysis/" rel="prev" title="Volley 源码分析">
+                Volley 源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cloud</p>
+              <p class="site-description motion-element" itemprop="description">Less is more.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LaunchMode"><span class="nav-number">1.</span> <span class="nav-text">LaunchMode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Standard"><span class="nav-number">1.1.</span> <span class="nav-text">Standard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SingleTop"><span class="nav-number">1.2.</span> <span class="nav-text">SingleTop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SingleTask"><span class="nav-number">1.3.</span> <span class="nav-text">SingleTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SingleInstance"><span class="nav-number">1.4.</span> <span class="nav-text">SingleInstance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent-Flag"><span class="nav-number">2.</span> <span class="nav-text">Intent Flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cloud</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
