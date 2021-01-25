@@ -161,6 +161,167 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/HTTP-1-0-1-1-2-0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/HTTP-1-0-1-1-2-0/" class="post-title-link" itemprop="url">HTTP 1.0/1.1/2.0</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-25 16:48:26" itemprop="dateCreated datePublished" datetime="2021-01-25T16:48:26+08:00">2021-01-25</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>288</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h3><ul>
+<li> 默认不支持长连接，需要设置 keep-alive 参数 </li>
+<li> 不支持断点续传 </li>
+<li> 强缓存 expired、协商缓存 last-modified\if-modified-since 有一定的缺陷 </li>
+</ul>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP 1.1"></a>HTTP 1.1</h3><ul>
+<li> 默认支持长连接 </li>
+<li> 支持断点续传 </li>
+<li> 纯文本报头 </li>
+<li> 连接复用，http 请求可以复用 Tcp 连接，但是同一时间只能对应一个 http 请求 (http 请求在一个 Tcp 中是串行的)</li>
+<li> 增加了强缓存 cache-control、协商缓存 etag\if-none-match 是对 http/1 缓存的优化 </li>
+</ul>
+<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h3><ul>
+<li> 默认支持长连接 </li>
+<li> 二进制报头 </li>
+<li> 多路复用，一个 Tcp 中多个 http 请求是并行的 </li>
+<li> 数据压缩（HACK 算法）</li>
+<li> 服务器推送 </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/2020/" class="post-title-link" itemprop="url">2020</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-25 16:47:56" itemprop="dateCreated datePublished" datetime="2021-01-25T16:47:56+08:00">2021-01-25</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,171 +387,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/Binder%E7%B3%BB%E5%88%976-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1-getService/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/03/Binder%E7%B3%BB%E5%88%976-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1-getService/" class="post-title-link" itemprop="url">Binder 系列 6- 获取服务 -getService</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-03 20:18:35" itemprop="dateCreated datePublished" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>19k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>17 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>Source Code Environment  </p>
-<p>Android Version Pie 9.0.0_r<br>Kernel Version 3.18  </p>
-<p>本文参考 Gityuan 大神的博客，结合高版本源码，讲解 Client 如何向 Server 获取服务的过程</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Reference Source Code</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; framework</span><br><span class="line">&#x2F;frameworks&#x2F;av&#x2F;media&#x2F;libmedia&#x2F;IMediaDeathNotifier.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;IServiceManager.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;BpBinder.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;IPCThreadState.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;Parcel.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;ProcessState.cpp</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; kernel</span><br><span class="line">&#x2F;drivers&#x2F;staging&#x2F;android&#x2F;binder.c</span><br></pre></td></tr></table></figure>
-
-<h1 id="1- 获取服务"><a href="#1- 获取服务" class="headerlink" title="# 1. 获取服务"></a># 1. 获取服务 </h1><p> 在 Native 层的服务注册，以 media 为例展开详解，先来看看 media 的类关系图</p>
-<h2 id="1-1- 类图"><a href="#1-1- 类图" class="headerlink" title="# 1.1 类图"></a># 1.1 类图</h2><p><img src="https://tva1.sinaimg.cn/large/d7f9b0f4gy1glik8ezr1yj20s60kaq5t.jpg" alt="get_media_player_service"></p>
-<ul>
-<li>蓝色：代表获取 MediaPlayerService 服务相关的类</li>
-<li>绿色：代表 Binder 架构中与 Binder 驱动通信过程中的核心类</li>
-<li>紫色：代表注册服务和获取服务的公共接口 / 父类</li>
-</ul>
-<h1 id="2- 获取 Media 服务"><a href="#2- 获取 Media 服务" class="headerlink" title="# 2. 获取 Media 服务"></a># 2. 获取 Media 服务</h1><h2 id="2-1-getMediaPlayerService"><a href="#2-1-getMediaPlayerService" class="headerlink" title="# 2.1 getMediaPlayerService"></a># 2.1 getMediaPlayerService</h2><p><a href="http://androidxref.com/9.0.0_rxref/frameworks/av/media/libmedia/IMediaDeathNotifier.cpp#" target="_blank" rel="noopener">/frameworks/av/media/libmedia/IMediaDeathNotifier.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*static*&#x2F;const sp&lt;IMediaPlayerService&gt;</span><br><span class="line">IMediaDeathNotifier::getMediaPlayerService()</span><br><span class="line">&#123;</span><br><span class="line">    Mutex::Autolock _l(sServiceLock);</span><br><span class="line">    if (sMediaPlayerService &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        sp&lt;IServiceManager&gt; sm &#x3D; defaultServiceManager(); &#x2F;&#x2F; 获取 ServiceManager</span><br><span class="line">        sp&lt;IBinder&gt; binder;</span><br><span class="line">        do &#123;</span><br><span class="line">            &#x2F;&#x2F; 获取名为 &quot;media.player&quot; 的服务【见小节 2.2】</span><br><span class="line">            binder &#x3D; sm-&gt;getService(Stringmedia.player&quot;));</span><br><span class="line">            if (binder !&#x3D; 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            usleep(500000); &#x2F;&#x2F; 0.5s</span><br><span class="line">        &#125; while (true);</span><br><span class="line"></span><br><span class="line">        if (sDeathNotifier &#x3D;&#x3D; NULL) &#123;</span><br><span class="line">            sDeathNotifier &#x3D; new DeathNotifier(); &#x2F;&#x2F; 创建死亡通知对象</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 将死亡通知连接到 binder</span><br><span class="line">        binder-&gt;linkToDeath(sDeathNotifier);</span><br><span class="line">        sMediaPlayerService &#x3D; interface_cast&lt;IMediaPlayerService&gt;(binder);</span><br><span class="line">    &#125;</span><br><span class="line">    return sMediaPlayerService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 defaultServiceManager()过程在 <a href=""> 获取 ServiceManager</a>已分析，返回 BpServiceManager</p>
-<p>在请求获取名为”media.player”的服务过程中，采用不断循环获取的方法。由于 MediaPlayerService 服务可能还没向 ServiceManager 注册完成或者尚未启动完成等情况，<br>所以当 binder 返回为 NULL 时，休眠 0.5s 后继续请求，直到获取服务</p>
-<h2 id="2-2-BpServiceManager-getService"><a href="#2-2-BpServiceManager-getService" class="headerlink" title="# 2.2 BpServiceManager.getService"></a># 2.2 BpServiceManager.getService</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IServiceManager.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IServiceManager.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">virtual sp&lt;IBinder&gt; getService(const Stringname) const</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 检索指定服务是否存在</span><br><span class="line">        sp&lt;IBinder&gt; svc &#x3D; checkService(name);</span><br><span class="line">        if (svc !&#x3D; NULL) return svc;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 注意这里是 5s</span><br><span class="line">        const long timeout &#x3D; uptimeMillis() + 5000;</span><br><span class="line">        if (!gSystemBootCompleted) &#123;</span><br><span class="line">            char bootCompleted[PROPERTY_VALUE_MAX];</span><br><span class="line">            property_get(&quot;sys.boot_completed&quot;, bootCompleted, &quot;0&quot;);</span><br><span class="line">            &#x2F;&#x2F; 判断开机是否完成，设置休眠时间</span><br><span class="line">            gSystemBootCompleted &#x3D; strcmp(bootCompleted, &quot;1&quot;) &#x3D;&#x3D; 0 ? true : false;</span><br><span class="line">        &#125;</span><br><span class="line">        const long sleepTime &#x3D; gSystemBootCompleted ? 1000 : 100;</span><br><span class="line"></span><br><span class="line">        while (uptimeMillis() &lt; timeout) &#123;</span><br><span class="line">            usleep(1000*sleepTime);</span><br><span class="line">            &#x2F;&#x2F; 检索指定服务是否存在</span><br><span class="line">            sp&lt;IBinder&gt; svc &#x3D; checkService(name);</span><br><span class="line">            if (svc !&#x3D; NULL) return svc;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>通过 BpServiceManager 来获取 MediaPlayer 服务：检索服务是否存在，当服务存在则返回相应的服务，当服务不存在则根据开机是否完成，休眠 1s/0.1s，然后再继续检索服务。<br>该循环超时时间是 5s，这估计跟 Android 的 Activity ANR 时间为 5s 相关。</p>
-<h2 id="2-3-BpServiceManager-checkService"><a href="#2-3-BpServiceManager-checkService" class="headerlink" title="# 2.3 BpServiceManager.checkService"></a># 2.3 BpServiceManager.checkService</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IServiceManager.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IServiceManager.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">virtual sp&lt;IBinder&gt; checkService(const Stringname) const</span><br><span class="line">    &#123;</span><br><span class="line">        Parcel data, reply;</span><br><span class="line">        &#x2F;&#x2F; 写入 RPC 头</span><br><span class="line">        data.writeInterfaceToken(IServiceManager::getInterfaceDescriptor());</span><br><span class="line">        &#x2F;&#x2F; 写入服务名</span><br><span class="line">        data.writeStringame);</span><br><span class="line">        remote()-&gt;transact(CHECK_SERVICE_TRANSACTION, data, &amp;reply); &#x2F;&#x2F; 【见小节 2.4】</span><br><span class="line">        return reply.readStrongBinder(); &#x2F;&#x2F; 【见小节 2.9】</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>检索指定服务是否存在，其中 remote()为 BpBinder</p>
-<h2 id="2-4-transact"><a href="#2-4-transact" class="headerlink" title="# 2.4 transact"></a># 2.4 transact</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/BpBinder.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/BpBinder.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">status_t BpBinder::transact(</span><br><span class="line">    uint32_t code, const Parcel&amp; data, Parcel* reply, uint32_t flags)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Once a binder has died, it will never come back to life.</span><br><span class="line">    if (mAlive) &#123;</span><br><span class="line">        &#x2F;&#x2F; code &#x3D; ADD_SERVICE_TRANSACTION【见小节 2.5】</span><br><span class="line">        status_t status &#x3D; IPCThreadState::self()-&gt;transact(</span><br><span class="line">            mHandle, code, data, reply, flags);</span><br><span class="line">        if (status &#x3D;&#x3D; DEAD_OBJECT) mAlive &#x3D; 0;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return DEAD_OBJECT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Binder 代理类调用 transact()方法，最终还是由 IPCThreadState 调用 transact()方法</p>
-<h3 id="2-4-1-IPCThreadState-self"><a href="#2-4-1-IPCThreadState-self" class="headerlink" title="# 2.4.1 IPCThreadState::self"></a># 2.4.1 IPCThreadState::self</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">IPCThreadState* IPCThreadState::self()</span><br><span class="line">&#123;</span><br><span class="line">    if (gHaveTLS) &#123;</span><br><span class="line">restart:</span><br><span class="line">        const pthread_key_t k &#x3D; gTLS;</span><br><span class="line">        IPCThreadState* st &#x3D; (IPCThreadState*)pthread_getspecific(k);</span><br><span class="line">        if (st) return st;</span><br><span class="line">        return new IPCThreadState; &#x2F;&#x2F; 初始化 IPCThreadState【见小节 2.4.2】</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (gShutdown) &#123;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_lock(&amp;gTLSMutex);</span><br><span class="line">    if (!gHaveTLS) &#123; &#x2F;&#x2F; 首次进入 gHaveTLS 为 false</span><br><span class="line">        int key_create_value &#x3D; pthread_key_create(&amp;gTLS, threadDestructor); &#x2F;&#x2F; 创建线程的 TLS</span><br><span class="line">        if (key_create_value !&#x3D; 0) &#123;</span><br><span class="line">            pthread_mutex_unlock(&amp;gTLSMutex);</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        gHaveTLS &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_unlock(&amp;gTLSMutex);</span><br><span class="line">    goto restart;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>TLS 是指 Thread Local Storage(线程本地储存空间)，每个线程都有自己的 TLS，并且是私有空间，线程之间不会共享。<br>通过 pthread_getspecific/pthread_setspecific 函数可以获取 / 设置这些空间中的内容。<br>从线程本地存储空间中获得保存在其中的 IPCThreadState 对象。</p>
-<h3 id="2-4-2-IPCThreadState 初始化"><a href="#2-4-2-IPCThreadState 初始化" class="headerlink" title="# 2.4.2 IPCThreadState 初始化"></a># 2.4.2 IPCThreadState 初始化</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">IPCThreadState::IPCThreadState()</span><br><span class="line">    : mProcess(ProcessState::self()),</span><br><span class="line">      mStrictModePolicy(0),</span><br><span class="line">      mLastTransactionBinderFlags(0)</span><br><span class="line">&#123;</span><br><span class="line">    pthread_setspecific(gTLS, this);</span><br><span class="line">    clearCaller();</span><br><span class="line">    mIn.setDataCapacity();</span><br><span class="line">    mOut.setDataCapacity();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每个线程都有一个 IPCThreadState，每个 IPCThreadState 中 都有一个 mIn、一个 mOut。成员变量 mProcess 保存了 ProcessState 变量（每个进程只有一个）</p>
-<ul>
-<li>mIn 用来接收来自 Binder 设备的数据，默认大小为字节</li>
-<li>mOut 用来存储发往 Binder 设备的数据，默认大小为字节</li>
-</ul>
-<h2 id="2-5-IPCThreadState-transact"><a href="#2-5-IPCThreadState-transact" class="headerlink" title="# 2.5 IPCThreadState::transact"></a># 2.5 IPCThreadState::transact</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::transact(int32_t handle,</span><br><span class="line">                                  uint32_t code, const Parcel&amp; data,</span><br><span class="line">                                  Parcel* reply, uint32_t flags)</span><br><span class="line">&#123;</span><br><span class="line">    status_t err;</span><br><span class="line">    flags |&#x3D; TF_ACCEPT_FDS;</span><br><span class="line">    &#x2F;&#x2F; 传输数据</span><br><span class="line">    err &#x3D; writeTransactionData(BC_TRANSACTION, flags, handle, code, data, NULL);</span><br><span class="line"></span><br><span class="line">    if (err !&#x3D; NO_ERROR) &#123;</span><br><span class="line">        if (reply) reply-&gt;setError(err);</span><br><span class="line">        return (mLastError &#x3D; err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ((flags &amp; TF_ONE_WAY) &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; flags &#x3D; 0 进入该分支</span><br><span class="line">        if (reply) &#123;</span><br><span class="line">            err &#x3D; waitForResponse(reply); &#x2F;&#x2F; 等待响应</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Parcel fakeReply;</span><br><span class="line">            err &#x3D; waitForResponse(&amp;fakeReply);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 不需要响应消息的 binder 则进入该分支</span><br><span class="line">        err &#x3D; waitForResponse(NULL, NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-6-IPCThreadState-writeTransactionData"><a href="#2-6-IPCThreadState-writeTransactionData" class="headerlink" title="# 2.6 IPCThreadState.writeTransactionData"></a># 2.6 IPCThreadState.writeTransactionData</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::writeTransactionData(int32_t cmd, uint32_t binderFlags,</span><br><span class="line">    int32_t handle, uint32_t code, const Parcel&amp; data, status_t* statusBuffer)</span><br><span class="line">&#123;</span><br><span class="line">    binder_transaction_data tr;</span><br><span class="line">    tr.target.ptr &#x3D; 0; &#x2F;* Don&#39;t pass uninitialized stack data to a remote process *&#x2F;</span><br><span class="line">    tr.target.handle &#x3D; handle; &#x2F;&#x2F; handle &#x3D; 0</span><br><span class="line">    tr.code &#x3D; code; &#x2F;&#x2F; code &#x3D; ADD_SERVICE_TRANSACTION</span><br><span class="line">    tr.flags &#x3D; binderFlags; &#x2F;&#x2F; binderFlags &#x3D; 0</span><br><span class="line">    tr.cookie &#x3D; 0;</span><br><span class="line">    tr.sender_pid &#x3D; 0;</span><br><span class="line">    tr.sender_euid &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; data 为记录 Media 服务信息的 Parcel 对象，进行数据错误检查</span><br><span class="line">    const status_t err &#x3D; data.errorCheck();</span><br><span class="line">    if (err &#x3D;&#x3D; NO_ERROR) &#123;</span><br><span class="line">        tr.data_size &#x3D; data.ipcDataSize(); &#x2F;&#x2F; mDataSize</span><br><span class="line">        tr.data.ptr.buffer &#x3D; data.ipcData(); &#x2F;&#x2F; mData</span><br><span class="line">        tr.offsets_size &#x3D; data.ipcObjectsCount()*sizeof(binder_size_t); &#x2F;&#x2F; mObjectsSize</span><br><span class="line">        tr.data.ptr.offsets &#x3D; data.ipcObjects(); &#x2F;&#x2F; mObjects</span><br><span class="line">    &#125; else if (statusBuffer) &#123;</span><br><span class="line">        tr.flags |&#x3D; TF_STATUS_CODE;</span><br><span class="line">        *statusBuffer &#x3D; err;</span><br><span class="line">        tr.data_size &#x3D; sizeof(status_t);</span><br><span class="line">        tr.data.ptr.buffer &#x3D; reinterpret_cast&lt;uintptr_t&gt;(statusBuffer);</span><br><span class="line">        tr.offsets_size &#x3D; 0;</span><br><span class="line">        tr.data.ptr.offsets &#x3D; 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (mLastError &#x3D; err);</span><br><span class="line">    &#125;</span><br><span class="line">    mOut.writeInt32(cmd); &#x2F;&#x2F; cmd &#x3D; BC_TRANSACTION</span><br><span class="line">    mOut.write(&amp;tr, sizeof(tr)); &#x2F;&#x2F; 写入 binder_transaction_data 数据</span><br><span class="line">    return NO_ERROR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 handle 的值用来标示目的端，注册服务过程的目的端为 service manager，此处 handle=0 所对应的是 binder_context_mgr_node 对象，正是 service manager 所对应的 binder 实体对象。<br>binder_transaction_data 结构体是 binder 驱动通信的数据结构，该过程最终是把 Binder 请求码 BC_TRANSACTION 和 binder_transaction_data 结构体写入到 mOut</p>
-<h2 id="2-7-IPCThreadState-waitForResponse"><a href="#2-7-IPCThreadState-waitForResponse" class="headerlink" title="# 2.7 IPCThreadState.waitForResponse"></a># 2.7 IPCThreadState.waitForResponse</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::waitForResponse(Parcel *reply, status_t *acquireResult)</span><br><span class="line">&#123;</span><br><span class="line">    uint32_t cmd;</span><br><span class="line">    int32_t err;</span><br><span class="line">    while (1) &#123;</span><br><span class="line">        if ((err&#x3D;talkWithDriver()) &lt; NO_ERROR) break; &#x2F;&#x2F; 【见小节 2.8】</span><br><span class="line">        err &#x3D; mIn.errorCheck(); &#x2F;&#x2F; 数据错误检查</span><br><span class="line">        if (err &lt; NO_ERROR) break;</span><br><span class="line">        if (mIn.dataAvail() &#x3D;&#x3D; 0) continue;</span><br><span class="line"></span><br><span class="line">        cmd &#x3D; (uint32_t)mIn.readInt32();</span><br><span class="line">        switch (cmd) &#123;</span><br><span class="line">        case BR_TRANSACTION_COMPLETE:</span><br><span class="line">        case BR_DEAD_REPLY:</span><br><span class="line">        case BR_FAILED_REPLY:</span><br><span class="line">        case BR_ACQUIRE_RESULT:</span><br><span class="line">            goto finish;</span><br><span class="line"></span><br><span class="line">        case BR_REPLY:</span><br><span class="line">            &#123;</span><br><span class="line">                binder_transaction_data tr;</span><br><span class="line">                err &#x3D; mIn.read(&amp;tr, sizeof(tr));</span><br><span class="line">                if (err !&#x3D; NO_ERROR) goto finish; &#x2F;&#x2F; 如果数据报错，直接跳转结束</span><br><span class="line"></span><br><span class="line">                if (reply) &#123;</span><br><span class="line">                    if ((tr.flags &amp; TF_STATUS_CODE) &#x3D;&#x3D; 0) &#123;</span><br><span class="line">                        &#x2F;&#x2F; 将返回的 binder_transaction_data 结构体数据保存到 Parcel 对象中</span><br><span class="line">                        reply-&gt;ipcSetDataReference(</span><br><span class="line">                            reinterpret_cast&lt;const uint8_t*&gt;(tr.data.ptr.buffer),</span><br><span class="line">                            tr.data_size,</span><br><span class="line">                            reinterpret_cast&lt;const binder_size_t*&gt;(tr.data.ptr.offsets),</span><br><span class="line">                            tr.offsets_size&#x2F;sizeof(binder_size_t),</span><br><span class="line">                            freeBuffer, this);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        &#x2F;&#x2F; 释放资源...</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    &#x2F;&#x2F; 释放资源...</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            goto finish;</span><br><span class="line"></span><br><span class="line">        default:</span><br><span class="line">            &#x2F;&#x2F; 默认执行命令，见小节 3.8</span><br><span class="line">            err &#x3D; executeCommand(cmd);</span><br><span class="line">            if (err !&#x3D; NO_ERROR) goto finish;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; finish...</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-8-IPCThreadState-talkWithDriver"><a href="#2-8-IPCThreadState-talkWithDriver" class="headerlink" title="# 2.8 IPCThreadState.talkWithDriver"></a># 2.8 IPCThreadState.talkWithDriver</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::talkWithDriver(bool doReceive)</span><br><span class="line">&#123;</span><br><span class="line">    binder_write_read bwr;</span><br><span class="line"></span><br><span class="line">    const bool needRead &#x3D; mIn.dataPosition() &gt;&#x3D; mIn.dataSize();</span><br><span class="line">    const size_t outAvail &#x3D; (!doReceive || needRead) ? mOut.dataSize() : 0;</span><br><span class="line"></span><br><span class="line">    bwr.write_size &#x3D; outAvail;</span><br><span class="line">    bwr.write_buffer &#x3D; (uintptr_t)mOut.data();</span><br><span class="line"></span><br><span class="line">    if (doReceive &amp;&amp; needRead) &#123;</span><br><span class="line">        &#x2F;&#x2F; 接收数据缓冲区信息的填充，如果以后收到数据，就直接填充在 mIn 中 </span><br><span class="line">        bwr.read_size &#x3D; mIn.dataCapacity();</span><br><span class="line">        bwr.read_buffer &#x3D; (uintptr_t)mIn.data();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        bwr.read_size &#x3D; 0;</span><br><span class="line">        bwr.read_buffer &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 当读写缓冲都为空，则直接返回</span><br><span class="line">    if ((bwr.write_size &#x3D;&#x3D; 0) &amp;&amp; (bwr.read_size &#x3D;&#x3D; 0)) return NO_ERROR;</span><br><span class="line"></span><br><span class="line">    bwr.write_consumed &#x3D; 0;</span><br><span class="line">    bwr.read_consumed &#x3D; 0;</span><br><span class="line">    status_t err;</span><br><span class="line">    do &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过 ioctl() 一直进行读写操作，与 Binder Driver 进行通信【见小节 2.8.1】</span><br><span class="line">        if (ioctl(mProcess-&gt;mDriverFD, BINDER_WRITE_READ, &amp;bwr) &gt;&#x3D; 0)</span><br><span class="line">            err &#x3D; NO_ERROR;</span><br><span class="line">        else</span><br><span class="line">            err &#x3D; -errno;</span><br><span class="line">    &#125; while (err &#x3D;&#x3D; -EINTR); &#x2F;&#x2F; 当被中断，则继续执行</span><br><span class="line"></span><br><span class="line">    if (err &gt;&#x3D; NO_ERROR) &#123;</span><br><span class="line">        &#x2F;&#x2F; 当存在已经写入的命令协议时，移除 mOut 中对应的数据</span><br><span class="line">        if (bwr.write_consumed &gt; 0) &#123;</span><br><span class="line">            if (bwr.write_consumed &lt; mOut.dataSize())</span><br><span class="line">                mOut.remove(0, bwr.write_consumed);</span><br><span class="line">            else &#123;</span><br><span class="line">                mOut.setDataSize(0);</span><br><span class="line">                processPostWriteDerefs();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 当存在已经读取的返回协议时，保存数据到 mIn 中</span><br><span class="line">        if (bwr.read_consumed &gt; 0) &#123;</span><br><span class="line">            mIn.setDataSize(bwr.read_consumed);</span><br><span class="line">            mIn.setDataPosition(0);</span><br><span class="line">        &#125;</span><br><span class="line">        return NO_ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>binder_write_read 结构体用来与 Binder 设备交换数据的结构, 通过 ioctl 与 mDriverFD 通信，是真正与 Binder 驱动进行数据读写交互的过程。<br>先向 service manager 进程发送查询服务的请求 (BR_TRANSACTION)，见<a href="">Binder 系列 3—启动 ServiceManager</a>。<br> 当 service manager 进程收到该命令后，会执行 do_find_service() 查询服务所对应的 handle，然后再调用 binder_send_reply()应答发起者，<br>发送 BC_REPLY 协议，然后调用 binder_transaction()，再向服务请求者的 Todo 队列插入事务。</p>
-<p>接下来，再看看 binder_transaction 过程</p>
-<h3 id="2-8-1-binder-transaction"><a href="#2-8-1-binder-transaction" class="headerlink" title="# 2.8.1 binder_transaction"></a># 2.8.1 binder_transaction</h3><p><a href="http://androidxref.com/kernel_3.18/xref/drivers/staging/android/binder.c" target="_blank" rel="noopener">/drivers/staging/android/binder.c</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">static void binder_transaction(struct binder_proc *proc,</span><br><span class="line">			       struct binder_thread *thread,</span><br><span class="line">			       struct binder_transaction_data *tr, int reply)</span><br><span class="line">&#123;</span><br><span class="line">	struct binder_transaction *t;</span><br><span class="line">	struct binder_work *tcomplete;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">	struct binder_proc *target_proc; &#x2F;&#x2F; 目标进程</span><br><span class="line">	struct binder_thread *target_thread &#x3D; NULL; &#x2F;&#x2F; 目标线程</span><br><span class="line">	struct binder_node *target_node &#x3D; NULL; &#x2F;&#x2F; 目标 binder 节点</span><br><span class="line">	struct list_head *target_list; &#x2F;&#x2F; 目标 todo 队列</span><br><span class="line">	wait_queue_head_t *target_wait; &#x2F;&#x2F; 目标等待队列</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 分配两个结构体内存</span><br><span class="line">	t &#x3D; kzalloc(sizeof(*t), GFP_KERNEL);</span><br><span class="line">	tcomplete &#x3D; kzalloc(sizeof(*tcomplete), GFP_KERNEL);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 从 target_proc 中分配 buffer</span><br><span class="line">	t-&gt;buffer &#x3D; binder_alloc_buf(target_proc, tr-&gt;data_size,</span><br><span class="line">		tr-&gt;offsets_size, !reply &amp;&amp; (t-&gt;flags &amp; TF_ONE_WAY));</span><br><span class="line"></span><br><span class="line">	for (; offp &lt; off_end; offp++) &#123;</span><br><span class="line">		switch (fp-&gt;type) &#123;</span><br><span class="line">		&#x2F;&#x2F; ...</span><br><span class="line">        case BINDER_TYPE_HANDLE:</span><br><span class="line">        case BINDER_TYPE_WEAK_HANDLE: &#123;</span><br><span class="line">            struct binder_ref *ref &#x3D; binder_get_ref(proc, fp-&gt;handle);</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">            &#x2F;&#x2F; 此时运行在 servicemanager 进程，所以 ref-&gt;node 是指向服务所在进程的 binder 实体</span><br><span class="line">            &#x2F;&#x2F; 而 target_proc 为请求服务所在的进程，所以并不相等</span><br><span class="line">            if (ref-&gt;node-&gt;proc &#x3D;&#x3D; target_proc) &#123;</span><br><span class="line">                if (fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_HANDLE)</span><br><span class="line">        		    fp-&gt;type &#x3D; BINDER_TYPE_BINDER;</span><br><span class="line">                else</span><br><span class="line">        	        fp-&gt;type &#x3D; BINDER_TYPE_WEAK_BINDER;</span><br><span class="line">        		fp-&gt;binder &#x3D; ref-&gt;node-&gt;ptr;</span><br><span class="line">        		fp-&gt;cookie &#x3D; ref-&gt;node-&gt;cookie; &#x2F;&#x2F; BBinder 服务的地址</span><br><span class="line">        		binder_inc_node(ref-&gt;node, fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_BINDER, 0, NULL);</span><br><span class="line">        	&#125; else &#123;</span><br><span class="line">                struct binder_ref *new_ref;</span><br><span class="line">                &#x2F;&#x2F; 请求服务所在进程并非服务所在进程，则为请求服务所在进程创建 binder_ref</span><br><span class="line">               	new_ref &#x3D; binder_get_ref_for_node(target_proc, ref-&gt;node);</span><br><span class="line">        		fp-&gt;handle &#x3D; new_ref-&gt;desc; &#x2F;&#x2F; 重新赋值 handle</span><br><span class="line">        		binder_inc_ref(new_ref, fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_HANDLE, NULL);</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125; break;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">	&#125;</span><br><span class="line">    &#x2F;&#x2F; 将 BINDER_WORK_TRANSACTION 添加到目标队列，本次通信的目标队列为 target_proc-&gt;todo</span><br><span class="line">	t-&gt;work.type &#x3D; BINDER_WORK_TRANSACTION;</span><br><span class="line">	list_add_tail(&amp;t-&gt;work.entry, target_list);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 将 BINDER_WORK_TRANSACTION_COMPLETE 添加到当前线程的 todo 队列</span><br><span class="line">	tcomplete-&gt;type &#x3D; BINDER_WORK_TRANSACTION_COMPLETE;</span><br><span class="line">	list_add_tail(&amp;tcomplete-&gt;entry, &amp;thread-&gt;todo);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 唤醒等待队列，本次通信的目标队列为 target_proc-&gt;wait</span><br><span class="line">	if (target_wait)</span><br><span class="line">		wake_up_interruptible(target_wait);</span><br><span class="line">	return;</span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个过程非常重要，分两种情况：</p>
-<ol>
-<li>当请求服务的进程与服务属于不同进程，则为请求服务所在进程创建 binder_ref 对象，指向服务进程中的 binder_node</li>
-<li>当请求服务的进程与服务属于同一进程，则不再创建新对象，只是引用计数 +1，并且修改 type 为 BINDER_TYPE_BINDER 或 BINDER_TYPE_WEAK_BINDER</li>
-</ol>
-<h3 id="2-8-2-binder-thread-read"><a href="#2-8-2-binder-thread-read" class="headerlink" title="# 2.8.2 binder_thread_read"></a># 2.8.2 binder_thread_read</h3><p><a href="http://androidxref.com/kernel_3.18/xref/drivers/staging/android/binder.c" target="_blank" rel="noopener">/drivers/staging/android/binder.c</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">static int binder_thread_read(struct binder_proc *proc,</span><br><span class="line">			      struct binder_thread *thread,</span><br><span class="line">			      binder_uintptr_t binder_buffer, size_t size,</span><br><span class="line">			      binder_size_t *consumed, int non_block)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &#x2F;&#x2F; 当线程 todo 队列有数据则执行往下运行; 当线程 todo 队列没有数据则进入休眠等待状态</span><br><span class="line">    ret &#x3D; wait_event_freezable(thread-&gt;wait, binder_has_thread_work(thread));</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    while (1) &#123;</span><br><span class="line">	    uint32_t cmd;</span><br><span class="line">		struct binder_transaction_data tr;</span><br><span class="line">		struct binder_work *w;</span><br><span class="line">		struct binder_transaction *t &#x3D; NULL;</span><br><span class="line">        &#x2F;&#x2F; 先从线程 todo 队列获取事务数据</span><br><span class="line">		if (!list_empty(&amp;thread-&gt;todo)) &#123;</span><br><span class="line">			w &#x3D; list_first_entry(&amp;thread-&gt;todo, struct binder_work,entry);</span><br><span class="line">        &#x2F;&#x2F; 线程 todo 队列没有数据，则从进程 todo 队列获取事务数据</span><br><span class="line">		&#125; else if (!list_empty(&amp;proc-&gt;todo) &amp;&amp; wait_for_proc_work) &#123;</span><br><span class="line">			w &#x3D; list_first_entry(&amp;proc-&gt;todo, struct binder_work,entry);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		switch (w-&gt;type) &#123;</span><br><span class="line">		    case BINDER_WORK_TRANSACTION: &#123;</span><br><span class="line">                &#x2F;&#x2F; 获取 transaction 数据</span><br><span class="line">			    t &#x3D; container_of(w, struct binder_transaction, work);</span><br><span class="line">		    &#125; break;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 只有 BINDER_WORK_TRANSACTION 命令才能继续往下执行</span><br><span class="line">		if (!t) continue;</span><br><span class="line"></span><br><span class="line">		if (t-&gt;buffer-&gt;target_node) &#123;</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tr.target.ptr &#x3D; 0;</span><br><span class="line">			tr.cookie &#x3D; 0;</span><br><span class="line">			cmd &#x3D; BR_REPLY; &#x2F;&#x2F; 设置命令为 BR_REPLY</span><br><span class="line">		&#125;</span><br><span class="line">		tr.code &#x3D; t-&gt;code;</span><br><span class="line">		tr.flags &#x3D; t-&gt;flags;</span><br><span class="line">		tr.sender_euid &#x3D; from_kuid(current_user_ns(), t-&gt;sender_euid);</span><br><span class="line"></span><br><span class="line">		if (t-&gt;from) &#123;</span><br><span class="line">			struct task_struct *sender &#x3D; t-&gt;from-&gt;proc-&gt;tsk;</span><br><span class="line">            &#x2F;&#x2F; 当非 TF_ONE_WAY 的情况下，将调用者进程的 pid 保存到 sender_pid</span><br><span class="line">			tr.sender_pid &#x3D; task_tgid_nr_ns(sender,</span><br><span class="line">							task_active_pid_ns(current));</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tr.sender_pid &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		tr.data_size &#x3D; t-&gt;buffer-&gt;data_size;</span><br><span class="line">		tr.offsets_size &#x3D; t-&gt;buffer-&gt;offsets_size;</span><br><span class="line">		tr.data.ptr.buffer &#x3D; (binder_uintptr_t)(</span><br><span class="line">					(uintptr_t)t-&gt;buffer-&gt;data +</span><br><span class="line">					proc-&gt;user_buffer_offset);</span><br><span class="line">		tr.data.ptr.offsets &#x3D; tr.data.ptr.buffer +</span><br><span class="line">					ALIGN(t-&gt;buffer-&gt;data_size,</span><br><span class="line">					    sizeof(void *));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 将 cmd 和数据写回用户空间</span><br><span class="line">		if (put_user(cmd, (uint32_t __user *)ptr))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		ptr +&#x3D; sizeof(uint32_t);</span><br><span class="line">		if (copy_to_user(ptr, &amp;tr, sizeof(tr)))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		ptr +&#x3D; sizeof(tr);</span><br><span class="line"></span><br><span class="line">		list_del(&amp;t-&gt;work.entry);</span><br><span class="line">		t-&gt;buffer-&gt;allow_user_free &#x3D; 1;</span><br><span class="line">		if (cmd &#x3D;&#x3D; BR_TRANSACTION &amp;&amp; !(t-&gt;flags &amp; TF_ONE_WAY)) &#123;</span><br><span class="line">			&#x2F;&#x2F; ...</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			t-&gt;buffer-&gt;transaction &#x3D; NULL;</span><br><span class="line">			kfree(t); &#x2F;&#x2F; 通信完成则运行释放</span><br><span class="line">		&#125;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">done:</span><br><span class="line">	*consumed &#x3D; ptr - buffer;</span><br><span class="line">	if (proc-&gt;requested_threads + proc-&gt;ready_threads &#x3D;&#x3D; 0 &amp;&amp;</span><br><span class="line">	    proc-&gt;requested_threads_started &lt; proc-&gt;max_threads &amp;&amp;</span><br><span class="line">	    (thread-&gt;looper &amp; (BINDER_LOOPER_STATE_REGISTERED |</span><br><span class="line">	     BINDER_LOOPER_STATE_ENTERED)) &#x2F;* the user-space code fails to *&#x2F;</span><br><span class="line">		proc-&gt;requested_threads++;</span><br><span class="line">        &#x2F;&#x2F; 生成 BR_SPAWN_LOOPER 命令，用于创建新的线程</span><br><span class="line">		if (put_user(BR_SPAWN_LOOPER, (uint32_t __user *)buffer))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		binder_stat_br(proc, thread, BR_SPAWN_LOOPER);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-9-readStrongBinder"><a href="#2-9-readStrongBinder" class="headerlink" title="# 2.9 readStrongBinder"></a># 2.9 readStrongBinder</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/Parcel.cpp#2140" target="_blank" rel="noopener">/frameworks/native/libs/binder/Parcel.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;IBinder&gt; Parcel::readStrongBinder() const</span><br><span class="line">&#123;</span><br><span class="line">    sp&lt;IBinder&gt; val;</span><br><span class="line">    unflatten_binder(ProcessState::self(), *this, val);</span><br><span class="line">    return val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>readStrongBinder 的功能是 flat_binder_object 解析并创建 BpBinder 对象</p>
-<h3 id="2-9-1-unflatten-binder"><a href="#2-9-1-unflatten-binder" class="headerlink" title="# 2.9.1 unflatten_binder"></a># 2.9.1 unflatten_binder</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/Parcel.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/Parcel.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">status_t unflatten_binder(const sp&lt;ProcessState&gt;&amp; proc,</span><br><span class="line">    const Parcel&amp; in, sp&lt;IBinder&gt;* out)</span><br><span class="line">&#123;</span><br><span class="line">    const flat_binder_object* flat &#x3D; in.readObject(false);</span><br><span class="line">    if (flat) &#123;</span><br><span class="line">        switch (flat-&gt;hdr.type) &#123;</span><br><span class="line">            case BINDER_TYPE_BINDER:</span><br><span class="line">                &#x2F;&#x2F; 当请求服务的进程与服务属于同一进程</span><br><span class="line">                *out &#x3D; reinterpret_cast&lt;IBinder*&gt;(flat-&gt;cookie);</span><br><span class="line">                return finish_unflatten_binder(NULL, *flat, in);</span><br><span class="line">            case BINDER_TYPE_HANDLE:</span><br><span class="line">                &#x2F;&#x2F; 请求服务的进程与服务属于不同进程【见小节 2.9.2】</span><br><span class="line">                *out &#x3D; proc-&gt;getStrongProxyForHandle(flat-&gt;handle);</span><br><span class="line">                &#x2F;&#x2F; 创建 BpBinder 对象</span><br><span class="line">                return finish_unflatten_binder(</span><br><span class="line">                    static_cast&lt;BpBinder*&gt;(out-&gt;get()), *flat, in);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return BAD_TYPE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-9-2-getStrongProxyForHandle"><a href="#2-9-2-getStrongProxyForHandle" class="headerlink" title="# 2.9.2 getStrongProxyForHandle"></a># 2.9.2 getStrongProxyForHandle</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/ProcessState.cpp#" target="_blank" rel="noopener">/frameworks/native/libs/binder/ProcessState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;IBinder&gt; ProcessState::getStrongProxyForHandle(int32_t handle)</span><br><span class="line">&#123;</span><br><span class="line">    sp&lt;IBinder&gt; result;</span><br><span class="line"></span><br><span class="line">    AutoMutex _l(mLock);</span><br><span class="line">    &#x2F;&#x2F; 查找 handle 对应的资源项【见小节 2.9.3】</span><br><span class="line">    handle_entry* e &#x3D; lookupHandleLocked(handle);</span><br><span class="line"></span><br><span class="line">    if (e !&#x3D; NULL) &#123;</span><br><span class="line">        IBinder* b &#x3D; e-&gt;binder;</span><br><span class="line">        if (b &#x3D;&#x3D; NULL || !e-&gt;refs-&gt;attemptIncWeak(this)) &#123;</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">            &#x2F;&#x2F; 当 handle 值所对应的 IBinder 不存在或弱引用无效时，则创建 BpBinder 对象</span><br><span class="line">            b &#x3D; BpBinder::create(handle);</span><br><span class="line">            e-&gt;binder &#x3D; b;</span><br><span class="line">            if (b) e-&gt;refs &#x3D; b-&gt;getWeakRefs();</span><br><span class="line">            result &#x3D; b;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.force_set(b);</span><br><span class="line">            e-&gt;refs-&gt;decWeak(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="2-9-3-lookupHandleLocked"><a href="#2-9-3-lookupHandleLocked" class="headerlink" title="# 2.9.3 lookupHandleLocked"></a># 2.9.3 lookupHandleLocked</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/ProcessState.cpp#" target="_blank" rel="noopener">/frameworks/native/libs/binder/ProcessState.cpp</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ProcessState::handle_entry* ProcessState::lookupHandleLocked(int32_t handle)</span><br><span class="line">&#123;</span><br><span class="line">    const size_t N&#x3D;mHandleToObject.size();</span><br><span class="line">    &#x2F;&#x2F; 当 handle 大于 mHandleToObject 的长度时，进入</span><br><span class="line">    if (N &lt;&#x3D; (size_t)handle) &#123;</span><br><span class="line">        handle_entry e;</span><br><span class="line">        e.binder &#x3D; NULL;</span><br><span class="line">        e.refs &#x3D; NULL;</span><br><span class="line">        &#x2F;&#x2F; 从 mHandleToObject 的第 N 个位置开始，插入（handle+1-1）个 e 到队列中</span><br><span class="line">        status_t err &#x3D; mHandleToObject.insertAt(e, N, handle+1-N);</span><br><span class="line">        if (err &lt; NO_ERROR) return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    return &amp;mHandleToObject.editItemAt(handle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>根据 handle 值来查找对应的 handle_entry</p>
-<h1 id="3- 总结"><a href="#3- 总结" class="headerlink" title="# 3. 总结"></a># 3. 总结 </h1><p> 请求服务 (getService) 的过程, 就是向 ServiceManager 进程查询指定服务，当执行 binder_transaction()时，会区分请求服务所在进程情况：</p>
-<ol>
-<li>请求服务的进程与服务属于不同进程时，则为请求服务所在进程创建 binder_ref 对象，指向服务进程中的 binder_node<ul>
-<li>最终调用 readStrongBinder(), 返回的是 BpBinder 对象</li>
-</ul>
-</li>
-<li>请求服务的进程与服务属于同一进程时，则不再创建新对象，只是引用计数 +1，并且修改 type 为 BINDER_TYPE_BINDER 或 BINDER_TYPE_WEAK_BINDER<ul>
-<li>最终调用 readStrongBinder(), 返回的是 IBinder 对象</li>
-</ul>
-</li>
-</ol>
-<h1 id="4- 参考"><a href="#4- 参考" class="headerlink" title="# 4. 参考"></a># 4. 参考</h1><p><a href="http://gityuan.com/2015/11/15/binder-get-service/" target="_blank" rel="noopener">http://gityuan.com/2015/11/15/binder-get-service/</a></p>
 
       
     </div>
@@ -674,6 +670,263 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/Binder%E7%B3%BB%E5%88%976-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1-getService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/03/Binder%E7%B3%BB%E5%88%976-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1-getService/" class="post-title-link" itemprop="url">Binder 系列 6- 获取服务 -getService</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-03 20:18:35" itemprop="dateCreated datePublished" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>19k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>17 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>Source Code Environment  </p>
+<p>Android Version Pie 9.0.0_r<br>Kernel Version 3.18  </p>
+<p>本文参考 Gityuan 大神的博客，结合高版本源码，讲解 Client 如何向 Server 获取服务的过程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Reference Source Code</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; framework</span><br><span class="line">&#x2F;frameworks&#x2F;av&#x2F;media&#x2F;libmedia&#x2F;IMediaDeathNotifier.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;IServiceManager.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;BpBinder.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;IPCThreadState.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;Parcel.cpp</span><br><span class="line">&#x2F;frameworks&#x2F;native&#x2F;libs&#x2F;binder&#x2F;ProcessState.cpp</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; kernel</span><br><span class="line">&#x2F;drivers&#x2F;staging&#x2F;android&#x2F;binder.c</span><br></pre></td></tr></table></figure>
+
+<h1 id="1- 获取服务"><a href="#1- 获取服务" class="headerlink" title="# 1. 获取服务"></a># 1. 获取服务 </h1><p> 在 Native 层的服务注册，以 media 为例展开详解，先来看看 media 的类关系图</p>
+<h2 id="1-1- 类图"><a href="#1-1- 类图" class="headerlink" title="# 1.1 类图"></a># 1.1 类图</h2><p><img src="https://tva1.sinaimg.cn/large/d7f9b0f4gy1glik8ezr1yj20s60kaq5t.jpg" alt="get_media_player_service"></p>
+<ul>
+<li>蓝色：代表获取 MediaPlayerService 服务相关的类</li>
+<li>绿色：代表 Binder 架构中与 Binder 驱动通信过程中的核心类</li>
+<li>紫色：代表注册服务和获取服务的公共接口 / 父类</li>
+</ul>
+<h1 id="2- 获取 Media 服务"><a href="#2- 获取 Media 服务" class="headerlink" title="# 2. 获取 Media 服务"></a># 2. 获取 Media 服务</h1><h2 id="2-1-getMediaPlayerService"><a href="#2-1-getMediaPlayerService" class="headerlink" title="# 2.1 getMediaPlayerService"></a># 2.1 getMediaPlayerService</h2><p><a href="http://androidxref.com/9.0.0_rxref/frameworks/av/media/libmedia/IMediaDeathNotifier.cpp#" target="_blank" rel="noopener">/frameworks/av/media/libmedia/IMediaDeathNotifier.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*static*&#x2F;const sp&lt;IMediaPlayerService&gt;</span><br><span class="line">IMediaDeathNotifier::getMediaPlayerService()</span><br><span class="line">&#123;</span><br><span class="line">    Mutex::Autolock _l(sServiceLock);</span><br><span class="line">    if (sMediaPlayerService &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        sp&lt;IServiceManager&gt; sm &#x3D; defaultServiceManager(); &#x2F;&#x2F; 获取 ServiceManager</span><br><span class="line">        sp&lt;IBinder&gt; binder;</span><br><span class="line">        do &#123;</span><br><span class="line">            &#x2F;&#x2F; 获取名为 &quot;media.player&quot; 的服务【见小节 2.2】</span><br><span class="line">            binder &#x3D; sm-&gt;getService(Stringmedia.player&quot;));</span><br><span class="line">            if (binder !&#x3D; 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            usleep(500000); &#x2F;&#x2F; 0.5s</span><br><span class="line">        &#125; while (true);</span><br><span class="line"></span><br><span class="line">        if (sDeathNotifier &#x3D;&#x3D; NULL) &#123;</span><br><span class="line">            sDeathNotifier &#x3D; new DeathNotifier(); &#x2F;&#x2F; 创建死亡通知对象</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 将死亡通知连接到 binder</span><br><span class="line">        binder-&gt;linkToDeath(sDeathNotifier);</span><br><span class="line">        sMediaPlayerService &#x3D; interface_cast&lt;IMediaPlayerService&gt;(binder);</span><br><span class="line">    &#125;</span><br><span class="line">    return sMediaPlayerService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 defaultServiceManager()过程在 <a href=""> 获取 ServiceManager</a>已分析，返回 BpServiceManager</p>
+<p>在请求获取名为”media.player”的服务过程中，采用不断循环获取的方法。由于 MediaPlayerService 服务可能还没向 ServiceManager 注册完成或者尚未启动完成等情况，<br>所以当 binder 返回为 NULL 时，休眠 0.5s 后继续请求，直到获取服务</p>
+<h2 id="2-2-BpServiceManager-getService"><a href="#2-2-BpServiceManager-getService" class="headerlink" title="# 2.2 BpServiceManager.getService"></a># 2.2 BpServiceManager.getService</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IServiceManager.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IServiceManager.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">virtual sp&lt;IBinder&gt; getService(const Stringname) const</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 检索指定服务是否存在</span><br><span class="line">        sp&lt;IBinder&gt; svc &#x3D; checkService(name);</span><br><span class="line">        if (svc !&#x3D; NULL) return svc;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 注意这里是 5s</span><br><span class="line">        const long timeout &#x3D; uptimeMillis() + 5000;</span><br><span class="line">        if (!gSystemBootCompleted) &#123;</span><br><span class="line">            char bootCompleted[PROPERTY_VALUE_MAX];</span><br><span class="line">            property_get(&quot;sys.boot_completed&quot;, bootCompleted, &quot;0&quot;);</span><br><span class="line">            &#x2F;&#x2F; 判断开机是否完成，设置休眠时间</span><br><span class="line">            gSystemBootCompleted &#x3D; strcmp(bootCompleted, &quot;1&quot;) &#x3D;&#x3D; 0 ? true : false;</span><br><span class="line">        &#125;</span><br><span class="line">        const long sleepTime &#x3D; gSystemBootCompleted ? 1000 : 100;</span><br><span class="line"></span><br><span class="line">        while (uptimeMillis() &lt; timeout) &#123;</span><br><span class="line">            usleep(1000*sleepTime);</span><br><span class="line">            &#x2F;&#x2F; 检索指定服务是否存在</span><br><span class="line">            sp&lt;IBinder&gt; svc &#x3D; checkService(name);</span><br><span class="line">            if (svc !&#x3D; NULL) return svc;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>通过 BpServiceManager 来获取 MediaPlayer 服务：检索服务是否存在，当服务存在则返回相应的服务，当服务不存在则根据开机是否完成，休眠 1s/0.1s，然后再继续检索服务。<br>该循环超时时间是 5s，这估计跟 Android 的 Activity ANR 时间为 5s 相关。</p>
+<h2 id="2-3-BpServiceManager-checkService"><a href="#2-3-BpServiceManager-checkService" class="headerlink" title="# 2.3 BpServiceManager.checkService"></a># 2.3 BpServiceManager.checkService</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IServiceManager.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IServiceManager.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">virtual sp&lt;IBinder&gt; checkService(const Stringname) const</span><br><span class="line">    &#123;</span><br><span class="line">        Parcel data, reply;</span><br><span class="line">        &#x2F;&#x2F; 写入 RPC 头</span><br><span class="line">        data.writeInterfaceToken(IServiceManager::getInterfaceDescriptor());</span><br><span class="line">        &#x2F;&#x2F; 写入服务名</span><br><span class="line">        data.writeStringame);</span><br><span class="line">        remote()-&gt;transact(CHECK_SERVICE_TRANSACTION, data, &amp;reply); &#x2F;&#x2F; 【见小节 2.4】</span><br><span class="line">        return reply.readStrongBinder(); &#x2F;&#x2F; 【见小节 2.9】</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>检索指定服务是否存在，其中 remote()为 BpBinder</p>
+<h2 id="2-4-transact"><a href="#2-4-transact" class="headerlink" title="# 2.4 transact"></a># 2.4 transact</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/BpBinder.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/BpBinder.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">status_t BpBinder::transact(</span><br><span class="line">    uint32_t code, const Parcel&amp; data, Parcel* reply, uint32_t flags)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Once a binder has died, it will never come back to life.</span><br><span class="line">    if (mAlive) &#123;</span><br><span class="line">        &#x2F;&#x2F; code &#x3D; ADD_SERVICE_TRANSACTION【见小节 2.5】</span><br><span class="line">        status_t status &#x3D; IPCThreadState::self()-&gt;transact(</span><br><span class="line">            mHandle, code, data, reply, flags);</span><br><span class="line">        if (status &#x3D;&#x3D; DEAD_OBJECT) mAlive &#x3D; 0;</span><br><span class="line">        return status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return DEAD_OBJECT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Binder 代理类调用 transact()方法，最终还是由 IPCThreadState 调用 transact()方法</p>
+<h3 id="2-4-1-IPCThreadState-self"><a href="#2-4-1-IPCThreadState-self" class="headerlink" title="# 2.4.1 IPCThreadState::self"></a># 2.4.1 IPCThreadState::self</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">IPCThreadState* IPCThreadState::self()</span><br><span class="line">&#123;</span><br><span class="line">    if (gHaveTLS) &#123;</span><br><span class="line">restart:</span><br><span class="line">        const pthread_key_t k &#x3D; gTLS;</span><br><span class="line">        IPCThreadState* st &#x3D; (IPCThreadState*)pthread_getspecific(k);</span><br><span class="line">        if (st) return st;</span><br><span class="line">        return new IPCThreadState; &#x2F;&#x2F; 初始化 IPCThreadState【见小节 2.4.2】</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (gShutdown) &#123;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_lock(&amp;gTLSMutex);</span><br><span class="line">    if (!gHaveTLS) &#123; &#x2F;&#x2F; 首次进入 gHaveTLS 为 false</span><br><span class="line">        int key_create_value &#x3D; pthread_key_create(&amp;gTLS, threadDestructor); &#x2F;&#x2F; 创建线程的 TLS</span><br><span class="line">        if (key_create_value !&#x3D; 0) &#123;</span><br><span class="line">            pthread_mutex_unlock(&amp;gTLSMutex);</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        gHaveTLS &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line">    pthread_mutex_unlock(&amp;gTLSMutex);</span><br><span class="line">    goto restart;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TLS 是指 Thread Local Storage(线程本地储存空间)，每个线程都有自己的 TLS，并且是私有空间，线程之间不会共享。<br>通过 pthread_getspecific/pthread_setspecific 函数可以获取 / 设置这些空间中的内容。<br>从线程本地存储空间中获得保存在其中的 IPCThreadState 对象。</p>
+<h3 id="2-4-2-IPCThreadState 初始化"><a href="#2-4-2-IPCThreadState 初始化" class="headerlink" title="# 2.4.2 IPCThreadState 初始化"></a># 2.4.2 IPCThreadState 初始化</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">IPCThreadState::IPCThreadState()</span><br><span class="line">    : mProcess(ProcessState::self()),</span><br><span class="line">      mStrictModePolicy(0),</span><br><span class="line">      mLastTransactionBinderFlags(0)</span><br><span class="line">&#123;</span><br><span class="line">    pthread_setspecific(gTLS, this);</span><br><span class="line">    clearCaller();</span><br><span class="line">    mIn.setDataCapacity();</span><br><span class="line">    mOut.setDataCapacity();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个线程都有一个 IPCThreadState，每个 IPCThreadState 中 都有一个 mIn、一个 mOut。成员变量 mProcess 保存了 ProcessState 变量（每个进程只有一个）</p>
+<ul>
+<li>mIn 用来接收来自 Binder 设备的数据，默认大小为字节</li>
+<li>mOut 用来存储发往 Binder 设备的数据，默认大小为字节</li>
+</ul>
+<h2 id="2-5-IPCThreadState-transact"><a href="#2-5-IPCThreadState-transact" class="headerlink" title="# 2.5 IPCThreadState::transact"></a># 2.5 IPCThreadState::transact</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::transact(int32_t handle,</span><br><span class="line">                                  uint32_t code, const Parcel&amp; data,</span><br><span class="line">                                  Parcel* reply, uint32_t flags)</span><br><span class="line">&#123;</span><br><span class="line">    status_t err;</span><br><span class="line">    flags |&#x3D; TF_ACCEPT_FDS;</span><br><span class="line">    &#x2F;&#x2F; 传输数据</span><br><span class="line">    err &#x3D; writeTransactionData(BC_TRANSACTION, flags, handle, code, data, NULL);</span><br><span class="line"></span><br><span class="line">    if (err !&#x3D; NO_ERROR) &#123;</span><br><span class="line">        if (reply) reply-&gt;setError(err);</span><br><span class="line">        return (mLastError &#x3D; err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ((flags &amp; TF_ONE_WAY) &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; flags &#x3D; 0 进入该分支</span><br><span class="line">        if (reply) &#123;</span><br><span class="line">            err &#x3D; waitForResponse(reply); &#x2F;&#x2F; 等待响应</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Parcel fakeReply;</span><br><span class="line">            err &#x3D; waitForResponse(&amp;fakeReply);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 不需要响应消息的 binder 则进入该分支</span><br><span class="line">        err &#x3D; waitForResponse(NULL, NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-IPCThreadState-writeTransactionData"><a href="#2-6-IPCThreadState-writeTransactionData" class="headerlink" title="# 2.6 IPCThreadState.writeTransactionData"></a># 2.6 IPCThreadState.writeTransactionData</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::writeTransactionData(int32_t cmd, uint32_t binderFlags,</span><br><span class="line">    int32_t handle, uint32_t code, const Parcel&amp; data, status_t* statusBuffer)</span><br><span class="line">&#123;</span><br><span class="line">    binder_transaction_data tr;</span><br><span class="line">    tr.target.ptr &#x3D; 0; &#x2F;* Don&#39;t pass uninitialized stack data to a remote process *&#x2F;</span><br><span class="line">    tr.target.handle &#x3D; handle; &#x2F;&#x2F; handle &#x3D; 0</span><br><span class="line">    tr.code &#x3D; code; &#x2F;&#x2F; code &#x3D; ADD_SERVICE_TRANSACTION</span><br><span class="line">    tr.flags &#x3D; binderFlags; &#x2F;&#x2F; binderFlags &#x3D; 0</span><br><span class="line">    tr.cookie &#x3D; 0;</span><br><span class="line">    tr.sender_pid &#x3D; 0;</span><br><span class="line">    tr.sender_euid &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; data 为记录 Media 服务信息的 Parcel 对象，进行数据错误检查</span><br><span class="line">    const status_t err &#x3D; data.errorCheck();</span><br><span class="line">    if (err &#x3D;&#x3D; NO_ERROR) &#123;</span><br><span class="line">        tr.data_size &#x3D; data.ipcDataSize(); &#x2F;&#x2F; mDataSize</span><br><span class="line">        tr.data.ptr.buffer &#x3D; data.ipcData(); &#x2F;&#x2F; mData</span><br><span class="line">        tr.offsets_size &#x3D; data.ipcObjectsCount()*sizeof(binder_size_t); &#x2F;&#x2F; mObjectsSize</span><br><span class="line">        tr.data.ptr.offsets &#x3D; data.ipcObjects(); &#x2F;&#x2F; mObjects</span><br><span class="line">    &#125; else if (statusBuffer) &#123;</span><br><span class="line">        tr.flags |&#x3D; TF_STATUS_CODE;</span><br><span class="line">        *statusBuffer &#x3D; err;</span><br><span class="line">        tr.data_size &#x3D; sizeof(status_t);</span><br><span class="line">        tr.data.ptr.buffer &#x3D; reinterpret_cast&lt;uintptr_t&gt;(statusBuffer);</span><br><span class="line">        tr.offsets_size &#x3D; 0;</span><br><span class="line">        tr.data.ptr.offsets &#x3D; 0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return (mLastError &#x3D; err);</span><br><span class="line">    &#125;</span><br><span class="line">    mOut.writeInt32(cmd); &#x2F;&#x2F; cmd &#x3D; BC_TRANSACTION</span><br><span class="line">    mOut.write(&amp;tr, sizeof(tr)); &#x2F;&#x2F; 写入 binder_transaction_data 数据</span><br><span class="line">    return NO_ERROR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 handle 的值用来标示目的端，注册服务过程的目的端为 service manager，此处 handle=0 所对应的是 binder_context_mgr_node 对象，正是 service manager 所对应的 binder 实体对象。<br>binder_transaction_data 结构体是 binder 驱动通信的数据结构，该过程最终是把 Binder 请求码 BC_TRANSACTION 和 binder_transaction_data 结构体写入到 mOut</p>
+<h2 id="2-7-IPCThreadState-waitForResponse"><a href="#2-7-IPCThreadState-waitForResponse" class="headerlink" title="# 2.7 IPCThreadState.waitForResponse"></a># 2.7 IPCThreadState.waitForResponse</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::waitForResponse(Parcel *reply, status_t *acquireResult)</span><br><span class="line">&#123;</span><br><span class="line">    uint32_t cmd;</span><br><span class="line">    int32_t err;</span><br><span class="line">    while (1) &#123;</span><br><span class="line">        if ((err&#x3D;talkWithDriver()) &lt; NO_ERROR) break; &#x2F;&#x2F; 【见小节 2.8】</span><br><span class="line">        err &#x3D; mIn.errorCheck(); &#x2F;&#x2F; 数据错误检查</span><br><span class="line">        if (err &lt; NO_ERROR) break;</span><br><span class="line">        if (mIn.dataAvail() &#x3D;&#x3D; 0) continue;</span><br><span class="line"></span><br><span class="line">        cmd &#x3D; (uint32_t)mIn.readInt32();</span><br><span class="line">        switch (cmd) &#123;</span><br><span class="line">        case BR_TRANSACTION_COMPLETE:</span><br><span class="line">        case BR_DEAD_REPLY:</span><br><span class="line">        case BR_FAILED_REPLY:</span><br><span class="line">        case BR_ACQUIRE_RESULT:</span><br><span class="line">            goto finish;</span><br><span class="line"></span><br><span class="line">        case BR_REPLY:</span><br><span class="line">            &#123;</span><br><span class="line">                binder_transaction_data tr;</span><br><span class="line">                err &#x3D; mIn.read(&amp;tr, sizeof(tr));</span><br><span class="line">                if (err !&#x3D; NO_ERROR) goto finish; &#x2F;&#x2F; 如果数据报错，直接跳转结束</span><br><span class="line"></span><br><span class="line">                if (reply) &#123;</span><br><span class="line">                    if ((tr.flags &amp; TF_STATUS_CODE) &#x3D;&#x3D; 0) &#123;</span><br><span class="line">                        &#x2F;&#x2F; 将返回的 binder_transaction_data 结构体数据保存到 Parcel 对象中</span><br><span class="line">                        reply-&gt;ipcSetDataReference(</span><br><span class="line">                            reinterpret_cast&lt;const uint8_t*&gt;(tr.data.ptr.buffer),</span><br><span class="line">                            tr.data_size,</span><br><span class="line">                            reinterpret_cast&lt;const binder_size_t*&gt;(tr.data.ptr.offsets),</span><br><span class="line">                            tr.offsets_size&#x2F;sizeof(binder_size_t),</span><br><span class="line">                            freeBuffer, this);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        &#x2F;&#x2F; 释放资源...</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    &#x2F;&#x2F; 释放资源...</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            goto finish;</span><br><span class="line"></span><br><span class="line">        default:</span><br><span class="line">            &#x2F;&#x2F; 默认执行命令，见小节 3.8</span><br><span class="line">            err &#x3D; executeCommand(cmd);</span><br><span class="line">            if (err !&#x3D; NO_ERROR) goto finish;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; finish...</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-8-IPCThreadState-talkWithDriver"><a href="#2-8-IPCThreadState-talkWithDriver" class="headerlink" title="# 2.8 IPCThreadState.talkWithDriver"></a># 2.8 IPCThreadState.talkWithDriver</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/IPCThreadState.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/IPCThreadState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">status_t IPCThreadState::talkWithDriver(bool doReceive)</span><br><span class="line">&#123;</span><br><span class="line">    binder_write_read bwr;</span><br><span class="line"></span><br><span class="line">    const bool needRead &#x3D; mIn.dataPosition() &gt;&#x3D; mIn.dataSize();</span><br><span class="line">    const size_t outAvail &#x3D; (!doReceive || needRead) ? mOut.dataSize() : 0;</span><br><span class="line"></span><br><span class="line">    bwr.write_size &#x3D; outAvail;</span><br><span class="line">    bwr.write_buffer &#x3D; (uintptr_t)mOut.data();</span><br><span class="line"></span><br><span class="line">    if (doReceive &amp;&amp; needRead) &#123;</span><br><span class="line">        &#x2F;&#x2F; 接收数据缓冲区信息的填充，如果以后收到数据，就直接填充在 mIn 中 </span><br><span class="line">        bwr.read_size &#x3D; mIn.dataCapacity();</span><br><span class="line">        bwr.read_buffer &#x3D; (uintptr_t)mIn.data();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        bwr.read_size &#x3D; 0;</span><br><span class="line">        bwr.read_buffer &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 当读写缓冲都为空，则直接返回</span><br><span class="line">    if ((bwr.write_size &#x3D;&#x3D; 0) &amp;&amp; (bwr.read_size &#x3D;&#x3D; 0)) return NO_ERROR;</span><br><span class="line"></span><br><span class="line">    bwr.write_consumed &#x3D; 0;</span><br><span class="line">    bwr.read_consumed &#x3D; 0;</span><br><span class="line">    status_t err;</span><br><span class="line">    do &#123;</span><br><span class="line">        &#x2F;&#x2F; 通过 ioctl() 一直进行读写操作，与 Binder Driver 进行通信【见小节 2.8.1】</span><br><span class="line">        if (ioctl(mProcess-&gt;mDriverFD, BINDER_WRITE_READ, &amp;bwr) &gt;&#x3D; 0)</span><br><span class="line">            err &#x3D; NO_ERROR;</span><br><span class="line">        else</span><br><span class="line">            err &#x3D; -errno;</span><br><span class="line">    &#125; while (err &#x3D;&#x3D; -EINTR); &#x2F;&#x2F; 当被中断，则继续执行</span><br><span class="line"></span><br><span class="line">    if (err &gt;&#x3D; NO_ERROR) &#123;</span><br><span class="line">        &#x2F;&#x2F; 当存在已经写入的命令协议时，移除 mOut 中对应的数据</span><br><span class="line">        if (bwr.write_consumed &gt; 0) &#123;</span><br><span class="line">            if (bwr.write_consumed &lt; mOut.dataSize())</span><br><span class="line">                mOut.remove(0, bwr.write_consumed);</span><br><span class="line">            else &#123;</span><br><span class="line">                mOut.setDataSize(0);</span><br><span class="line">                processPostWriteDerefs();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 当存在已经读取的返回协议时，保存数据到 mIn 中</span><br><span class="line">        if (bwr.read_consumed &gt; 0) &#123;</span><br><span class="line">            mIn.setDataSize(bwr.read_consumed);</span><br><span class="line">            mIn.setDataPosition(0);</span><br><span class="line">        &#125;</span><br><span class="line">        return NO_ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    return err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>binder_write_read 结构体用来与 Binder 设备交换数据的结构, 通过 ioctl 与 mDriverFD 通信，是真正与 Binder 驱动进行数据读写交互的过程。<br>先向 service manager 进程发送查询服务的请求 (BR_TRANSACTION)，见<a href="">Binder 系列 3—启动 ServiceManager</a>。<br> 当 service manager 进程收到该命令后，会执行 do_find_service() 查询服务所对应的 handle，然后再调用 binder_send_reply()应答发起者，<br>发送 BC_REPLY 协议，然后调用 binder_transaction()，再向服务请求者的 Todo 队列插入事务。</p>
+<p>接下来，再看看 binder_transaction 过程</p>
+<h3 id="2-8-1-binder-transaction"><a href="#2-8-1-binder-transaction" class="headerlink" title="# 2.8.1 binder_transaction"></a># 2.8.1 binder_transaction</h3><p><a href="http://androidxref.com/kernel_3.18/xref/drivers/staging/android/binder.c" target="_blank" rel="noopener">/drivers/staging/android/binder.c</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">static void binder_transaction(struct binder_proc *proc,</span><br><span class="line">			       struct binder_thread *thread,</span><br><span class="line">			       struct binder_transaction_data *tr, int reply)</span><br><span class="line">&#123;</span><br><span class="line">	struct binder_transaction *t;</span><br><span class="line">	struct binder_work *tcomplete;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">	struct binder_proc *target_proc; &#x2F;&#x2F; 目标进程</span><br><span class="line">	struct binder_thread *target_thread &#x3D; NULL; &#x2F;&#x2F; 目标线程</span><br><span class="line">	struct binder_node *target_node &#x3D; NULL; &#x2F;&#x2F; 目标 binder 节点</span><br><span class="line">	struct list_head *target_list; &#x2F;&#x2F; 目标 todo 队列</span><br><span class="line">	wait_queue_head_t *target_wait; &#x2F;&#x2F; 目标等待队列</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 分配两个结构体内存</span><br><span class="line">	t &#x3D; kzalloc(sizeof(*t), GFP_KERNEL);</span><br><span class="line">	tcomplete &#x3D; kzalloc(sizeof(*tcomplete), GFP_KERNEL);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 从 target_proc 中分配 buffer</span><br><span class="line">	t-&gt;buffer &#x3D; binder_alloc_buf(target_proc, tr-&gt;data_size,</span><br><span class="line">		tr-&gt;offsets_size, !reply &amp;&amp; (t-&gt;flags &amp; TF_ONE_WAY));</span><br><span class="line"></span><br><span class="line">	for (; offp &lt; off_end; offp++) &#123;</span><br><span class="line">		switch (fp-&gt;type) &#123;</span><br><span class="line">		&#x2F;&#x2F; ...</span><br><span class="line">        case BINDER_TYPE_HANDLE:</span><br><span class="line">        case BINDER_TYPE_WEAK_HANDLE: &#123;</span><br><span class="line">            struct binder_ref *ref &#x3D; binder_get_ref(proc, fp-&gt;handle);</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">            &#x2F;&#x2F; 此时运行在 servicemanager 进程，所以 ref-&gt;node 是指向服务所在进程的 binder 实体</span><br><span class="line">            &#x2F;&#x2F; 而 target_proc 为请求服务所在的进程，所以并不相等</span><br><span class="line">            if (ref-&gt;node-&gt;proc &#x3D;&#x3D; target_proc) &#123;</span><br><span class="line">                if (fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_HANDLE)</span><br><span class="line">        		    fp-&gt;type &#x3D; BINDER_TYPE_BINDER;</span><br><span class="line">                else</span><br><span class="line">        	        fp-&gt;type &#x3D; BINDER_TYPE_WEAK_BINDER;</span><br><span class="line">        		fp-&gt;binder &#x3D; ref-&gt;node-&gt;ptr;</span><br><span class="line">        		fp-&gt;cookie &#x3D; ref-&gt;node-&gt;cookie; &#x2F;&#x2F; BBinder 服务的地址</span><br><span class="line">        		binder_inc_node(ref-&gt;node, fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_BINDER, 0, NULL);</span><br><span class="line">        	&#125; else &#123;</span><br><span class="line">                struct binder_ref *new_ref;</span><br><span class="line">                &#x2F;&#x2F; 请求服务所在进程并非服务所在进程，则为请求服务所在进程创建 binder_ref</span><br><span class="line">               	new_ref &#x3D; binder_get_ref_for_node(target_proc, ref-&gt;node);</span><br><span class="line">        		fp-&gt;handle &#x3D; new_ref-&gt;desc; &#x2F;&#x2F; 重新赋值 handle</span><br><span class="line">        		binder_inc_ref(new_ref, fp-&gt;type &#x3D;&#x3D; BINDER_TYPE_HANDLE, NULL);</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125; break;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">	&#125;</span><br><span class="line">    &#x2F;&#x2F; 将 BINDER_WORK_TRANSACTION 添加到目标队列，本次通信的目标队列为 target_proc-&gt;todo</span><br><span class="line">	t-&gt;work.type &#x3D; BINDER_WORK_TRANSACTION;</span><br><span class="line">	list_add_tail(&amp;t-&gt;work.entry, target_list);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 将 BINDER_WORK_TRANSACTION_COMPLETE 添加到当前线程的 todo 队列</span><br><span class="line">	tcomplete-&gt;type &#x3D; BINDER_WORK_TRANSACTION_COMPLETE;</span><br><span class="line">	list_add_tail(&amp;tcomplete-&gt;entry, &amp;thread-&gt;todo);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 唤醒等待队列，本次通信的目标队列为 target_proc-&gt;wait</span><br><span class="line">	if (target_wait)</span><br><span class="line">		wake_up_interruptible(target_wait);</span><br><span class="line">	return;</span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个过程非常重要，分两种情况：</p>
+<ol>
+<li>当请求服务的进程与服务属于不同进程，则为请求服务所在进程创建 binder_ref 对象，指向服务进程中的 binder_node</li>
+<li>当请求服务的进程与服务属于同一进程，则不再创建新对象，只是引用计数 +1，并且修改 type 为 BINDER_TYPE_BINDER 或 BINDER_TYPE_WEAK_BINDER</li>
+</ol>
+<h3 id="2-8-2-binder-thread-read"><a href="#2-8-2-binder-thread-read" class="headerlink" title="# 2.8.2 binder_thread_read"></a># 2.8.2 binder_thread_read</h3><p><a href="http://androidxref.com/kernel_3.18/xref/drivers/staging/android/binder.c" target="_blank" rel="noopener">/drivers/staging/android/binder.c</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">static int binder_thread_read(struct binder_proc *proc,</span><br><span class="line">			      struct binder_thread *thread,</span><br><span class="line">			      binder_uintptr_t binder_buffer, size_t size,</span><br><span class="line">			      binder_size_t *consumed, int non_block)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &#x2F;&#x2F; 当线程 todo 队列有数据则执行往下运行; 当线程 todo 队列没有数据则进入休眠等待状态</span><br><span class="line">    ret &#x3D; wait_event_freezable(thread-&gt;wait, binder_has_thread_work(thread));</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    while (1) &#123;</span><br><span class="line">	    uint32_t cmd;</span><br><span class="line">		struct binder_transaction_data tr;</span><br><span class="line">		struct binder_work *w;</span><br><span class="line">		struct binder_transaction *t &#x3D; NULL;</span><br><span class="line">        &#x2F;&#x2F; 先从线程 todo 队列获取事务数据</span><br><span class="line">		if (!list_empty(&amp;thread-&gt;todo)) &#123;</span><br><span class="line">			w &#x3D; list_first_entry(&amp;thread-&gt;todo, struct binder_work,entry);</span><br><span class="line">        &#x2F;&#x2F; 线程 todo 队列没有数据，则从进程 todo 队列获取事务数据</span><br><span class="line">		&#125; else if (!list_empty(&amp;proc-&gt;todo) &amp;&amp; wait_for_proc_work) &#123;</span><br><span class="line">			w &#x3D; list_first_entry(&amp;proc-&gt;todo, struct binder_work,entry);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		switch (w-&gt;type) &#123;</span><br><span class="line">		    case BINDER_WORK_TRANSACTION: &#123;</span><br><span class="line">                &#x2F;&#x2F; 获取 transaction 数据</span><br><span class="line">			    t &#x3D; container_of(w, struct binder_transaction, work);</span><br><span class="line">		    &#125; break;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 只有 BINDER_WORK_TRANSACTION 命令才能继续往下执行</span><br><span class="line">		if (!t) continue;</span><br><span class="line"></span><br><span class="line">		if (t-&gt;buffer-&gt;target_node) &#123;</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tr.target.ptr &#x3D; 0;</span><br><span class="line">			tr.cookie &#x3D; 0;</span><br><span class="line">			cmd &#x3D; BR_REPLY; &#x2F;&#x2F; 设置命令为 BR_REPLY</span><br><span class="line">		&#125;</span><br><span class="line">		tr.code &#x3D; t-&gt;code;</span><br><span class="line">		tr.flags &#x3D; t-&gt;flags;</span><br><span class="line">		tr.sender_euid &#x3D; from_kuid(current_user_ns(), t-&gt;sender_euid);</span><br><span class="line"></span><br><span class="line">		if (t-&gt;from) &#123;</span><br><span class="line">			struct task_struct *sender &#x3D; t-&gt;from-&gt;proc-&gt;tsk;</span><br><span class="line">            &#x2F;&#x2F; 当非 TF_ONE_WAY 的情况下，将调用者进程的 pid 保存到 sender_pid</span><br><span class="line">			tr.sender_pid &#x3D; task_tgid_nr_ns(sender,</span><br><span class="line">							task_active_pid_ns(current));</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tr.sender_pid &#x3D; 0;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		tr.data_size &#x3D; t-&gt;buffer-&gt;data_size;</span><br><span class="line">		tr.offsets_size &#x3D; t-&gt;buffer-&gt;offsets_size;</span><br><span class="line">		tr.data.ptr.buffer &#x3D; (binder_uintptr_t)(</span><br><span class="line">					(uintptr_t)t-&gt;buffer-&gt;data +</span><br><span class="line">					proc-&gt;user_buffer_offset);</span><br><span class="line">		tr.data.ptr.offsets &#x3D; tr.data.ptr.buffer +</span><br><span class="line">					ALIGN(t-&gt;buffer-&gt;data_size,</span><br><span class="line">					    sizeof(void *));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 将 cmd 和数据写回用户空间</span><br><span class="line">		if (put_user(cmd, (uint32_t __user *)ptr))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		ptr +&#x3D; sizeof(uint32_t);</span><br><span class="line">		if (copy_to_user(ptr, &amp;tr, sizeof(tr)))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		ptr +&#x3D; sizeof(tr);</span><br><span class="line"></span><br><span class="line">		list_del(&amp;t-&gt;work.entry);</span><br><span class="line">		t-&gt;buffer-&gt;allow_user_free &#x3D; 1;</span><br><span class="line">		if (cmd &#x3D;&#x3D; BR_TRANSACTION &amp;&amp; !(t-&gt;flags &amp; TF_ONE_WAY)) &#123;</span><br><span class="line">			&#x2F;&#x2F; ...</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			t-&gt;buffer-&gt;transaction &#x3D; NULL;</span><br><span class="line">			kfree(t); &#x2F;&#x2F; 通信完成则运行释放</span><br><span class="line">		&#125;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">done:</span><br><span class="line">	*consumed &#x3D; ptr - buffer;</span><br><span class="line">	if (proc-&gt;requested_threads + proc-&gt;ready_threads &#x3D;&#x3D; 0 &amp;&amp;</span><br><span class="line">	    proc-&gt;requested_threads_started &lt; proc-&gt;max_threads &amp;&amp;</span><br><span class="line">	    (thread-&gt;looper &amp; (BINDER_LOOPER_STATE_REGISTERED |</span><br><span class="line">	     BINDER_LOOPER_STATE_ENTERED)) &#x2F;* the user-space code fails to *&#x2F;</span><br><span class="line">		proc-&gt;requested_threads++;</span><br><span class="line">        &#x2F;&#x2F; 生成 BR_SPAWN_LOOPER 命令，用于创建新的线程</span><br><span class="line">		if (put_user(BR_SPAWN_LOOPER, (uint32_t __user *)buffer))</span><br><span class="line">			return -EFAULT;</span><br><span class="line">		binder_stat_br(proc, thread, BR_SPAWN_LOOPER);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-9-readStrongBinder"><a href="#2-9-readStrongBinder" class="headerlink" title="# 2.9 readStrongBinder"></a># 2.9 readStrongBinder</h2><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/Parcel.cpp#2140" target="_blank" rel="noopener">/frameworks/native/libs/binder/Parcel.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;IBinder&gt; Parcel::readStrongBinder() const</span><br><span class="line">&#123;</span><br><span class="line">    sp&lt;IBinder&gt; val;</span><br><span class="line">    unflatten_binder(ProcessState::self(), *this, val);</span><br><span class="line">    return val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>readStrongBinder 的功能是 flat_binder_object 解析并创建 BpBinder 对象</p>
+<h3 id="2-9-1-unflatten-binder"><a href="#2-9-1-unflatten-binder" class="headerlink" title="# 2.9.1 unflatten_binder"></a># 2.9.1 unflatten_binder</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/Parcel.cpp" target="_blank" rel="noopener">/frameworks/native/libs/binder/Parcel.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">status_t unflatten_binder(const sp&lt;ProcessState&gt;&amp; proc,</span><br><span class="line">    const Parcel&amp; in, sp&lt;IBinder&gt;* out)</span><br><span class="line">&#123;</span><br><span class="line">    const flat_binder_object* flat &#x3D; in.readObject(false);</span><br><span class="line">    if (flat) &#123;</span><br><span class="line">        switch (flat-&gt;hdr.type) &#123;</span><br><span class="line">            case BINDER_TYPE_BINDER:</span><br><span class="line">                &#x2F;&#x2F; 当请求服务的进程与服务属于同一进程</span><br><span class="line">                *out &#x3D; reinterpret_cast&lt;IBinder*&gt;(flat-&gt;cookie);</span><br><span class="line">                return finish_unflatten_binder(NULL, *flat, in);</span><br><span class="line">            case BINDER_TYPE_HANDLE:</span><br><span class="line">                &#x2F;&#x2F; 请求服务的进程与服务属于不同进程【见小节 2.9.2】</span><br><span class="line">                *out &#x3D; proc-&gt;getStrongProxyForHandle(flat-&gt;handle);</span><br><span class="line">                &#x2F;&#x2F; 创建 BpBinder 对象</span><br><span class="line">                return finish_unflatten_binder(</span><br><span class="line">                    static_cast&lt;BpBinder*&gt;(out-&gt;get()), *flat, in);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return BAD_TYPE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9-2-getStrongProxyForHandle"><a href="#2-9-2-getStrongProxyForHandle" class="headerlink" title="# 2.9.2 getStrongProxyForHandle"></a># 2.9.2 getStrongProxyForHandle</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/ProcessState.cpp#" target="_blank" rel="noopener">/frameworks/native/libs/binder/ProcessState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;IBinder&gt; ProcessState::getStrongProxyForHandle(int32_t handle)</span><br><span class="line">&#123;</span><br><span class="line">    sp&lt;IBinder&gt; result;</span><br><span class="line"></span><br><span class="line">    AutoMutex _l(mLock);</span><br><span class="line">    &#x2F;&#x2F; 查找 handle 对应的资源项【见小节 2.9.3】</span><br><span class="line">    handle_entry* e &#x3D; lookupHandleLocked(handle);</span><br><span class="line"></span><br><span class="line">    if (e !&#x3D; NULL) &#123;</span><br><span class="line">        IBinder* b &#x3D; e-&gt;binder;</span><br><span class="line">        if (b &#x3D;&#x3D; NULL || !e-&gt;refs-&gt;attemptIncWeak(this)) &#123;</span><br><span class="line">            &#x2F;&#x2F; ...</span><br><span class="line">            &#x2F;&#x2F; 当 handle 值所对应的 IBinder 不存在或弱引用无效时，则创建 BpBinder 对象</span><br><span class="line">            b &#x3D; BpBinder::create(handle);</span><br><span class="line">            e-&gt;binder &#x3D; b;</span><br><span class="line">            if (b) e-&gt;refs &#x3D; b-&gt;getWeakRefs();</span><br><span class="line">            result &#x3D; b;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.force_set(b);</span><br><span class="line">            e-&gt;refs-&gt;decWeak(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-9-3-lookupHandleLocked"><a href="#2-9-3-lookupHandleLocked" class="headerlink" title="# 2.9.3 lookupHandleLocked"></a># 2.9.3 lookupHandleLocked</h3><p><a href="http://androidxref.com/9.0.0_r3/xref/frameworks/native/libs/binder/ProcessState.cpp#" target="_blank" rel="noopener">/frameworks/native/libs/binder/ProcessState.cpp</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ProcessState::handle_entry* ProcessState::lookupHandleLocked(int32_t handle)</span><br><span class="line">&#123;</span><br><span class="line">    const size_t N&#x3D;mHandleToObject.size();</span><br><span class="line">    &#x2F;&#x2F; 当 handle 大于 mHandleToObject 的长度时，进入</span><br><span class="line">    if (N &lt;&#x3D; (size_t)handle) &#123;</span><br><span class="line">        handle_entry e;</span><br><span class="line">        e.binder &#x3D; NULL;</span><br><span class="line">        e.refs &#x3D; NULL;</span><br><span class="line">        &#x2F;&#x2F; 从 mHandleToObject 的第 N 个位置开始，插入（handle+1-1）个 e 到队列中</span><br><span class="line">        status_t err &#x3D; mHandleToObject.insertAt(e, N, handle+1-N);</span><br><span class="line">        if (err &lt; NO_ERROR) return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    return &amp;mHandleToObject.editItemAt(handle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据 handle 值来查找对应的 handle_entry</p>
+<h1 id="3- 总结"><a href="#3- 总结" class="headerlink" title="# 3. 总结"></a># 3. 总结 </h1><p> 请求服务 (getService) 的过程, 就是向 ServiceManager 进程查询指定服务，当执行 binder_transaction()时，会区分请求服务所在进程情况：</p>
+<ol>
+<li>请求服务的进程与服务属于不同进程时，则为请求服务所在进程创建 binder_ref 对象，指向服务进程中的 binder_node<ul>
+<li>最终调用 readStrongBinder(), 返回的是 BpBinder 对象</li>
+</ul>
+</li>
+<li>请求服务的进程与服务属于同一进程时，则不再创建新对象，只是引用计数 +1，并且修改 type 为 BINDER_TYPE_BINDER 或 BINDER_TYPE_WEAK_BINDER<ul>
+<li>最终调用 readStrongBinder(), 返回的是 IBinder 对象</li>
+</ul>
+</li>
+</ol>
+<h1 id="4- 参考"><a href="#4- 参考" class="headerlink" title="# 4. 参考"></a># 4. 参考</h1><p><a href="http://gityuan.com/2015/11/15/binder-get-service/" target="_blank" rel="noopener">http://gityuan.com/2015/11/15/binder-get-service/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/%E4%B9%B0%E6%88%BF%E7%9A%84%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/03/%E4%B9%B0%E6%88%BF%E7%9A%84%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/" class="post-title-link" itemprop="url">买房的心路历程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-03 16:54:58" itemprop="dateCreated datePublished" datetime="2021-01-03T16:54:58+08:00">2021-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-25 16:57:27" itemprop="dateModified" datetime="2021-01-25T16:57:27+08:00">2021-01-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" itemprop="url" rel="index"><span itemprop="name">碎碎念</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>378</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="0- 序言"><a href="#0- 序言" class="headerlink" title="0. 序言"></a>0. 序言 </h3><pre><code> 关于郑州我知道的不多，在郑州的大学四年，仅仅熟悉校园大的区域，我知道哪里的饭菜好吃，我知道哪里的自习室人少，我知道...
+可我从未想过自己即将要扎根这个城市了 </code></pre><h3 id="1- 决定买房"><a href="#1- 决定买房" class="headerlink" title="1. 决定买房"></a>1. 决定买房</h3><pre><code> 离开郑州后，我在上海漂了四年，住过宿舍，住过群租，到现在的合租，每一次搬家都让我想逃离这个城市。
+和泡仔在一起已经七年，给她一个家，下定决心在郑州买房。</code></pre><h3 id="2- 搜集信息"><a href="#2- 搜集信息" class="headerlink" title="2. 搜集信息"></a>2. 搜集信息 </h3><pre><code> 买房资格
+知乎 买房群，抖音 高大大，豆瓣 攒钱小组
+公积金贷款 </code></pre><h3 id="3- 实地看房"><a href="#3- 实地看房" class="headerlink" title="3. 实地看房"></a>3. 实地看房</h3><pre><code> 网上天花乱坠，不如实地看看。</code></pre><h3 id="4- 筹集资金"><a href="#4- 筹集资金" class="headerlink" title="4. 筹集资金"></a>4. 筹集资金 </h3><pre><code> 自己 11w，借了朋友 5w，借了亲戚 15w，分期 15w，首付 46w</code></pre><h3 id="5- 签订合同"><a href="#5- 签订合同" class="headerlink" title="5. 签订合同"></a>5. 签订合同 </h3><pre><code> 因为派出所周末不上班，周五请了一天假，周四晚上赶回郑州，先迁户口，再实地看了看工地的情况，最后回到售楼处等小白过来担保分期
+签了购房合同，手印都按红了，一下午写了几十个名字。</code></pre><h3 id="6- 终章"><a href="#6- 终章" class="headerlink" title="6. 终章"></a>6. 终章 </h3><pre><code> 世人慌慌张张，只图碎银几两，偏这碎银几两，能解世人慌张。</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/money/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -705,7 +958,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-04 14:58:59" itemprop="dateModified" datetime="2021-01-04T14:58:59+08:00">2021-01-04</time>
+                <time title="Modified: 2021-01-25 17:25:16" itemprop="dateModified" datetime="2021-01-25T17:25:16+08:00">2021-01-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -723,14 +976,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.9k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -743,13 +996,36 @@
 
       
           <h1 id="利好"><a href="# 利好" class="headerlink" title="利好"></a>利好</h1><ul>
-<li>白酒</li>
-<li>医药</li>
-<li>新能源</li>
-<li>消费 - 食品饮料</li>
-<li>半导体</li>
+<li>白酒消费</li>
+<li>医疗医药</li>
+<li>新能源 -(电源光伏)+(汽车电池)</li>
+<li>航天军工</li>
+<li>互联网</li>
 </ul>
-<h1 id="股票"><a href="# 股票" class="headerlink" title="股票"></a>股票 </h1><h2 id="招财大牛猫"><a href="# 招财大牛猫" class="headerlink" title="招财大牛猫"></a> 招财大牛猫 </h2><h3 id="白马股"><a href="# 白马股" class="headerlink" title="白马股"></a> 白马股</h3><ul>
+<h1 id="股票"><a href="# 股票" class="headerlink" title="股票"></a>股票 </h1><h2 id="招财大牛猫"><a href="# 招财大牛猫" class="headerlink" title="招财大牛猫"></a> 招财大牛猫 </h2><h3 id="茅 20"><a href="# 茅 20" class="headerlink" title="茅 20"></a> 茅 20</h3><ul>
+<li>贵州茅台 600519 白酒</li>
+<li>五粮液 000858 白酒</li>
+<li>中国平安 601318 保险</li>
+<li>招商银行 600036 银行</li>
+<li>海天味业 603288 食品</li>
+<li>恒瑞医药 600276 化学制药</li>
+<li>美的集团 000333 家用电器</li>
+<li>长江电力 600900 水力发电</li>
+<li>中国中免 601888 旅游服务</li>
+<li>宁德时代 300750 电气设备</li>
+<li>牧原股份 002714 农业综合</li>
+<li>三一重工 600031 工程机械</li>
+<li>爱尔眼科 300015 医疗保健</li>
+<li>迈瑞医疗 300760 医疗保健</li>
+<li>长春高新 000661 生物制药</li>
+<li>万华化学 600309 化工原料</li>
+<li>伊利股份 600887 乳制品</li>
+<li>立讯精密 002475 元器件</li>
+<li>东方财富 300059 证券</li>
+<li>药明康德 603259 化学制药</li>
+<li>顺丰控股 </li>
+</ul>
+<h3 id="白马股"><a href="# 白马股" class="headerlink" title="白马股"></a>白马股</h3><ul>
 <li><p>华兰生物  12.24 号 43.8 块买入一手 12.29 号 41 块卖出 亏损 280 块</p>
 </li>
 <li><p>双汇发展</p>
@@ -779,28 +1055,6 @@
 <li><p>恒生电子</p>
 </li>
 </ul>
-<h3 id="茅 20"><a href="# 茅 20" class="headerlink" title="茅 20"></a>茅 20</h3><ul>
-<li>贵州茅台 600519 白酒</li>
-<li>五粮液 000858 白酒</li>
-<li>中国平安 601318 保险</li>
-<li>招商银行 600036 银行</li>
-<li>海天味业 603288 食品</li>
-<li>恒瑞医药 600276 化学制药</li>
-<li>美的集团 000333 家用电器</li>
-<li>长江电力 600900 水力发电</li>
-<li>中国中免 601888 旅游服务</li>
-<li>宁德时代 300750 电气设备</li>
-<li>牧原股份 002714 农业综合</li>
-<li>三一重工 600031 工程机械</li>
-<li>爱尔眼科 300015 医疗保健</li>
-<li>迈瑞医疗 300760 医疗保健</li>
-<li>长春高新 000661 生物制药</li>
-<li>万华化学 600309 化工原料</li>
-<li>伊利股份 600887 乳制品</li>
-<li>立讯精密 002475 元器件</li>
-<li>东方财富 300059 证券</li>
-<li>药明康德 603259 化学制药</li>
-</ul>
 <h2 id="高瓴资本"><a href="# 高瓴资本" class="headerlink" title="高瓴资本"></a>高瓴资本</h2><ul>
 <li>恒瑞医药</li>
 <li>宁德时代</li>
@@ -820,7 +1074,7 @@
 <li>良品铺子</li>
 <li>隆基股份</li>
 </ul>
-<h2 id="老钱说钱"><a href="# 老钱说钱" class="headerlink" title="老钱说钱"></a>老钱说钱 </h2><h2 id="搬砖小组"><a href="# 搬砖小组" class="headerlink" title="搬砖小组"></a> 搬砖小组</h2><ul>
+<h2 id="搬砖小组"><a href="# 搬砖小组" class="headerlink" title="搬砖小组"></a>搬砖小组</h2><ul>
 <li><p>英科医疗</p>
 </li>
 <li><p>智飞生物</p>
@@ -844,101 +1098,11 @@
 <li><p>水井坊</p>
 </li>
 </ul>
-<h2 id="知知教授"><a href="# 知知教授" class="headerlink" title="知知教授"></a>知知教授</h2><ul>
-<li>贵州茅台</li>
-<li>中国平安</li>
-<li>上海机场</li>
-<li>中国中免</li>
-<li>长江电力</li>
-<li>海康威视</li>
-<li>海天味业</li>
-<li>宁德时代</li>
-<li>万科 A</li>
-<li>双汇发展</li>
-<li>同花顺</li>
-<li>立讯精密</li>
-<li>迈瑞医疗</li>
-<li>隆基股份</li>
-<li>东方雨虹</li>
-<li>大族激光</li>
-<li>比亚迪</li>
-<li>药明康德</li>
-<li>万华化学</li>
-<li>海螺水泥</li>
-<li>格力电器</li>
-<li>美的集团</li>
-<li>京东方 A</li>
-<li>恒瑞医药</li>
-<li>大华股份</li>
-<li>浪潮信息</li>
-<li>恩捷股份</li>
-<li>智飞生物</li>
-<li>顺丰控股</li>
-<li>华兰生物</li>
-<li>中公教育</li>
-<li>韦尔股份</li>
-<li>伊利股份</li>
-<li>用友软件</li>
-<li>苏泊尔</li>
-<li>欧派家居</li>
-<li>合盛硅业</li>
-<li>招商银行</li>
-<li>宋城演艺</li>
-<li>龙蟒佰利</li>
-<li>桃李面包</li>
-<li>索菲亚</li>
-<li>鹏鼎控股</li>
-<li>欧菲光</li>
-<li>广联达</li>
-<li>长春高新</li>
-<li>公牛集团</li>
-<li>歌尔股份</li>
-<li>陪陵榨菜</li>
-<li>北新建材</li>
-<li>珀莱雅</li>
-<li>金山办公</li>
-<li>国瓷材料</li>
-<li>星宇股份</li>
-<li>移远通信</li>
-<li>爱美客</li>
-<li>三一重工</li>
-<li>恒立液压</li>
-<li>北方华创</li>
-<li>中顺洁柔</li>
-<li>三只松鼠</li>
-<li>信维通信</li>
-<li>恒力石化</li>
-<li>长电科技</li>
-<li>爱尔眼科</li>
-<li>恒瑞医疗</li>
-<li>安琪酵母</li>
-<li>我武生物</li>
-<li>泰格医药</li>
-<li>新和成</li>
-<li>启明星辰</li>
-<li>潍柴动力</li>
-<li>恒顺醋业</li>
-<li>春秋航空</li>
-<li>阳光电源</li>
-<li>牧原股份</li>
-<li>卫宁健康</li>
-<li>凯普生物</li>
-<li>晨光文具</li>
-<li>昭衍新药</li>
-<li>欧普康视</li>
-</ul>
-<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><ul>
-<li>ST 舍得</li>
-<li>顺丰</li>
-<li>长电</li>
-<li>立讯</li>
-<li>歌尔</li>
-</ul>
 <h1 id="基金"><a href="# 基金" class="headerlink" title="基金"></a>基金 </h1><h2 id="招财大牛猫 -1"><a href="# 招财大牛猫 -1" class="headerlink" title="招财大牛猫"></a> 招财大牛猫</h2><ul>
-<li>天弘沪深 300 指数增强 A（008592）12.24 号 买入 500 块 </li>
-<li>天弘中证 500 指数增强 A（001556）12.24 号 买入 500 块</li>
-</ul>
-<ul>
+<li><p>天弘沪深 300 指数增强 A（008592）12.24 号 买入 500 块 </p>
+</li>
+<li><p>天弘中证 500 指数增强 A（001556）12.24 号 买入 500 块</p>
+</li>
 <li><p>汇添富中证新能源汽车产业指数（501057）12.24 号 买入 500 块</p>
 </li>
 <li><p>汇添富中证新能源汽车产业指数（501058）12.24 号 我买入 500 块 泡仔买入 500 块</p>
@@ -957,12 +1121,8 @@
 </li>
 <li><p>国泰国证食品饮料行业指数分级（160222）12.24 号 我买入 1000 块 泡仔买入 500 块</p>
 </li>
-<li><p>易方达中证万得生物科技指数（161122）x</p>
-</li>
-<li><p>华宝中证医疗指数分级（162412）x</p>
-</li>
 </ul>
-<h2 id="老钱说钱 -1"><a href="# 老钱说钱 -1" class="headerlink" title="老钱说钱"></a>老钱说钱</h2><ul>
+<h2 id="老钱说钱"><a href="# 老钱说钱" class="headerlink" title="老钱说钱"></a>老钱说钱</h2><ul>
 <li><p>朱少醒 - 富国天惠成长混合 A（161005）12.24 号 我买入 1000 块 泡仔买入 1000 块</p>
 </li>
 <li><p>杨谷 - 诺安先锋混合（320003）</p>
@@ -1070,9 +1230,7 @@
 <li><p>银华日利（511880）</p>
 </li>
 </ul>
-<h2 id="知知教授 -1"><a href="# 知知教授 -1" class="headerlink" title="知知教授"></a>知知教授</h2><ul>
-<li><p>易方达</p>
-</li>
+<h2 id="知知教授"><a href="# 知知教授" class="headerlink" title="知知教授"></a>知知教授</h2><ul>
 <li><p>160629 鹏华传媒</p>
 </li>
 <li><p>161005 富国天惠</p>
@@ -1174,7 +1332,7 @@
 <li>006228 中欧医疗</li>
 <li>002593 富国美丽</li>
 </ul>
-<h2 id="Other-1"><a href="#Other-1" class="headerlink" title="Other"></a>Other</h2><ul>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><ul>
 <li><p>常铝股份：涉及有色、新能源、生物疫苗、特斯拉</p>
 </li>
 <li><p>景顺长城新兴成长混合</p>
@@ -1202,7 +1360,7 @@
 <li><p>中证环保产业指数 待定</p>
 </li>
 </ul>
-<h1 id="固收"><a href="# 固收" class="headerlink" title="固收"></a>固收 </h1><h2 id="老钱说钱 -2"><a href="# 老钱说钱 -2" class="headerlink" title="老钱说钱"></a> 老钱说钱</h2><ul>
+<h1 id="固收"><a href="# 固收" class="headerlink" title="固收"></a>固收 </h1><h2 id="老钱说钱 -1"><a href="# 老钱说钱 -1" class="headerlink" title="老钱说钱"></a> 老钱说钱</h2><ul>
 <li><p>易方达安心（110027）</p>
 </li>
 <li><p>易方达稳健（110007）</p>
@@ -1248,7 +1406,7 @@
 <li><p>鹏华丰融（000345）</p>
 </li>
 </ul>
-<h1 id="港股"><a href="# 港股" class="headerlink" title="港股"></a>港股 </h1><h1 id="美股"><a href="# 美股" class="headerlink" title="美股"></a> 美股 </h1><h1 id="持仓"><a href="# 持仓" class="headerlink" title="持仓"></a> 持仓 </h1><h2 id="基金 -1"><a href="# 基金 -1" class="headerlink" title="基金"></a> 基金</h2><ol>
+<h1 id="持仓"><a href="# 持仓" class="headerlink" title="持仓"></a>持仓 </h1><h2 id="基金 -1"><a href="# 基金 -1" class="headerlink" title="基金"></a> 基金</h2><ol>
 <li>指数基金</li>
 </ol>
 <ul>
@@ -1883,296 +2041,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/%E5%89%91%E6%8C%87-Offer-59-I-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/%E5%89%91%E6%8C%87-Offer-59-I-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/" class="post-title-link" itemprop="url">剑指 Offer 59 - I. 滑动窗口的最大值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 15:39:43" itemprop="dateCreated datePublished" datetime="2020-07-22T15:39:43+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>890</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。</p>
-<p>时间复杂度 <br> 空间复杂度</p>
-<p>执行用时：<br>14 ms<br>, 在所有 Java 提交中击败了 <br>70.75%<br> 的用户 <br> 内存消耗：<br>48.8 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
-<p>// 未形成窗口</p>
-<p>// 形成窗口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span> || k == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">        Deque&lt;Integer&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; deque.peekLast() &lt; nums[i]) deque.removeLast();</span><br><span class="line">            deque.addLast(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        res[<span class="number">0</span>] = deque.peekFirst();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(deque.peekFirst() == nums[i - k]) deque.removeFirst();</span><br><span class="line">            <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; deque.peekLast() &lt; nums[i]) deque.removeLast();</span><br><span class="line">            deque.addLast(nums[i]);</span><br><span class="line">            res[i - k + <span class="number">1</span>] = deque.peekFirst();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考：<br><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/%E5%89%91%E6%8C%87-Offer-58-II-%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/%E5%89%91%E6%8C%87-Offer-58-II-%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">剑指 Offer 58 - II. 左旋转字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 15:18:56" itemprop="dateCreated datePublished" datetime="2020-07-22T15:18:56+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>352</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。<br>请定义一个函数实现字符串左旋转操作的功能。<br>比如，输入字符串”abcdefg”和数字 2，该函数将返回左旋转两位得到的结果”cdefgab”。</p>
-<p>限制：</p>
-<ul>
-<li>1 &lt;= k &lt; s.length &lt;= 10000</li>
-</ul>
-<p>时间复杂度 O(N)<br>空间复杂度 O(1)</p>
-<p>执行用时：<br>0 ms<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户 <br> 内存消耗：<br>40 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseLeftWords</span><span class="params">(String s, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s.substring(n, s.length()) + s.substring(<span class="number">0</span>, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考：  </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/%E5%89%91%E6%8C%87-Offer-58-I-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/%E5%89%91%E6%8C%87-Offer-58-I-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F/" class="post-title-link" itemprop="url">剑指 Offer 58 - I. 翻转单词顺序</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 14:43:23" itemprop="dateCreated datePublished" datetime="2020-07-22T14:43:23+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>726</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串”I am a student. “，则输出”student. a am I”。</p>
-<p>双指针法</p>
-<p>时间复杂度 O(N)： 其中 N 为字符串 s 的长度，线性遍历字符串。<br>空间复杂度 O(N)： 新建的 list(Python) 或 StringBuilder(Java) 中的字符串总长度 ≤N ，占用 O(N) 大小的额外空间。</p>
-<p>执行用时：<br>3 ms<br>, 在所有 Java 提交中击败了 <br>63.20%<br> 的用户 <br> 内存消耗：<br>39.7 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        s = s.trim();</span><br><span class="line">        <span class="keyword">int</span> j = s.length() - <span class="number">1</span>, i = j;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; s.charAt(i) != <span class="string">''</span>) i--;</span><br><span class="line">            res.append(s.substring(i + <span class="number">1</span>, j + <span class="number">1</span>) + <span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; s.charAt(i) == <span class="string">' '</span>) i--;</span><br><span class="line">            j = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString().trim();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考：<br><a href="https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/mian-shi-ti-58-i-fan-zhuan-dan-ci-shun-xu-shuang-z/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/solution/mian-shi-ti-58-i-fan-zhuan-dan-ci-shun-xu-shuang-z/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2240,14 +2112,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
