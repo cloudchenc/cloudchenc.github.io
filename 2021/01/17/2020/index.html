@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Description输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过 1，那么它就是一棵平衡二叉树。 Tips:1 &lt;&#x3D; 节点个数 &lt;&#x3D; 10000 ThinkingSolution后序遍历 + 剪枝 (从底到顶)时间复杂度  空间复杂度 执行用时：1 ms, 在所有 Java 提交中击败了 99.91% 的用户  内存消耗：40.1">
+  <meta name="description" content="过不去的疫情，过得去的生活  转眼间，2020 已经过去半个月了，记忆中贯穿的回忆只有疫情两个字。 经历过了疫情才知道：明天和意外，你不知道哪个会先来 以前总觉得生活就像一湖水，微风吹来，水波荡漾，但总会恢复如初 s，第一次春节放假这么久，度过了自毕业以来最长的一个假期， 另外 戴口罩，我想国人以后都会养成这样的习惯。 疫情之后的经济百废待兴，幸好公司远程办公，并未克扣或者拖欠工资。 年轻人的第一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指 Offer 55 - II. 平衡二叉树">
-<meta property="og:url" content="http://yoursite.com/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:title" content="2020">
+<meta property="og:url" content="http://yoursite.com/2021/01/17/2020/index.html">
 <meta property="og:site_name" content="cloud&#39;s blog">
-<meta property="og:description" content="Description输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过 1，那么它就是一棵平衡二叉树。 Tips:1 &lt;&#x3D; 节点个数 &lt;&#x3D; 10000 ThinkingSolution后序遍历 + 剪枝 (从底到顶)时间复杂度  空间复杂度 执行用时：1 ms, 在所有 Java 提交中击败了 99.91% 的用户  内存消耗：40.1">
-<meta property="article:published_time" content="2020-07-21T10:10:39.000Z">
-<meta property="article:modified_time" content="2021-01-03T12:18:35.244Z">
+<meta property="og:description" content="过不去的疫情，过得去的生活  转眼间，2020 已经过去半个月了，记忆中贯穿的回忆只有疫情两个字。 经历过了疫情才知道：明天和意外，你不知道哪个会先来 以前总觉得生活就像一湖水，微风吹来，水波荡漾，但总会恢复如初 s，第一次春节放假这么久，度过了自毕业以来最长的一个假期， 另外 戴口罩，我想国人以后都会养成这样的习惯。 疫情之后的经济百废待兴，幸好公司远程办公，并未克扣或者拖欠工资。 年轻人的第一">
+<meta property="article:published_time" content="2021-01-17T15:41:13.000Z">
+<meta property="article:modified_time" content="2021-01-26T02:51:18.739Z">
 <meta property="article:author" content="cloud">
-<meta property="article:tag" content="树">
-<meta property="article:tag" content="深度优先搜索">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/">
+<link rel="canonical" href="http://yoursite.com/2021/01/17/2020/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>剑指 Offer 55 - II. 平衡二叉树 | cloud's blog</title>
+  <title>2020 | cloud's blog</title>
   
 
 
@@ -166,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/17/2020/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -179,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          剑指 Offer 55 - II. 平衡二叉树
+          2020
         </h1>
 
         <div class="post-meta">
@@ -189,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-21 18:10:39" itemprop="dateCreated datePublished" datetime="2020-07-21T18:10:39+08:00">2020-07-21</time>
+              <time title="Created: 2021-01-17 23:41:13" itemprop="dateCreated datePublished" datetime="2021-01-17T23:41:13+08:00">2021-01-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+                <time title="Modified: 2021-01-26 10:51:18" itemprop="dateModified" datetime="2021-01-26T10:51:18+08:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
+                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
                 </span>
             </span>
 
@@ -214,7 +213,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
+              <span>789</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -233,17 +232,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过 1，那么它就是一棵平衡二叉树。</p>
-<p>Tips:<br>1 &lt;= 节点个数 &lt;= 10000</p>
-<h3 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h3><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><h5 id="后序遍历 - 剪枝 - 从底到顶"><a href="# 后序遍历 - 剪枝 - 从底到顶" class="headerlink" title="后序遍历 + 剪枝 (从底到顶)"></a>后序遍历 + 剪枝 (从底到顶)</h5><p>时间复杂度 <br> 空间复杂度</p>
-<p>执行用时：<br>1 ms<br>, 在所有 Java 提交中击败了 <br>99.91%<br> 的用户 <br> 内存消耗：<br>40.1 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> recur(root) != -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">recur</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = recur(root.left);</span><br><span class="line">        <span class="keyword">if</span>(left == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> right = recur(root.right);</span><br><span class="line">        <span class="keyword">if</span>(right == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(left - right) &lt; <span class="number">2</span> ? Math.max(left, right) + <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="先序遍历 - 判断深度 - 从顶到底"><a href="# 先序遍历 - 判断深度 - 从顶到底" class="headerlink" title="先序遍历 + 判断深度 (从顶到底)"></a>先序遍历 + 判断深度 (从顶到底)</h4><p>时间复杂度 <br> 空间复杂度</p>
-<p>执行用时：<br>1 ms<br>, 在所有 Java 提交中击败了 <br>99.91%<br> 的用户 <br> 内存消耗：<br>39.9 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(depth(root.left) - depth(root.right)) &lt;= <span class="number">1</span></span><br><span class="line">            &amp;&amp; isBalanced(root.left)</span><br><span class="line">            &amp;&amp; isBalanced(root.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.max(depth(root.left), depth(root.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考：<br><a href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/solution/mian-shi-ti-55-ii-ping-heng-er-cha-shu-cong-di-zhi/</a></p>
+        <h3 id="过不去的疫情，过得去的生活"><a href="# 过不去的疫情，过得去的生活" class="headerlink" title="过不去的疫情，过得去的生活"></a>过不去的疫情，过得去的生活 </h3><p> 转眼间，2020 已经过去半个月了，记忆中贯穿的回忆只有疫情两个字。</p>
+<p>经历过了疫情才知道：明天和意外，你不知道哪个会先来</p>
+<p>以前总觉得生活就像一湖水，微风吹来，水波荡漾，但总会恢复如初</p>
+<p>s，第一次春节放假这么久，度过了自毕业以来最长的一个假期，</p>
+<p>另外 戴口罩，我想国人以后都会养成这样的习惯。</p>
+<p>疫情之后的经济百废待兴，幸好公司远程办公，并未克扣或者拖欠工资。</p>
+<h3 id="年轻人的第一次买房"><a href="# 年轻人的第一次买房" class="headerlink" title="年轻人的第一次买房"></a>年轻人的第一次买房 </h3><p> 三月份忽然起了买房的念头，于是一发不可收拾，趁着空闲 / 周末 打听了解，远程看房。</p>
+<p>收藏夹里面有了几个中意的楼盘，趁着清明假期，两天的时间看了 7、8 个盘，心里已经有了数。</p>
+<p>买房，首选的就是位置。我想买房就像是开商铺，人越多配套越好，交通越便利。</p>
+<p>最后选中的是一个地铁入户的楼盘，97 平三室一厅，预算只够买这个户型了。</p>
+<p>公积金 + 商贷，把能用的杠杆都用上了，因为公积金异地贷款，一度数次往返上海 - 郑州，好在最后终于搞定，认识到了上海、郑州的政务部门的相互推诿和效率低下。</p>
+<h3 id="有人说：996 是福报"><a href="# 有人说：996 是福报" class="headerlink" title="有人说：996 是福报"></a>有人说：996 是福报 </h3><p> 房子解决了，贷款也下来了，手头就有点捉襟见肘，被公积金贷款耽搁的跳槽念头又唤起了。</p>
+<p>对于跳槽，我的看法是面的越多越好，见多了才好谈价钱，你才有底气去议价。</p>
+<p>只是没想到，谈了 N 多 offer 的我，在这次也栽了跟头。（后续再谈，直到现在才明白）</p>
+<p>虽然面试过程不是很理想，最后还是拿到了比较满意的 offer。</p>
+<p>有个小插曲，跟老板谈了之后，听了一顿分析，许诺了涨薪和年终后，我当时选择拒了 offer（后面又舔回来了），因为我觉得当时自己做的东西还是值得去付出努力的。</p>
+<p>后来的几天，可能是我心态变了，估计应了那句话，提了离职，一切都回不去了。</p>
+<p>拖了一个多月后，还是入职了某陪练公司。</p>
+<p>来了之后，觉得真的香，早餐 / 扁平 / 轻松，直到度过了一个月的蜜月期。</p>
+<p>我遇到了有史以来最大的困难，主力开发一个大型需求，时间很紧张，于是就开始修福报了。</p>
+<p>// 未完待续</p>
 
     </div>
 
@@ -273,8 +282,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="tag"># 深度优先搜索</a>
+              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
           </div>
 
         
@@ -283,12 +291,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" rel="prev" title="剑指 Offer 55 - I. 二叉树的深度">
-      <i class="fa fa-chevron-left"></i> 剑指 Offer 55 - I. 二叉树的深度
+    <a href="/2021/01/03/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/21/%E5%89%91%E6%8C%87-Offer-52-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/" rel="next" title="剑指 Offer 52. 两个链表的第一个公共节点">
-      剑指 Offer 52. 两个链表的第一个公共节点 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/25/HTTP-1-0-1-1-2-0/" rel="next" title="HTTP 1.0/1.1/2.0">
+      HTTP 1.0/1.1/2.0 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -349,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thinking"><span class="nav-number">2.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">3.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#后序遍历 - 剪枝 - 从底到顶"><span class="nav-number">3.0.1.</span> <span class="nav-text">后序遍历 + 剪枝 (从底到顶)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先序遍历 - 判断深度 - 从顶到底"><span class="nav-number">3.1.</span> <span class="nav-text">先序遍历 + 判断深度 (从顶到底)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#过不去的疫情，过得去的生活"><span class="nav-number">1.</span> <span class="nav-text">过不去的疫情，过得去的生活 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#年轻人的第一次买房"><span class="nav-number">2.</span> <span class="nav-text">年轻人的第一次买房 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有人说：996 是福报"><span class="nav-number">3.</span> <span class="nav-text">有人说：996 是福报 </span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -496,7 +504,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'cloudchenc.github.io',
       owner       : 'cloudchenc',
       admin       : ['cloudchenc'],
-      id          : '6424215797649a9cc7231b55a0eb3cc7',
+      id          : '355515de34660f7510db194663587489',
         language: '',
       distractionFreeMode: true
     });
