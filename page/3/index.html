@@ -161,6 +161,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/21/%E5%89%91%E6%8C%87-Offer-55-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" class="post-title-link" itemprop="url">剑指 Offer 55 - I. 二叉树的深度</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-21 16:54:22" itemprop="dateCreated datePublished" datetime="2020-07-21T16:54:22+08:00">2020-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>DFS 深度优先搜索</p>
+<p>时间复杂度：<br>空间复杂度：</p>
+<p>执行用时：<br>0 ms<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户 <br> 内存消耗：<br>39.6 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BFS 广度优先搜索</p>
+<p>时间复杂度：<br>空间复杂度：</p>
+<p>执行用时：<br>2 ms<br>, 在所有 Java 提交中击败了 <br>11.51%<br> 的用户 <br> 内存消耗：<br>39.6 MB<br>, 在所有 Java 提交中击败了 <br>100.00%<br> 的用户</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        List&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line"></span><br><span class="line">        List&lt;TreeNode&gt; tmp;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            tmp = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (TreeNode node : queue) &#123;</span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) tmp.add(node.left);</span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) tmp.add(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            queue = tmp;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考：<br><a href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/%E5%89%91%E6%8C%87-Offer-54-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E8%8A%82%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1208,160 +1306,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_life_cycle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/28/activity_life_cycle/" class="post-title-link" itemprop="url">Activity 生命周期</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-28 15:43:36" itemprop="dateCreated datePublished" datetime="2020-06-28T15:43:36+08:00">2020-06-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="正常情况下的生命周期"><a href="# 正常情况下的生命周期" class="headerlink" title="正常情况下的生命周期"></a>正常情况下的生命周期 </h3><p> 在有用户参与的情况下，Activity 生命周期的改变</p>
-<h4 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate()"></a>onCreate()</h4><p>表示 Activity 正在被创建。在 Activity 第一次被创建的时候调用，可以做一些初始化操作，比如加载布局，绑定事件，初始化 Activity 所需数据等。</p>
-<h4 id="onRestart-✳✳✳"><a href="#onRestart-✳✳✳" class="headerlink" title="onRestart()    ✳✳✳"></a>onRestart()    ✳✳✳</h4><p>表示 Activity 正在重新启动。<code>当当前 Activity 从不可见重新变为可见状态时，onRestart 就会被调用。</code><br>这种情况一般是用户行为导致的，比如用户按 Home 键切换到桌面或者用户打开了一个新的 Activity，这时当前的 Activity 就会回调 onPause 和 onStop，接着用户又返回这个 Activity 时，就会回调 onRestart 方法。</p>
-<h4 id="onStart"><a href="#onStart" class="headerlink" title="onStart()"></a>onStart()</h4><p>表示 Activity 正在启动。这时 Activity 从不可见变为可见，但是还没有出现在前台，无法和用户交互。</p>
-<h4 id="onResume"><a href="#onResume" class="headerlink" title="onResume()"></a>onResume()</h4><p>表示 Activity 已经可见，而且出现在前台，可以和用户交互。此时的 Activity 一定位于返回栈的栈顶，并且处于运行状态。<br>注意和 onStart 的对比，都表示 Activity 可见，但是 onStart 的时候 Activity 在后台，而 onResume 的时候 Activity 在前台。</p>
-<h4 id="onPause"><a href="#onPause" class="headerlink" title="onPause()"></a>onPause()</h4><p>表示 Activity 正在停止。正常情况下，onStop 接下来会被调用，特殊情况下，快速返回当前 Activity，onResume 会被调用。<br>通常会在这个方法中将一些及其消耗 CPU 的资源释放掉（比如显示地图或者大规模图形），以及保存一些关键数据（比如用户输入的数据等等），但这个方法不能执行耗时的操作，不然会影响到新的栈顶 Activity 的 onResume()方法回调。</p>
-<h4 id="onStop"><a href="#onStop" class="headerlink" title="onStop()"></a>onStop()</h4><p>表示 Activity 即将停止。可以做一些稍微重量级的资源回收，同样不能太耗时。<br>这个方法在活动完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新活动是一个对话框式的活动，那么 onPause() 方法会得到执行，而 onStop()方法并不会执行。</p>
-<blockquote>
-<p>另外注意 Activity 之间跳转时，onStop()不一定会被调用！！！比如 DialogActivity 或者 透明的 Activity</p>
-</blockquote>
-<h4 id="onDestroy"><a href="#onDestroy" class="headerlink" title="onDestroy()"></a>onDestroy()</h4><p>表示 Activity 即将被销毁。可以做一些回收工作和最终的资源释放。<br>这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</p>
-<h4 id="常见生命周期调用"><a href="# 常见生命周期调用" class="headerlink" title="常见生命周期调用"></a>常见生命周期调用</h4><ol>
-<li><p>当某个 Activity 第一次启动<br>onCreate -&gt; onStart -&gt; onResume</p>
-</li>
-<li><p>当跳转新的 Activity 或者 切换到桌面 <br>onPause -&gt; onStop<br> 特殊情况，当新的 Activity 是 dialog 或者透明主题，当前 activity 不会回调 onStop</p>
-</li>
-<li><p>当用户再次回到原 Activity<br>onRestart -&gt; onStart -&gt; onResume</p>
-</li>
-<li><p>当用户按 back 键回退<br>onPause -&gt; onStop -&gt; onDestroy</p>
-</li>
-<li><p>当 activity 被系统回收后重新打开，同 1.</p>
-</li>
-</ol>
-<h3 id="异常情况下的生命周期"><a href="# 异常情况下的生命周期" class="headerlink" title="异常情况下的生命周期"></a>异常情况下的生命周期</h3><p>Activity 被系统回调或者由于当前设备 Configuration 横竖屏切换导致 Activity 被销毁重建</p>
-<h4 id="系统配置改变导致 -Activity- 被杀死并重建"><a href="# 系统配置改变导致 -Activity- 被杀死并重建" class="headerlink" title="系统配置改变导致 Activity 被杀死并重建"></a>系统配置改变导致 Activity 被杀死并重建 </h4><h5 id="默认 -configChanges"><a href="# 默认 -configChanges" class="headerlink" title="默认 configChanges"></a> 默认 configChanges</h5><p>默认情况下，当系统配置发生改变后，Activity 会被销毁，依次调用 onPause，onStop，onDestroy。<br>同时由于 Activity 是在异常情况下终止的，系统会调用 onSaveInstanceState 来保存当前 Activity 的状态。调用时机发生在 onStop 之前，另外可能在 onPause 前，也可能在 onPause 后。</p>
-<p>当 Activity 被重新创建时，依次调用 onCreate，onStart，onResume。<br>同时系统会调用 onRestoreInstanceState，把 Activity 销毁时 onSaveInstanceState 方法保存的 Bundle 对象作为参数传递给 onRestoreInstanceState 和 onCreate 方法。<br>所以，可以在 onRestoreInstanceState 和 onCreate 方法判断 Activity 是否发生重建，如果被重建了，就通过 Bundle 中保存的数据来恢复状态。<br>当 onRestoreInstanceState 发生调用，其参数 Bundle 一定有值，但 onCreate 在正常启动时，其参数 Bundle 是 null，只有在异常时才是有值的。</p>
-<blockquote>
-<p>onSaveInstanceState 与 onRestoreInstanceState 均在异常情况下才会被执行，onSaveInstanceState 发生在 onStop 之前，onRestoreInstanceState 发生在 onStart 之后。<br>当 Activity 被意外终止时，Activity 会调用 onSaveInstanceState 去保存数据，同时委托 Window 去保存数据，接着 Window 还会委托它上面的顶层容器 ViewGroup 去保存数据。<br>顶层容器 ViewGroup 可能是 DecorView，最后顶层容器再通知子元素来保存数据，完成整个数据保存过程。<br>这是一种委托思想，上层委托下层，父布局委托子元素。可以类比 View 绘制流程 以及 事件分发机制。   </p>
-</blockquote>
-<h5 id="自定义 -configChanges"><a href="# 自定义 -configChanges" class="headerlink" title="自定义 configChanges"></a>自定义 configChanges</h5><ol>
-<li><p>orientation<br>屏幕方向发生了改变，如旋转了手机屏幕</p>
-</li>
-<li><p>keyboardHidden<br>键盘可访问性发生了改变，如用户调出了键盘</p>
-</li>
-<li><p>screenSize<br>屏幕尺寸发生了变化，如旋转了手机屏幕。API 小于 13 不会导致重启，否则会导致 Activity 重启，一般结合 orientation 一起使用</p>
-</li>
-<li><p>locale<br>设备的本地位置发生了改变，如切换了系统语言</p>
-</li>
-<li><p>smallestScreenSize<br>物理屏幕尺寸发生了变化，如切换了外部显示设备。API 小于 13 不会导致重启，否则会导致 Activity 重启。</p>
-</li>
-</ol>
-<blockquote>
-<p>当设置 orientation 和 screenSize 时，旋转屏幕 activity 不再重建，并且不会调用 onSaveInstanceState 和 onRestoreInstanceState 保存和恢复数据，但会调用 onConfigurationChanged 方法。</p>
-</blockquote>
-<h4 id="系统内存不足导致 -Activity- 被杀死并重建"><a href="# 系统内存不足导致 -Activity- 被杀死并重建" class="headerlink" title="系统内存不足导致 Activity 被杀死并重建"></a>系统内存不足导致 Activity 被杀死并重建 </h4><p> 根据 Activity 优先级杀死目标 Activity，具体数据存储和恢复过程同情景 1.</p>
-<ul>
-<li>前台 Activity, 正在和用户交互，优先级最高</li>
-<li>可见 但 非前台 Activity，弹出 dialog 导致 activity 可见，但处于后台无法和用户直接交互</li>
-<li>后台 且 不可见 Activity, 对用户已经不可见，优先级最低</li>
-</ul>
-<h3 id="UML-For-Lifecycle"><a href="#UML-For-Lifecycle" class="headerlink" title="UML For Lifecycle"></a>UML For Lifecycle</h3><p><img src="https://tva3.sinaimg.cn/large/d7f9b0f4gy1ghba8tno1fj20ty0zcq6k.jpg" alt="activity_lifecycle"></p>
-<h3 id="面试知识点"><a href="# 面试知识点" class="headerlink" title="面试知识点"></a>面试知识点</h3><ol>
-<li><p>onRestart()调用的时机<br>Home 键切换桌面 或者 Activity 跳转后返回</p>
-</li>
-<li><p>onPause()为什么不能执行耗时操作？<br>分析从 A activity 跳转到 B activity，A 的 onPause 与 B 的 onResume 调用顺序 <br> 源码角度分析，在 Activity 的启动过程中，调用 ActivityStack 的 resumeTopActivityInnerLocked() 在新的 Activity 启动之前，先回调栈顶 Activity 的 onPause 方法。<br>最终会执行到 ActivityThread 的 handleLaunchActivity()方法，完成新 activity 的 onCreate，onStart，onResume 的调用过程。（具体细节在 Activity 启动流程文章中分析）</p>
-</li>
-<li><p>View 绘制发生在哪一步？<br>onResume() ps. 结合 View 绘制流程分析</p>
-</li>
-<li><p>onStart, onResume 和 onPause, onStop 的对比分析</p>
-</li>
-<li><p>Dialog 弹出时，是否回调 onStop ？或者 DialogActivity or 透明的 Activity</p>
-</li>
-<li><p>onSaveInstanceState, onRestoreInstanceState 调用的时机</p>
-</li>
-</ol>
-<p>待补充</p>
-<h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h3><p>《Android 开发艺术探索》</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1433,20 +1377,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1491,13 +1435,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">239k</span>
+    <span title="Symbols count total">242k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:37</span>
+    <span title="Reading time total">3:40</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
