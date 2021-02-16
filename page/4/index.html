@@ -161,6 +161,125 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_launch_mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/activity_launch_mode/" class="post-title-link" itemprop="url">Activity 启动模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 16:50:13" itemprop="dateCreated datePublished" datetime="2020-06-28T16:50:13+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="LaunchMode"><a href="#LaunchMode" class="headerlink" title="LaunchMode"></a>LaunchMode</h3><h4 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h4><p>标准模式 or 默认模式。每次启动一个 activity 都会重新创建一个新的实例，不管这个实例是否已经存在。</p>
+<blockquote>
+<p>当使用 ApplicationContext 启动 Standard 模式的 Activity 的时候会报错，<br>这是因为 Standard 模式 的 activity 默认会进入启动它的 activity 所在的任务栈中，但是非 activity 类型的 Context 并没有任务栈。<br>解决方法是 为待启动的 activity 指定标记为 FLAG_ACTIVITY_NEW_TASK，这样启动的时候就会创建一个新的任务栈，实际上是以 SingleTask 模式启动的。</p>
+</blockquote>
+<h4 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h4><p>栈顶复用模式。如果新 activity 已经位于任务栈的顶部，那么此 activity 不会被重新创建，同时回调 onNewIntent 方法。<br>如果新 activity 的实例已经存在但不是在栈顶，那么新的 activity 仍然会重新创建。</p>
+<h4 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h4><p>栈内复用模式。只要 Activity 在一个栈内存在，那么多次启动该 Activity 都不会重新创建实例，同时回调 onNewIntent 方法。</p>
+<blockquote>
+<p>当一个具有 SingleTask 模式的 Activity 请求启动后，比如 Activity A, 系统首先会寻找是否存在 A <code>想要的任务栈 </code><br> 如果不存在，就重新创建一个任务栈，然后创建 A 的实例后放入栈中。<br>如果存在 A <code>所需的任务栈 </code>，就查看栈中是否存在 A 的实例，<br> 如果不存在，就创建 A 的实例后放入栈中，<br>如果存在，就会弹出 A 上面的 activity，把 A 调到栈顶(具有 clearTop 的效果)，并回调 onNewIntent 方法。</p>
+</blockquote>
+<p>p.s. 这里有提到所需的任务栈，其实就是参数 TaskAffinity，标示了一个 Activity 所需要的任务栈的名字。<br>默认情况下，所有 Activity 所需的任务栈的名字是应用的包名。自定义的话，属性值是字符串，且中间必须含有包名分隔符 <code>.</code></p>
+<p>一般情况下 TaskAffinity 结合 singleTask 启动模式 或者 allowTaskReparenting 属性一起使用。</p>
+<ul>
+<li>TaskAffinity and singleTask ：待启动的 Activity 会运行在名字和 TaskAffinity 相同的任务栈中。</li>
+<li>TaskAffinity and allowTaskReparenting ：跨应用启动 Activity 时，allowTaskReparenting 如果为 true，待启动的 Activity 会转移到该应用的任务栈中。</li>
+</ul>
+<p>任务栈分为前台任务栈和后台任务栈，后台任务栈中的 Activity 处于暂停状态，可以通过启动后台任务栈中的 Activity，将后台任务栈再次调到前台。</p>
+<h4 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h4><p>单实例模式。具有此种模式的 Activity 只能单独位于一个任务栈中，当被复用时，同样会回调 onNewIntent 方法。</p>
+<h3 id="Intent-Flag"><a href="#Intent-Flag" class="headerlink" title="Intent Flag"></a>Intent Flag</h3><p>通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高</p>
+<ul>
+<li><p>FLAG_ACTIVITY_NEW_TASK<br>等同 SingleTask</p>
+</li>
+<li><p>FLAG_ACTIVITY_SINGLE_TOP<br>等同 SingleTop</p>
+</li>
+<li><p>FLAG_ACTIVITY_CLEAR_TOP<br>具有此标记的 Activity 启动时，在同一个任务栈内所有位于它上面的 Activity 都要出栈。</p>
+</li>
+<li><p>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS<br>具有此标记的 Activity 不会出现在历史 Activity 的列表中。等同 XML 中指定 Activity 的属性 <code>android:excludeFromRecents=&quot;true&quot;&quot;</code></p>
+</li>
+</ul>
+<h3 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h3><p> 以上就是给 Activity 指定启动模式的两种方式了。当两种同时存在时，优先级以 Intent Flag 为准。  </p>
+<p>另外，LaunchMode 无法 <code> 直接 </code> 给 Activity 设置 FLAG_ACTIVITY_CLEAR_TOP 标示，而 Intent Flag 无法为 Activity 指定 SingleInstance 模式。</p>
+<p>注意上面说的是 直接，其实 SingleTask 默认具有 clearTop 的效果。</p>
+<h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h3><p>《Android 开发艺术探索》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_life_cycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1094,20 +1213,20 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1152,13 +1271,13 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">242k</span>
+    <span title="Symbols count total">243k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:40</span>
+    <span title="Reading time total">3:41</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
