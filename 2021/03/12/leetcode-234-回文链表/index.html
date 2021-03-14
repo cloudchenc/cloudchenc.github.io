@@ -20,24 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。 例如，给出  前序遍历 preorder &#x3D; [3,9,20,15,7] 中序遍历 inorder &#x3D; [9,3,15,20,7] 返回如下的二叉树：      限制：0 &lt;&#x3D; 节点个数 &lt;&#x3D; 5000 123456789101112131415161718192021222">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930&#x2F;&#x2F; 请判断一个链表是否为回文链表。 &#x2F;&#x2F;&#x2F;&#x2F; 示例 1: &#x2F;&#x2F;&#x2F;&#x2F; 输入: 1-&gt;2&#x2F;&#x2F; 输出: false &#x2F;&#x2F;&#x2F;&#x2F; 示例 2:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试题 07. 重建二叉树">
-<meta property="og:url" content="http://yoursite.com/2020/06/14/interview_question_07_rebuilding_binary_tree/index.html">
+<meta property="og:title" content="leetcode-234- 回文链表">
+<meta property="og:url" content="http://yoursite.com/2021/03/12/leetcode-234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="cloud&#39;s blog">
-<meta property="og:description" content="输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。 例如，给出  前序遍历 preorder &#x3D; [3,9,20,15,7] 中序遍历 inorder &#x3D; [9,3,15,20,7] 返回如下的二叉树：      限制：0 &lt;&#x3D; 节点个数 &lt;&#x3D; 5000 123456789101112131415161718192021222">
-<meta property="og:image" content="https://tva4.sinaimg.cn/thumbnail/d7f9b0f4gy1gfwduhts4aj206006mjrd.jpg">
-<meta property="article:published_time" content="2020-06-14T14:27:40.000Z">
-<meta property="article:modified_time" content="2021-01-03T12:18:35.238Z">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930&#x2F;&#x2F; 请判断一个链表是否为回文链表。 &#x2F;&#x2F;&#x2F;&#x2F; 示例 1: &#x2F;&#x2F;&#x2F;&#x2F; 输入: 1-&gt;2&#x2F;&#x2F; 输出: false &#x2F;&#x2F;&#x2F;&#x2F; 示例 2:">
+<meta property="article:published_time" content="2021-03-12T03:57:00.000Z">
+<meta property="article:modified_time" content="2021-03-12T06:22:45.244Z">
 <meta property="article:author" content="cloud">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="剑指Offer">
-<meta property="article:tag" content="树">
-<meta property="article:tag" content="递归">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva4.sinaimg.cn/thumbnail/d7f9b0f4gy1gfwduhts4aj206006mjrd.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/14/interview_question_07_rebuilding_binary_tree/">
+<link rel="canonical" href="http://yoursite.com/2021/03/12/leetcode-234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -50,7 +44,7 @@
   };
 </script>
 
-  <title>面试题 07. 重建二叉树 | cloud's blog</title>
+  <title>leetcode-234- 回文链表 | cloud's blog</title>
   
 
 
@@ -170,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/14/interview_question_07_rebuilding_binary_tree/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/leetcode-234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -183,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          面试题 07. 重建二叉树
+          leetcode-234- 回文链表
         </h1>
 
         <div class="post-meta">
@@ -192,24 +186,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-06-14 22:27:40" itemprop="dateCreated datePublished" datetime="2020-06-14T22:27:40+08:00">2020-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
-                </span>
+              <time title="Created: 2021-03-12 11:57:00 / Modified: 14:22:45" itemprop="dateCreated datePublished" datetime="2021-03-12T11:57:00+08:00">2021-03-12</time>
             </span>
 
           <br>
@@ -218,7 +197,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -237,16 +216,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
-<p>例如，给出 <br><code> 前序遍历 preorder = [3,9,20,15,7]
-中序遍历 inorder = [9,3,15,20,7]</code></p>
-<p>返回如下的二叉树：</p>
-<p><img src="https://tva4.sinaimg.cn/thumbnail/d7f9b0f4gy1gfwduhts4aj206006mjrd.jpg" alt="TreeNode">    </p>
-<p>限制：<br><code>0 &lt;= 节点个数 &lt;= 5000</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> * int val;</span></span><br><span class="line"><span class="comment"> * TreeNode left;</span></span><br><span class="line"><span class="comment"> * TreeNode right;</span></span><br><span class="line"><span class="comment"> * TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; pre = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// 先把数组转为集合，方便接下来的截取</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : preorder) pre.add(i);</span><br><span class="line">        List&lt;Integer&gt; in = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="comment">// 先把数组转为集合，方便接下来的截取</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j : inorder) in.add(j);</span><br><span class="line">        <span class="comment">// 传入前，中序遍历节点集合，递归构建二叉树</span></span><br><span class="line">        <span class="keyword">return</span> recursive(pre, in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recursive</span><span class="params">(List&lt;Integer&gt; pre, List&lt;Integer&gt; in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pre.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 前序遍历的第一个节点一定是树的根节点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(pre.get(<span class="number">0</span>));</span><br><span class="line">        <span class="comment">// 获取根结点在中序遍历中的索引，索引左边是树的左子树，索引右边是树的右子树</span></span><br><span class="line">        <span class="keyword">int</span> middle = in.indexOf(root.val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据中序遍历的左右子树的节点个数，同理获取前序遍历的左右子树的节点集合</span></span><br><span class="line">        root.left = recursive(pre.subList(<span class="number">1</span>, <span class="number">1</span> + middle),</span><br><span class="line">                in.subList(<span class="number">0</span>, middle));</span><br><span class="line">        root.right = recursive(pre.subList(<span class="number">1</span> + middle, pre.size()),</span><br><span class="line">                in.subList(middle + <span class="number">1</span>, in.size()));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 请判断一个链表是否为回文链表。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入: 1-&gt;2</span><br><span class="line">&#x2F;&#x2F; 输出: false </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入: 1-&gt;2-&gt;2-&gt;1</span><br><span class="line">&#x2F;&#x2F; 输出: true</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 进阶： </span><br><span class="line">&#x2F;&#x2F; 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ </span><br><span class="line">&#x2F;&#x2F; Related Topics 链表 双指针 </span><br><span class="line">&#x2F;&#x2F; 👍 890 👎 0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode() &#123;&#125;</span><br><span class="line"> *     ListNode(int val) &#123; this.val &#x3D; val; &#125;</span><br><span class="line"> *     ListNode(int val, ListNode next) &#123; this.val &#x3D; val; this.next &#x3D; next; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
 
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode slow = head, fast = head; <span class="comment">// 快慢指针 </span></span><br><span class="line">        ListNode prev = <span class="keyword">null</span>; <span class="comment">// 反转前半部分链表 </span></span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ListNode temp = slow;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            temp.next = prev;</span><br><span class="line">            prev = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果 fast 不为空，说明链表的长度是奇数个 </span></span><br><span class="line">        <span class="keyword">if</span> (fast != <span class="keyword">null</span>) &#123;</span><br><span class="line">            slow = slow.next; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (slow != <span class="keyword">null</span> &amp;&amp; prev != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (slow.val != prev.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            prev = prev.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(1)
+执行耗时:1 ms, 击败了 100.00% 的 Java 用户
+内存消耗:40.8 MB, 击败了 95.27% 的 Java 用户 </code></pre>
     </div>
 
     
@@ -274,12 +250,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
-              <a href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag"># 剑指Offer</a>
-              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
-              <a href="/tags/%E9%80%92%E5%BD%92/" rel="tag"># 递归</a>
-          </div>
 
         
 
@@ -287,12 +257,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/08/github_page_bind_domain_name/" rel="prev" title="Github Page 绑定域名">
-      <i class="fa fa-chevron-left"></i> Github Page 绑定域名
+    <a href="/2021/03/11/%E5%89%91%E6%8C%87-Offer-32-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-III/" rel="prev" title="剑指 -Offer-32- 从上到下打印二叉树 -III">
+      <i class="fa fa-chevron-left"></i> 剑指 -Offer-32- 从上到下打印二叉树 -III
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/22/handler-message/" rel="next" title="Handler 机制原理">
-      Handler 机制原理 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/03/12/leetcode-237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" rel="next" title="leetcode-237- 删除链表中的节点">
+      leetcode-237- 删除链表中的节点 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -368,14 +338,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -426,13 +396,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">256k</span>
+    <span title="Symbols count total">267k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:53</span>
+    <span title="Reading time total">4:03</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
@@ -499,7 +469,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'cloudchenc.github.io',
       owner       : 'cloudchenc',
       admin       : ['cloudchenc'],
-      id          : 'ea8e1874a54b8c77291944e883ad42bc',
+      id          : '5aa454172bcdfd2b8e38b905424f42e7',
         language: '',
       distractionFreeMode: true
     });
