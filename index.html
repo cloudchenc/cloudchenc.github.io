@@ -161,6 +161,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/15/leetcode-24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/15/leetcode-24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="post-title-link" itemprop="url">leetcode-24- 两两交换链表中的节点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-15 15:52:08 / Modified: 17:26:23" itemprop="dateCreated datePublished" datetime="2021-03-15T15:52:08+08:00">2021-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 输入：head &#x3D; [1,2,3,4]</span><br><span class="line">&#x2F;&#x2F; 输出：[2,1,4,3]</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 输入：head &#x3D; []</span><br><span class="line">&#x2F;&#x2F; 输出：[]</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 3： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 输入：head &#x3D; [1]</span><br><span class="line">&#x2F;&#x2F; 输出：[1]</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 提示： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 链表中节点的数目在范围 [0, 100] 内 </span><br><span class="line">&#x2F;&#x2F; 0 &lt;&#x3D; Node.val &lt;&#x3D; 100 </span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 进阶：你能在不修改链表节点值的情况下解决这个问题吗?（也就是说，仅修改节点本身。） </span><br><span class="line">&#x2F;&#x2F; Related Topics 递归 链表 </span><br><span class="line">&#x2F;&#x2F; 👍 854 👎 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * ListNode next;</span><br><span class="line"> * ListNode() &#123;&#125;</span><br><span class="line"> * ListNode(int val) &#123; this.val &#x3D; val; &#125;</span><br><span class="line"> * ListNode(int val, ListNode next) &#123; this.val &#x3D; val; this.next &#x3D; next; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = swap(head);</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swap</span><span class="params">(ListNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span> || node.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode curv = node.next; <span class="comment">// 记录指针 </span></span><br><span class="line">        node.next = swap(curv.next); <span class="comment">// 递归 </span></span><br><span class="line">        curv.next = node; <span class="comment">// 反转 </span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curv;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(N)
+执行耗时:0 ms, 击败了 100.00% 的 Java 用户
+内存消耗:36 MB, 击败了 73.11% 的 Java 用户 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line"></span><br><span class="line">        ListNode tmp = dummy; <span class="comment">// 记录指针 </span></span><br><span class="line">        <span class="keyword">while</span> (tmp.next != <span class="keyword">null</span> &amp;&amp; tmp.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ListNode node1 = tmp.next; <span class="comment">// 保存第一个节点 </span></span><br><span class="line">            ListNode node2 = node1.next; <span class="comment">// 保存第二个节点 </span></span><br><span class="line">            tmp.next = node2; <span class="comment">// 交换顺序 </span></span><br><span class="line">            node1.next = node2.next; <span class="comment">// 交换顺序 </span></span><br><span class="line">            node2.next = node1; <span class="comment">// 交换顺序 </span></span><br><span class="line">            tmp = node1; <span class="comment">// 移动指针 </span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(1)
+执行耗时:0 ms, 击败了 100.00% 的 Java 用户
+内存消耗:36.1 MB, 击败了 45.86% 的 Java 用户 </code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/leetcode-101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -187,6 +278,22 @@
 
               <time title="Created: 2021-03-12 20:36:19" itemprop="dateCreated datePublished" datetime="2021-03-12T20:36:19+08:00">2021-03-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-15 15:48:19" itemprop="dateModified" datetime="2021-03-15T15:48:19+08:00">2021-03-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -194,14 +301,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -213,7 +320,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给定一个二叉树，检查它是否是镜像对称的。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;     1</span><br><span class="line">&#x2F;&#x2F;   &#x2F; \</span><br><span class="line">&#x2F;&#x2F;  2   2</span><br><span class="line">&#x2F;&#x2F; &#x2F; \ &#x2F; \</span><br><span class="line">&#x2F;&#x2F;3  4 4  3</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;     1</span><br><span class="line">&#x2F;&#x2F;   &#x2F; \</span><br><span class="line">&#x2F;&#x2F;  2   2</span><br><span class="line">&#x2F;&#x2F;   \   \</span><br><span class="line">&#x2F;&#x2F;   3    3</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 进阶： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 你可以运用递归和迭代两种方法解决这个问题吗？ </span><br><span class="line">&#x2F;&#x2F; Related Topics 树 深度优先搜索 广度优先搜索 </span><br><span class="line">&#x2F;&#x2F; 👍 1290 👎 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * TreeNode left;</span><br><span class="line"> * TreeNode right;</span><br><span class="line"> * TreeNode() &#123;&#125;</span><br><span class="line"> * TreeNode(int val) &#123; this.val &#x3D; val; &#125;</span><br><span class="line"> * TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="line"> * this.val &#x3D; val;</span><br><span class="line"> * this.left &#x3D; left;</span><br><span class="line"> * this.right &#x3D; right;</span><br><span class="line"> * &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMirror</span><span class="params">(TreeNode left, TreeNode right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left == <span class="keyword">null</span> &amp;&amp; right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (left == <span class="keyword">null</span> || right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (left.val != right.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> isMirror(left.left, right.right) &amp;&amp; isMirror(left.right, right.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(N), 递归深度，跟树的高度有关，最坏情况下树变成一个链表结构，高度是 n
+执行耗时:0 ms, 击败了 100.00% 的 Java 用户
+内存消耗:36.2 MB, 击败了 96.44% 的 Java 用户 </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMirror</span><span class="params">(TreeNode left, TreeNode right)</span> </span>&#123;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(left);</span><br><span class="line">        queue.offer(right);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            left = queue.poll();</span><br><span class="line">            right = queue.poll();</span><br><span class="line">            <span class="keyword">if</span> (left == <span class="keyword">null</span> &amp;&amp; right == <span class="keyword">null</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (left == <span class="keyword">null</span> || right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (left.val != right.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">            queue.offer(left.left);</span><br><span class="line">            queue.offer(right.right);</span><br><span class="line"></span><br><span class="line">            queue.offer(left.right);</span><br><span class="line">            queue.offer(right.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(N)
+执行耗时:1 ms, 击败了 28.28% 的 Java 用户
+内存消耗:37.8 MB, 击败了 12.06% 的 Java 用户 </code></pre>
       
     </div>
 
@@ -924,101 +1041,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/03/%E8%87%AA%E5%AA%92%E4%BD%93%E5%9F%BA%E9%87%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/03/%E8%87%AA%E5%AA%92%E4%BD%93%E5%9F%BA%E9%87%91/" class="post-title-link" itemprop="url">自媒体基金主播</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-03 17:00:18" itemprop="dateCreated datePublished" datetime="2021-03-03T17:00:18+08:00">2021-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-09 16:47:48" itemprop="dateModified" datetime="2021-03-09T16:47:48+08:00">2021-03-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%AA%92%E4%BD%93/" itemprop="url" rel="index"><span itemprop="name">自媒体</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>302</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p> 关于抖音基金大 V 的思考 </p>
-<p> 大家都知道，最近基金已经火出圈了。抖音，知乎，甚至小红书…都冒出了各路理财专家手把手带你定投基金，或者预测股市走势。</p>
-<p> 其中我发现了一个很有意思的现象，某些主播作出手工简笔画，绘制四个象限，预测股市走向。</p>
-<p> 分别是高开高走，低开低走，高开低走，低开高走。</p>
-<p> 每个 25% 的几率，开四个账号，总有一个猜对的。虽然比猜大小的概率低了一半，但还是很大的概率猜中，再结合财报来分析，成功率大大提高。</p>
-<p> 就这样吸引了几万甚至几十万的粉丝关注，打赏，被其视为财富密码。</p>
-<p> 在账号冷启动的时候，应该是有一些托混在其中，作为气氛组，吹捧主播，雪球越滚越大，最终收割韭菜。</p>
-<p> 当然粉丝赚不赚钱，主播是无所谓的，他有流量就够了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1090,7 +1112,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1148,13 +1170,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">267k</span>
+    <span title="Symbols count total">271k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:03</span>
+    <span title="Reading time total">4:07</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
