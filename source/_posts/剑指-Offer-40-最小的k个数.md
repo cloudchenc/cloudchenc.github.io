@@ -2,8 +2,6 @@
 title: 剑指 Offer 40. 最小的k个数
 date: 2020-07-13 22:45:12
 tags:
-    - LeetCode
-    - 剑指Offer
     - 快速排序
     - 堆排序
     - 二叉搜索树

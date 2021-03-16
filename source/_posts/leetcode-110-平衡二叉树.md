@@ -2,7 +2,9 @@
 title: leetcode-110-平衡二叉树
 date: 2021-03-09 14:13:09
 tags:
-    - 二叉树
+    - 树
+    - 深度优先搜索
+    - 递归
 categories: leetcode
 ---
 

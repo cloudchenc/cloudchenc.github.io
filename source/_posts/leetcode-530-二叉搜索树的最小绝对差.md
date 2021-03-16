@@ -2,7 +2,7 @@
 title: leetcode-530-二叉搜索树的最小绝对差
 date: 2021-03-12 14:37:03
 tags:
-    - 二叉树
+    - 树
 categories: leetcode
 ---
 

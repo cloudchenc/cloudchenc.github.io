@@ -2,7 +2,9 @@
 title: leetcode-101-对称二叉树
 date: 2021-03-12 20:36:19
 tags:
-    - 二叉树
+    - 树
+    - 广度优先搜索
+    - 深度优先搜索
 categories: leetcode
 ---
 

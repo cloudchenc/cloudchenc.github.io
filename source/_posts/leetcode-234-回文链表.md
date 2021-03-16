@@ -2,7 +2,9 @@
 title: leetcode-234-回文链表
 date: 2021-03-12 11:57:00
 tags:
-categories:
+    - 链表
+    - 双指针
+categories: leetcode
 ---
 
 ```

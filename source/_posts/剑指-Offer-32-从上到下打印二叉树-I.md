@@ -2,7 +2,9 @@
 title: 剑指-Offer-32-从上到下打印二叉树-I
 date: 2021-03-11 14:44:28
 tags:
-categories:
+    - 树
+    - 广度优先搜索
+categories: 剑指Offer
 ---
 
 ```

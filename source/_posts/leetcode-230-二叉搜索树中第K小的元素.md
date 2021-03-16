@@ -2,7 +2,8 @@
 title: leetcode-230-二叉搜索树中第K小的元素
 date: 2021-03-02 14:42:47
 tags:
-    - 二叉树
+    - 树
+    - 二分查找
 categories: leetcode
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Binder系列5-注册服务(addService)
+date: 2021-01-03 13:28:36
 tags:
     - Binder
 categories: Android

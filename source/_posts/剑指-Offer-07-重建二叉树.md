@@ -1,9 +1,7 @@
 ---
-title: 面试题07.重建二叉树
+title: 剑指-Offer-07-重建二叉树
 date: 2020-06-14 22:27:40
 tags:
-    - LeetCode
-    - 剑指Offer
     - 树
     - 递归
 categories: 剑指Offer

@@ -2,7 +2,8 @@
 title: Hexo Guide
 date: 2021-03-02 14:43:18
 tags:
-categories:
+    - Hexo
+categories: Other
 ---
 
 shell command 
