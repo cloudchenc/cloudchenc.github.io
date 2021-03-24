@@ -1,8 +1,10 @@
 ---
 title: Decision
+date: 2020-12-31 23:41:13
 tags:
-categories:
+categories: Other
 ---
+
 
 # 如何形成决策
 
