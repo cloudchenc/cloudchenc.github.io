@@ -161,6 +161,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/20/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/20/%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">剑指 -Offer-26- 树的子结构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-20 19:51:46 / Modified: 19:53:49" itemprop="dateCreated datePublished" datetime="2021-04-20T19:51:46+08:00">2021-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构) </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 例如: </span><br><span class="line">&#x2F;&#x2F; 给定的树 A: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 3 </span><br><span class="line">&#x2F;&#x2F; &#x2F; \ </span><br><span class="line">&#x2F;&#x2F; 4 5 </span><br><span class="line">&#x2F;&#x2F; &#x2F; \ </span><br><span class="line">&#x2F;&#x2F; 1 2 </span><br><span class="line">&#x2F;&#x2F; 给定的树 B： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 4 </span><br><span class="line">&#x2F;&#x2F; &#x2F; </span><br><span class="line">&#x2F;&#x2F; 1 </span><br><span class="line">&#x2F;&#x2F; 返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入：A &#x3D; [1,2,3], B &#x3D; [3,1]</span><br><span class="line">&#x2F;&#x2F; 输出：false</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入：A &#x3D; [3,4,5,1,2], B &#x3D; [4,1]</span><br><span class="line">&#x2F;&#x2F; 输出：true </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 限制： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 0 &lt;&#x3D; 节点个数 &lt;&#x3D; 10000 </span><br><span class="line">&#x2F;&#x2F; Related Topics 树 </span><br><span class="line">&#x2F;&#x2F; 👍 255 👎 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * TreeNode left;</span><br><span class="line"> * TreeNode right;</span><br><span class="line"> * TreeNode(int x) &#123; val &#x3D; x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubStructure</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (B == <span class="keyword">null</span> || A == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> isSameTree(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (B == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.val != B.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> isSameTree(A.left, B.left) &amp;&amp; isSameTree(A.right, B.right);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(1)
+执行耗时:0 ms, 击败了 100.00% 的 Java 用户
+内存消耗:40 MB, 击败了 82.94% 的 Java 用户 </code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/11/%E7%BB%93%E5%A9%9A%E8%BF%9B%E8%A1%8C%E6%97%B6%E4%B9%8B%E5%A9%9A%E7%BA%B1%E7%85%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -333,7 +420,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-25 15:44:34" itemprop="dateModified" datetime="2021-03-25T15:44:34+08:00">2021-03-25</time>
+                <time title="Modified: 2021-04-20 16:44:01" itemprop="dateModified" datetime="2021-04-20T16:44:01+08:00">2021-04-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -351,14 +438,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -370,7 +457,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给你一个二叉树的根结点，请你找出出现次数最多的子树元素和。一个结点的「子树元素和」定义为以该结点为根的二叉树上所有结点的元素之和（包括结点本身）。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 你需要返回出现次数最多的子树元素和。如果有多个元素出现的次数相同，返回所有出现次数最多的子树元素和（不限顺序）。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1： </span><br><span class="line">&#x2F;&#x2F; 输入: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;   5</span><br><span class="line">&#x2F;&#x2F; &#x2F;  \</span><br><span class="line">&#x2F;&#x2F;2   -3</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 返回 [2, -3, 4]，所有的值均只出现一次，以任意顺序返回所有值。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2： </span><br><span class="line">&#x2F;&#x2F; 输入： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;   5</span><br><span class="line">&#x2F;&#x2F; &#x2F;  \</span><br><span class="line">&#x2F;&#x2F;2   -5</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 返回 [2]，只有 2 出现两次，-5 只出现 1 次。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 提示： 假设任意子树元素和均可以用 32 位有符号整数表示。 </span><br><span class="line">&#x2F;&#x2F; Related Topics 树 哈希表 </span><br><span class="line">&#x2F;&#x2F; 👍 108 👎 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * TreeNode left;</span><br><span class="line"> * TreeNode right;</span><br><span class="line"> * TreeNode(int x) &#123; val &#x3D; x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">1</span>; <span class="comment">// 记录最大出现次数</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(); <span class="comment">// key- 子树元素和，value- 出现次数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findFrequentTreeSum(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">        sumTreeNode(root);</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">            <span class="comment">// 取最大出现次数的值</span></span><br><span class="line">            <span class="keyword">if</span> (map.get(i) == max) &#123;</span><br><span class="line">                list.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">while</span> (index &lt; result.length) &#123;</span><br><span class="line">            result[index] = list.get(index++);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumTreeNode</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 递归求子树元素和</span></span><br><span class="line">        <span class="keyword">int</span> sum = node.val + sumTreeNode(node.left) + sumTreeNode(node.right);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(sum)) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = map.get(sum) + <span class="number">1</span>;</span><br><span class="line">            map.put(sum, temp);</span><br><span class="line">            max = Math.max(max, temp);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(sum, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>时间复杂度：O(N)
+空间复杂度：O(N)
+执行耗时:5 ms, 击败了 79.82% 的 Java 用户
+内存消耗:38.9 MB, 击败了 50.07% 的 Java 用户 </code></pre><p> 二叉树题目</p>
+<ul>
+<li>先序遍历（深度优先搜索）</li>
+<li>中序遍历（深度优先搜索）（尤其二叉搜索树）</li>
+<li>后序遍历（深度优先搜索）</li>
+<li>层序遍历（广度优先搜索）</li>
+</ul>
+
       
     </div>
 
@@ -813,7 +913,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
+                <time title="Modified: 2021-04-20 19:53:49" itemprop="dateModified" datetime="2021-04-20T19:53:49+08:00">2021-04-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1051,107 +1151,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/11/%E5%89%91%E6%8C%87-Offer-32-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-III/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/11/%E5%89%91%E6%8C%87-Offer-32-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-III/" class="post-title-link" itemprop="url">剑指 -Offer-32- 从上到下打印二叉树 -III</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-11 15:08:21" itemprop="dateCreated datePublished" datetime="2021-03-11T15:08:21+08:00">2021-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 例如: </span><br><span class="line">&#x2F;&#x2F; 给定二叉树: [3,9,20,null,null,15,7], </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;     3</span><br><span class="line">&#x2F;&#x2F;   &#x2F; \</span><br><span class="line">&#x2F;&#x2F;  9  20</span><br><span class="line">&#x2F;&#x2F;    &#x2F;  \</span><br><span class="line">&#x2F;&#x2F;   15   7</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 返回其层次遍历结果： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; [</span><br><span class="line">&#x2F;&#x2F;  [3],</span><br><span class="line">&#x2F;&#x2F;  [20,9],</span><br><span class="line">&#x2F;&#x2F;  [15,7]</span><br><span class="line">&#x2F;&#x2F;]</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 提示： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 节点总数 &lt;&#x3D; 1000 </span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; Related Topics 树 广度优先搜索 </span><br><span class="line">&#x2F;&#x2F; 👍 78 👎 0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * TreeNode left;</span><br><span class="line"> * TreeNode right;</span><br><span class="line"> * TreeNode(int x) &#123; val &#x3D; x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
-
-<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="层序遍历 - 双端队列"><a href="# 层序遍历 - 双端队列" class="headerlink" title="层序遍历 + 双端队列"></a>层序遍历 + 双端队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            LinkedList&lt;Integer&gt; tmp = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            <span class="comment">// 由于 queue 出队，导致 size 减小，所以这里使用倒序 for 循环</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = queue.size(); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">                TreeNode node = queue.poll();</span><br><span class="line">                <span class="keyword">if</span> (res.size() % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                    tmp.addFirst(node.val); <span class="comment">// 本层是偶数层</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    tmp.addLast(node.val); <span class="comment">// 本层是奇数层</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) queue.offer(node.left);</span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) queue.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>时间复杂度：O(N)
-空间复杂度：O(N)
-执行耗时:1 ms, 击败了 99.74% 的 Java 用户
-内存消耗:38.8 MB, 击败了 19.96% 的 Java 用户 </code></pre><h2 id="层序遍历 - 双端队列（奇偶层逻辑分离）"><a href="# 层序遍历 - 双端队列（奇偶层逻辑分离）" class="headerlink" title="层序遍历 + 双端队列（奇偶层逻辑分离）"></a> 层序遍历 + 双端队列（奇偶层逻辑分离）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Deque&lt;TreeNode&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;(); <span class="comment">// 双端队列</span></span><br><span class="line">        deque.add(root);</span><br><span class="line">        <span class="keyword">while</span> (!deque.isEmpty()) &#123;</span><br><span class="line">            List&lt;Integer&gt; tmp = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = deque.size(); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="comment">// 这里奇数层从左向右打印，要与偶数层相反</span></span><br><span class="line">                TreeNode node = deque.removeFirst();</span><br><span class="line">                tmp.add(node.val);</span><br><span class="line">                <span class="comment">// 本层顺序打印，所以顺序添加下一层到尾部</span></span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) deque.addLast(node.left);</span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) deque.addLast(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(tmp);</span><br><span class="line">            <span class="keyword">if</span> (deque.isEmpty()) <span class="keyword">break</span>; <span class="comment">// 后续没有节点则提前退出</span></span><br><span class="line"></span><br><span class="line">            tmp = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = deque.size(); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="comment">// 这里偶数层从右想左打印，要与奇数层相反</span></span><br><span class="line">                TreeNode node = deque.removeLast();</span><br><span class="line">                tmp.add(node.val);</span><br><span class="line">                <span class="comment">// 本层逆序打印，所以逆序添加下一层到头部</span></span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) deque.addFirst(node.right);</span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) deque.addFirst(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>时间复杂度：O(N)
-空间复杂度：O(N)
-执行耗时:1 ms, 击败了 99.74% 的 Java 用户
-内存消耗:38.8 MB, 击败了 21.49% 的 Java 用户</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1219,7 +1222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1277,13 +1280,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">317k</span>
+    <span title="Symbols count total">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:48</span>
+    <span title="Reading time total">4:51</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

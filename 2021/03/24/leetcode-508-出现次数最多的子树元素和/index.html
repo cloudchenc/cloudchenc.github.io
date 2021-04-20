@@ -20,14 +20,14 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Less is more.">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;&#x2F; 给你一个二叉树的根结点，请你找出出现次数最多的子树元素和。一个结点的「子树元素和」定义为以该结点为根的二叉树上所有结点的元素之和（包括结点本身）。 &#x2F;&#x2F;&#x2F;&#x2F; 你需要返回">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-508- 出现次数最多的子树元素和">
 <meta property="og:url" content="http://yoursite.com/2021/03/24/leetcode-508-%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AD%90%E6%A0%91%E5%85%83%E7%B4%A0%E5%92%8C/index.html">
 <meta property="og:site_name" content="cloud&#39;s blog">
-<meta property="og:description" content="Less is more.">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546&#x2F;&#x2F; 给你一个二叉树的根结点，请你找出出现次数最多的子树元素和。一个结点的「子树元素和」定义为以该结点为根的二叉树上所有结点的元素之和（包括结点本身）。 &#x2F;&#x2F;&#x2F;&#x2F; 你需要返回">
 <meta property="article:published_time" content="2021-03-24T09:13:42.000Z">
-<meta property="article:modified_time" content="2021-03-25T07:44:34.166Z">
+<meta property="article:modified_time" content="2021-04-20T08:44:01.796Z">
 <meta property="article:author" content="cloud">
 <meta property="article:tag" content="树">
 <meta property="article:tag" content="哈希表">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-25 15:44:34" itemprop="dateModified" datetime="2021-03-25T15:44:34+08:00">2021-03-25</time>
+                <time title="Modified: 2021-04-20 16:44:01" itemprop="dateModified" datetime="2021-04-20T16:44:01+08:00">2021-04-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,14 +214,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -233,7 +233,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给你一个二叉树的根结点，请你找出出现次数最多的子树元素和。一个结点的「子树元素和」定义为以该结点为根的二叉树上所有结点的元素之和（包括结点本身）。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 你需要返回出现次数最多的子树元素和。如果有多个元素出现的次数相同，返回所有出现次数最多的子树元素和（不限顺序）。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1： </span><br><span class="line">&#x2F;&#x2F; 输入: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;   5</span><br><span class="line">&#x2F;&#x2F; &#x2F;  \</span><br><span class="line">&#x2F;&#x2F;2   -3</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 返回 [2, -3, 4]，所有的值均只出现一次，以任意顺序返回所有值。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2： </span><br><span class="line">&#x2F;&#x2F; 输入： </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;   5</span><br><span class="line">&#x2F;&#x2F; &#x2F;  \</span><br><span class="line">&#x2F;&#x2F;2   -5</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 返回 [2]，只有 2 出现两次，-5 只出现 1 次。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 提示： 假设任意子树元素和均可以用 32 位有符号整数表示。 </span><br><span class="line">&#x2F;&#x2F; Related Topics 树 哈希表 </span><br><span class="line">&#x2F;&#x2F; 👍 108 👎 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> * int val;</span><br><span class="line"> * TreeNode left;</span><br><span class="line"> * TreeNode right;</span><br><span class="line"> * TreeNode(int x) &#123; val &#x3D; x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">1</span>; <span class="comment">// 记录最大出现次数</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(); <span class="comment">// key- 子树元素和，value- 出现次数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findFrequentTreeSum(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">        sumTreeNode(root);</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : map.keySet()) &#123;</span><br><span class="line">            <span class="comment">// 取最大出现次数的值</span></span><br><span class="line">            <span class="keyword">if</span> (map.get(i) == max) &#123;</span><br><span class="line">                list.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">while</span> (index &lt; result.length) &#123;</span><br><span class="line">            result[index] = list.get(index++);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumTreeNode</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 递归求子树元素和</span></span><br><span class="line">        <span class="keyword">int</span> sum = node.val + sumTreeNode(node.left) + sumTreeNode(node.right);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(sum)) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = map.get(sum) + <span class="number">1</span>;</span><br><span class="line">            map.put(sum, temp);</span><br><span class="line">            max = Math.max(max, temp);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(sum, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>时间复杂度：O(N)
+空间复杂度：O(N)
+执行耗时:5 ms, 击败了 79.82% 的 Java 用户
+内存消耗:38.9 MB, 击败了 50.07% 的 Java 用户 </code></pre><p> 二叉树题目</p>
+<ul>
+<li>先序遍历（深度优先搜索）</li>
+<li>中序遍历（深度优先搜索）（尤其二叉搜索树）</li>
+<li>后序遍历（深度优先搜索）</li>
+<li>层序遍历（广度优先搜索）</li>
+</ul>
+
     </div>
 
     
@@ -353,7 +366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -411,13 +424,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">317k</span>
+    <span title="Symbols count total">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:48</span>
+    <span title="Reading time total">4:51</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
