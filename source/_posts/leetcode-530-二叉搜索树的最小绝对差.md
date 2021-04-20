@@ -53,7 +53,7 @@ categories: leetcode
 //leetcode submit region end(Prohibit modification and deletion)
 ```
 
-```java
+```java 
 // 中序遍历（二叉搜索树中序遍历得到的值序列是递增有序的）
 class Solution {
 
