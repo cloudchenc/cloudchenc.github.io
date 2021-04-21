@@ -161,6 +161,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/12/leetcode-234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/12/leetcode-234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">leetcode-234- 回文链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-12 11:57:00" itemprop="dateCreated datePublished" datetime="2021-03-12T11:57:00+08:00">2021-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 请判断一个链表是否为回文链表。 </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 1: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入: 1-&gt;2</span><br><span class="line">&#x2F;&#x2F; 输出: false </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 示例 2: </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 输入: 1-&gt;2-&gt;2-&gt;1</span><br><span class="line">&#x2F;&#x2F; 输出: true</span><br><span class="line">&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; 进阶： </span><br><span class="line">&#x2F;&#x2F; 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ </span><br><span class="line">&#x2F;&#x2F; Related Topics 链表 双指针 </span><br><span class="line">&#x2F;&#x2F; 👍 890 👎 0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;leetcode submit region begin(Prohibit modification and deletion)</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode() &#123;&#125;</span><br><span class="line"> *     ListNode(int val) &#123; this.val &#x3D; val; &#125;</span><br><span class="line"> *     ListNode(int val, ListNode next) &#123; this.val &#x3D; val; this.next &#x3D; next; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">&#x2F;&#x2F;leetcode submit region end(Prohibit modification and deletion)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode slow = head, fast = head; <span class="comment">// 快慢指针 </span></span><br><span class="line">        ListNode prev = <span class="keyword">null</span>; <span class="comment">// 反转前半部分链表 </span></span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ListNode temp = slow;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            temp.next = prev;</span><br><span class="line">            prev = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果 fast 不为空，说明链表的长度是奇数个 </span></span><br><span class="line">        <span class="keyword">if</span> (fast != <span class="keyword">null</span>) &#123;</span><br><span class="line">            slow = slow.next; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (slow != <span class="keyword">null</span> &amp;&amp; prev != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (slow.val != prev.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            prev = prev.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code> 时间复杂度：O(N)
+空间复杂度：O(1)
+执行耗时:1 ms, 击败了 100.00% 的 Java 用户
+内存消耗:40.8 MB, 击败了 95.27% 的 Java 用户 </code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/11/%E5%89%91%E6%8C%87-Offer-32-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1026,134 +1119,6 @@ Tips：
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/16/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="post-title-link" itemprop="url">深入理解计算机系统 - 第一章</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-02-16 13:11:51" itemprop="dateCreated datePublished" datetime="2021-02-16T13:11:51+08:00">2021-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">计算机系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>755</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="信息就是位 - 上下文"><a href="# 信息就是位 - 上下文" class="headerlink" title="信息就是位 + 上下文"></a>信息就是位 + 上下文 </h3><p> 位 -bit- 比特，8 位是一个字节。即 8bit = 1B</p>
-<p>每个文本行都是以一个隐藏的换行符”\n”结束的，对应的 ASCII 码值是 10</p>
-<p>计算机系统中的所有信息都是由一串比特表示的，区分不同数据对象的唯一方法是 <b> 读取数据对象时的上下文</b>，不同的上下文决定了字节序列是 整数 / 浮点数 / 字符串</p>
-<p>C 语言流行的原因：</p>
-<ul>
-<li>C 语言与 Unix 操作系统关系密切，方便移植</li>
-<li>C 语言小而简单，</li>
-<li>C 语言是为实践目的设计的，系统级编程的首选</li>
-</ul>
-<h3 id="程序编译"><a href="# 程序编译" class="headerlink" title="程序编译"></a>程序编译</h3><p>GCC 编译器的编译过程：<br><img src="https://tva4.sinaimg.cn/large/d7f9b0f4gy1gnp9tr7a3wj22uv0jx4gx.jpg" alt="2021-2-16 12:37 Office Lens"></p>
-<ul>
-<li>预处理阶段，预处理器（cpp）根据以字符 #开头的命令，修改原始的 C 程序</li>
-<li>编译阶段，编译器（ccl）将.i 文件翻译成.s 文件，包含一个汇编语言程序</li>
-<li>汇编阶段，汇编器（as）将.s 文件翻译成机器语言指令，把这些指令打包成.o 文件，是一种叫做可重定位目标程序的格式</li>
-<li>链接阶段，链接器（Id）负责把调用的函数文件合并到.o 程序中，得到可执行目标程序，可以被加载到内存中，由系统执行</li>
-</ul>
-<h3 id="了解编译系统如何工作"><a href="# 了解编译系统如何工作" class="headerlink" title="了解编译系统如何工作"></a>了解编译系统如何工作</h3><ul>
-<li>优化程序性能</li>
-<li>理解链接时出现的错误</li>
-<li>避免安全漏洞</li>
-</ul>
-<h3 id="处理器读取指令"><a href="# 处理器读取指令" class="headerlink" title="处理器读取指令"></a>处理器读取指令 </h3><h4 id="系统的硬件组成"><a href="# 系统的硬件组成" class="headerlink" title="系统的硬件组成"></a> 系统的硬件组成</h4><ul>
-<li>总线，贯穿整个系统的一组电子管道，携带信息字节并负责在各个部件间传递</li>
-<li>I/O 设备，系统与外部世界的联系通道</li>
-<li>主存，临时存储设备，由一组动态随机存取存储器（DRAM）芯片组成。在处理器执行程序时，用来存放程序和程序处理的数据</li>
-<li>处理器，CPU，是执行存储在主存中指令的引擎</li>
-</ul>
-<h4 id="运行程序"><a href="# 运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><ol>
-<li><p>从键盘上读取命令<br><img src="https://tvax1.sinaimg.cn/large/d7f9b0f4gy1gnpevw7yudj21zh17ee43.jpg" alt="2021-2-16 12:37 Office Lens 2"></p>
-</li>
-<li><p>从磁盘加载可执行文件到主存<br><img src="https://tva2.sinaimg.cn/large/d7f9b0f4gy1gnpezyezilj21zh1b11kx.jpg" alt="2021-2-16 12:37 Office Lens 3"></p>
-</li>
-<li><p>将输出字符串从存储器写到显示器<br><img src="https://tvax3.sinaimg.cn/large/d7f9b0f4gy1gnpf0a450jj21zh1b81kx.jpg" alt="2021-2-16 12:37 Office Lens 4"></p>
-</li>
-</ol>
-<h3 id="高速缓存"><a href="# 高速缓存" class="headerlink" title="高速缓存"></a>高速缓存 </h3><h3 id="存储设备形成层次结构"><a href="# 存储设备形成层次结构" class="headerlink" title="存储设备形成层次结构"></a> 存储设备形成层次结构 </h3><p> 存储器层次结构的主要思想是上一层的存储器作为低一层存储器的高速缓存</p>
-<h3 id="操作系统管理硬件"><a href="# 操作系统管理硬件" class="headerlink" title="操作系统管理硬件"></a>操作系统管理硬件 </h3><h4 id="进程"><a href="# 进程" class="headerlink" title="进程"></a> 进程 </h4><h4 id="线程"><a href="# 线程" class="headerlink" title="线程"></a> 线程 </h4><h4 id="虚拟内存"><a href="# 虚拟内存" class="headerlink" title="虚拟内存"></a> 虚拟内存 </h4><h4 id="文件"><a href="# 文件" class="headerlink" title="文件"></a> 文件 </h4><h3 id="系统之间利用网络通信"><a href="# 系统之间利用网络通信" class="headerlink" title="系统之间利用网络通信"></a> 系统之间利用网络通信 </h3><h3 id="系统"><a href="# 系统" class="headerlink" title="系统"></a> 系统 </h3><h4 id="Amdahl 定律"><a href="#Amdahl 定律" class="headerlink" title="Amdahl 定律"></a>Amdahl 定律</h4><h4 id="并发和并行"><a href="# 并发和并行" class="headerlink" title="并发和并行"></a> 并发和并行 </h4><h4 id="抽象"><a href="# 抽象" class="headerlink" title="抽象"></a> 抽象</h4><ul>
-<li>文件是对 I/O 设备的抽象</li>
-<li>虚拟内存是对主存和磁盘的抽象</li>
-<li>进程是对处理器、主存和 I/O 设备的抽象</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1225,7 +1190,7 @@ Tips：
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1238,7 +1203,7 @@ Tips：
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1283,13 +1248,13 @@ Tips：
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">320k</span>
+    <span title="Symbols count total">321k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:51</span>
+    <span title="Reading time total">4:52</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
