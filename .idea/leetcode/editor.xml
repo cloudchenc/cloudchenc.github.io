@@ -27,6 +27,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[138]复制带随机指针的链表.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[138]复制带随机指针的链表.java" />
+              <option name="questionId" value="138" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[141]环形链表.java">
           <value>
             <LeetcodeEditor>
@@ -323,6 +331,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[946]验证栈序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[946]验证栈序列.java" />
+              <option name="questionId" value="983" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[94]二叉树的中序遍历.java">
           <value>
             <LeetcodeEditor>
@@ -363,6 +379,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 31]栈的压入、弹出序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 31]栈的压入、弹出序列.java" />
+              <option name="questionId" value="100306" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 32 - III]从上到下打印二叉树 III.java">
           <value>
             <LeetcodeEditor>
@@ -392,6 +416,22 @@
             <LeetcodeEditor>
               <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 35]复杂链表的复制.java" />
               <option name="questionId" value="100300" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 36]二叉搜索树与双向链表.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 36]二叉搜索树与双向链表.java" />
+              <option name="questionId" value="100305" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 38]字符串的排列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/z0/rhxf2q5d0t35x_hz2q1cj1hc0000gp/T/leetcode/editor/cn/[剑指 Offer 38]字符串的排列.java" />
+              <option name="questionId" value="100308" />
             </LeetcodeEditor>
           </value>
         </entry>
