@@ -161,6 +161,328 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/14/%E5%89%91%E6%8C%87-Offer-07-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/14/%E5%89%91%E6%8C%87-Offer-07-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">剑指 -Offer-07- 重建二叉树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-14 22:27:40" itemprop="dateCreated datePublished" datetime="2020-06-14T22:27:40+08:00">2020-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-20 19:53:12" itemprop="dateModified" datetime="2021-04-20T19:53:12+08:00">2021-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%91%E6%8C%87Offer/" itemprop="url" rel="index"><span itemprop="name">剑指Offer</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
+<p>例如，给出 <br><code> 前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]</code></p>
+<p>返回如下的二叉树：</p>
+<p><img src="https://tva4.sinaimg.cn/thumbnail/d7f9b0f4gy1gfwduhts4aj206006mjrd.jpg" alt="TreeNode">    </p>
+<p>限制：<br><code>0 &lt;= 节点个数 &lt;= 5000</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> * int val;</span></span><br><span class="line"><span class="comment"> * TreeNode left;</span></span><br><span class="line"><span class="comment"> * TreeNode right;</span></span><br><span class="line"><span class="comment"> * TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; pre = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// 先把数组转为集合，方便接下来的截取</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : preorder) pre.add(i);</span><br><span class="line">        List&lt;Integer&gt; in = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="comment">// 先把数组转为集合，方便接下来的截取</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j : inorder) in.add(j);</span><br><span class="line">        <span class="comment">// 传入前，中序遍历节点集合，递归构建二叉树</span></span><br><span class="line">        <span class="keyword">return</span> recursive(pre, in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recursive</span><span class="params">(List&lt;Integer&gt; pre, List&lt;Integer&gt; in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pre.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 前序遍历的第一个节点一定是树的根节点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(pre.get(<span class="number">0</span>));</span><br><span class="line">        <span class="comment">// 获取根结点在中序遍历中的索引，索引左边是树的左子树，索引右边是树的右子树</span></span><br><span class="line">        <span class="keyword">int</span> middle = in.indexOf(root.val);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据中序遍历的左右子树的节点个数，同理获取前序遍历的左右子树的节点集合</span></span><br><span class="line">        root.left = recursive(pre.subList(<span class="number">1</span>, <span class="number">1</span> + middle),</span><br><span class="line">                in.subList(<span class="number">0</span>, middle));</span><br><span class="line">        root.right = recursive(pre.subList(<span class="number">1</span> + middle, pre.size()),</span><br><span class="line">                in.subList(middle + <span class="number">1</span>, in.size()));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/github_page_bind_domain_name/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/08/github_page_bind_domain_name/" class="post-title-link" itemprop="url">Github Page 绑定域名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-08 11:16:07" itemprop="dateCreated datePublished" datetime="2020-06-08T11:16:07+08:00">2020-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>582</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="购买域名"><a href="# 购买域名" class="headerlink" title="购买域名"></a>购买域名 </h3><p> 默认的域名是 xxx.github.io, 如果 github 的名字不够响亮，就显得很没有排面。<br>所以研究了一番域名后缀，选择了 .me 后缀, 我是在 Godaddy 入坑的，第一年价格不高。<br>具体买什么后缀，这里不再赘述，全凭个人爱好。</p>
+<h3 id="设置域名"><a href="# 设置域名" class="headerlink" title="设置域名"></a>设置域名 </h3><p> 打开 Github 博客项目，进入 settings menu，下拉到 Custom domain，输入你刚才购买的域名，点击保存即可。<br><img src="https://tva1.sinaimg.cn/large/d7f9b0f4gy1gfkwjy4eicj20k702zwep.jpg" alt="Custom domain"></p>
+<h3 id="解析域名"><a href="# 解析域名" class="headerlink" title="解析域名"></a>解析域名 </h3><p> 这里以 Godaddy 为例，由于 Godaddy 在国内的 DNS 解析不是很好，所以更换为了 DNSPod</p>
+<p>进入 DNSPod 网站，注册登陆，添加域名，点击解析按钮，添加两条解析记录 如下：</p>
+<p><img src="https://tva3.sinaimg.cn/large/d7f9b0f4gy1gfkwjed3ehj211108vmyj.jpg" alt="DNSPod"></p>
+<p>第一个红框，你需要替换为自己的博客 ip 地址，可以通过 ping github page 域名来获取<br><img src="https://tva3.sinaimg.cn/large/d7f9b0f4gy1gfkxg86t5jj20p805imyb.jpg" alt="Github IP"></p>
+<p>第二个红框，你需要替换为自己的博客地址，如 xxx.github.io</p>
+<p>进入你刚才购买域名的平台，进入域名设置，打开 DNS 管理，将默认 DNS 服务器更换为 f1g1ns1.dnspod.net 和 f1g1ns2.dnspod.net<br><img src="https://tva2.sinaimg.cn/mw690/d7f9b0f4gy1gfkwkdxid5j20vu09smxr.jpg" alt="Godaddy NS"></p>
+<p>修改完域名服务器后，Godaddy DNS 信息栏会显示 <br><img src="https://tva4.sinaimg.cn/mw690/d7f9b0f4gy1gfkwls9ck4j20vx05n0sz.jpg" alt="Godaddy DNS"><br> 这是正常情况，无需担心</p>
+<p>完成以上步骤，即可在浏览器输入之前购买的域名测试是否成功跳转</p>
+<p>参考链接：<br><code>https://cyclechen.me/2019/03/13/2019-03-13-setup-github-page-personal-with-godaddy/</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/31/Growing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/31/Growing/" class="post-title-link" itemprop="url">Growing</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-31 23:41:13" itemprop="dateCreated datePublished" datetime="2019-12-31T23:41:13+08:00">2019-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-24 15:09:21" itemprop="dateModified" datetime="2021-03-24T15:09:21+08:00">2021-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="背景"><a href="# 背景" class="headerlink" title="背景"></a>背景</h1><p>《成长的烦恼》</p>
+<h1 id="读书时代"><a href="# 读书时代" class="headerlink" title="读书时代"></a>读书时代 </h1><h2 id="尽早确立职场目标并准备"><a href="# 尽早确立职场目标并准备" class="headerlink" title="尽早确立职场目标并准备"></a> 尽早确立职场目标并准备 </h2><p> 曹大在这里描述了一下自己的学生生涯，悔恨自己当初没有好好学好专业课，以至于错失许多机会。</p>
+<p>摘录：</p>
+<p>对于专业技能，特别是计算机的专业技能，我建议是一精多通：你能在某个特定领域达到足够的高度，而其他相关领域达到一定的标准。原因：</p>
+<p>需要跟不同领域的人沟通时，更好地理解对方，换位思考，降低沟通成本。<br>可以在特殊情况下自己干。<br>企业喜欢这种全才。</p>
+<h2 id="切忌陷入自以为是的境地"><a href="# 切忌陷入自以为是的境地" class="headerlink" title="切忌陷入自以为是的境地"></a>切忌陷入自以为是的境地 </h2><p> 为什么自以为是？信息获取的渠道很窄。=》价值观趋同，社会认知趋同。</p>
+<p>很多真正很有价值的真相，在读书的时候是看不见的。你从媒体看互联网，你从那些成功者的演说里看互联网，你是看不到真相的。</p>
+<p>如何解决？<br>多跟不同人群沟通。<br>尽早实习，多跟不同部门沟通。</p>
+<p>例子 1:<br>遇到没有听说过的的公司可以去搜一下资料，并且听听他们的宣讲。<br>“今天见到李开复咯，收获好大哦～收获了啥呢？朋友圈的赞。。。”</p>
+<h2 id="基础思想和逻辑需要尽早培养"><a href="# 基础思想和逻辑需要尽早培养" class="headerlink" title="基础思想和逻辑需要尽早培养"></a>基础思想和逻辑需要尽早培养 </h2><p> 理解公式来锻炼自己的理解能力。</p>
+<p>世界上大部分人不具备逻辑能力。无法用最优解的思想去思考。</p>
+<p>学好基础，培养思想，而不是去学工具。</p>
+<h1 id="关于求职"><a href="# 关于求职" class="headerlink" title="关于求职"></a>关于求职 </h1><p> 经常的错误：不尊重职场。<br>求职前要有准备，要调研，要在简历中体现你的准备和思考。</p>
+<p>要谦虚和积极。<br>愿意从基层做起，从小事做起。</p>
+<p>职场要体面一点。<br>初次相遇，一切重要场合还是需要的。</p>
+<p>面试问问题。要有准备。基于企业的公开信息进行提问，挖掘出深度问题。</p>
+<h1 id="个人职场定位"><a href="# 个人职场定位" class="headerlink" title="个人职场定位"></a>个人职场定位 </h1><h2 id="找到个人专长"><a href="# 找到个人专长" class="headerlink" title="找到个人专长"></a> 找到个人专长</h2><p>“看上去很全能，其实不堪一击。”</p>
+<h2 id="好奇心是动力之源"><a href="# 好奇心是动力之源" class="headerlink" title="好奇心是动力之源"></a>好奇心是动力之源</h2><p>“一定要知道自己最痴迷什么？”</p>
+<p>“我是怎么甄别信息的，其实很简单，就是好奇心。对某一个新闻，有些人有好奇心就会去挖掘这些信息，而大多数人是不关心的。”</p>
+<h2 id="要建立全局意识和整体感"><a href="# 要建立全局意识和整体感" class="headerlink" title="要建立全局意识和整体感"></a>要建立全局意识和整体感</h2><p>“对行业、专业的要有认知，知道机会和方向在哪儿，要知道自己更上台阶需要去哪儿。”</p>
+<p>“所以我经常建议年轻人，读书的，没毕业的或刚毕业的多多看看行业内顶尖企业的财报，了解行业发展的规模 / 竞争态势。”</p>
+<p>“新兴领域、新兴机会也要多看看，比如百度的热榜，爱站指数，认真挖掘，对行业认知的其实会增加许多。”</p>
+<p>提到几位人物：余军、边江、高少星</p>
+<p>“多去了解企业整体架构。了解公司的核心价值和主要方向。”</p>
+<p>“职场秘密：快速拓展的公司，很多中层为了自己的发展，快速启动新的项目团队，每个项目看上去都很有价值很有机会，然后大家忙忙碌碌为了新的机会各种打拼。但是，其实从公司战略和格局来说，绝大多数都是试验品、甚至是垃圾。等到市场风向逆转的时候，老板开始核查成本，这些乱七八糟的玩意儿全部砍掉。你觉自己很拼，很有贡献，可在老板眼里一文不值。”</p>
+<p>“一定要站的高一点，站在上司的位置看问题，看机会，看方向。如果看不到，多问！”</p>
+<p>“把四五个人的工作量给一个人做，可能会发现只有少数的事有必要做。”</p>
+<p>佩服的人：李兴平，做网站特别强。在没有资源的情况下，比专业人士做的好。</p>
+<h2 id="关于个人待遇的话题"><a href="# 关于个人待遇的话题" class="headerlink" title="关于个人待遇的话题"></a>关于个人待遇的话题</h2><p>“职场定位，你要对自己的发展目标有整体的认识。”</p>
+<p>发展期：20-30 关注成长，只有吃苦。只有少数人能真正踩对路，少走弯路。<br>成熟期：30-35 达到 Top10% 提高企业职位、提高业界影响力、建立人脉。<br>“不需要顶尖水平，因为很多顶尖水平的人没意识到这一点。”<br>“达到领域内 Top 10% 并不难，绝大部分人又懒又爱给自己找借口。”<br>变现期：35 之后务必快速走入变现期。能力够了，影响力和口碑够了。这个时候就要让自己价值最大化。<br>索要期权，知道整个期权的比例。要有概念。</p>
+<p>创业要确定好退出条款。毕竟「能共患难，不一定能共享福。」</p>
+<h2 id="互相成就"><a href="# 互相成就" class="headerlink" title="互相成就"></a>互相成就 </h2><p> 写工作报告的时候将帮助过自己的人写进去，不仅可以帮助别人，对自己也没什么损失，何乐而不为呢？</p>
+<h1 id="谈谈创业"><a href="# 谈谈创业" class="headerlink" title="谈谈创业"></a>谈谈创业 </h1><p> 这个部分曹大讲了许多自己的例子。大部分内容在曹大的文章都有提及，就不一一粘贴了。</p>
+<h2 id="创业需要视野和格局"><a href="# 创业需要视野和格局" class="headerlink" title="创业需要视野和格局"></a>创业需要视野和格局</h2><p>“所以创业有几个教训：1. 居安思危，眼光要长远。 2. 动作要快，行动力要强。 3. 必要的时候需要魄力，需要团队，需要资金，不能当干。单干格局太低。”</p>
+<p>“你写了很多代码，很酷的技术，没有人用，很少人用，你技术再牛又怎么样呢？你代码很简单，被广泛用起来，而且为别人真正带来了价值，你的工作就是很有价值。”</p>
+<p>创业历程：</p>
+<p>上世纪末：<br>交换链。错失 hao123<br>2004：<br>OA 系统，一个人，安装包压缩到 5m。代码量大，但用的人不多。<br>统计系统。代码量少，但很多人用。</p>
+<h2 id="创业需要懂得价值评估"><a href="# 创业需要懂得价值评估" class="headerlink" title="创业需要懂得价值评估"></a>创业需要懂得价值评估 </h2><h2 id="更好的理解人性"><a href="# 更好的理解人性" class="headerlink" title="更好的理解人性"></a> 更好的理解人性 </h2><h2 id="财务和数据"><a href="# 财务和数据" class="headerlink" title="财务和数据"></a> 财务和数据 </h2><h1 id="总结与回复"><a href="# 总结与回复" class="headerlink" title="总结与回复"></a> 总结与回复 </h1><h1 id="感受"><a href="# 感受" class="headerlink" title="感受"></a> 感受 </h1><p> 这是我自己听完曹大课的感受。曹大在这期课程里着重强调了看待事物的全局观和自己的好奇心。</p>
+<p>先说说全局观，我觉得全局观就是在多个角度想问题：从领导角度也好，从别的部门角度也好，总之就是多想想，多看看，搞明白市场的变化方向，理解最重要的核心，理解好利益冲突。</p>
+<p>再说说好奇心，曹大的信息筛选全凭好奇心。而曹大的好奇心有点跟我的不太一样，他对许多未知的事物都感到好奇，希望更多地了解，会从一则小新闻里衍生地去查很多相关资料。</p>
+<p>另外说一句，有实效性的课程真的能够克服懒癌，能够逼着自己去读完听完而不浪费难得的机会。想想躺在书架上的那么多书还没怎么翻过，还有「极客时间」里的十几个课程还只看了一点点，而我却没有一丝愧疚。可能我还不够优秀吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/02/17/%E6%A2%A6%E6%83%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -491,7 +813,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -549,13 +871,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">321k</span>
+    <span title="Symbols count total">328k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:52</span>
+    <span title="Reading time total">4:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
