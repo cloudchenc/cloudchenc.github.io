@@ -161,6 +161,389 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/volley_source_code_analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/volley_source_code_analysis/" class="post-title-link" itemprop="url">Volley 源码分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 18:49:17" itemprop="dateCreated datePublished" datetime="2020-06-28T18:49:17+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>11 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="RequestQueue"><a href="#RequestQueue" class="headerlink" title="RequestQueue"></a>RequestQueue  </h2><p>### 初始化 RequestQueue<br>根据 Android 版本使用不同的网络请求，版本 2.3 以上使用 httpurlconnection，否则使用 httpclient，作为参数创建 RequestQueue</p>
+<p>调用 RequestQueue.start 方法，默认后台开启 5 个线程，1 个 CacheDispatcher（缓存调度线程），4 个 NetworkDispatcher（网络调度线程）</p>
+<p>### 将 Request 请求添加到 RequestQueue 请求队列 <br> 首先通过执行 request.shouldCache()方法判断 request 是否应该缓存，默认是 true，也就是所有的请求默认都要缓存。<br>如果 request 不需要缓存，就把请求放进网络请求队列。<br>如果 request 需要缓存，就把请求放进缓存队列。  </p>
+<h2 id="CacheDispatcher"><a href="#CacheDispatcher" class="headerlink" title="CacheDispatcher"></a>CacheDispatcher</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (DEBUG) VolleyLog.v(<span class="string">"start new dispatcher"</span>);</span><br><span class="line">    Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Make a blocking call to initialize the cache.</span></span><br><span class="line">    mCache.initialize();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            processRequest();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="comment">// We may have been interrupted because it was time to quit.</span></span><br><span class="line">            <span class="keyword">if</span> (mQuit) &#123;</span><br><span class="line">                Thread.currentThread().interrupt();</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            VolleyLog.e(</span><br><span class="line">                    <span class="string">"Ignoring spurious interrupt of CacheDispatcher thread;"</span></span><br><span class="line">                            + <span class="string">"use quit() to terminate it"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不断从缓存队列中取出网络请求，执行 processRequest 方法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processRequest</span><span class="params">(<span class="keyword">final</span> Request&lt;?&gt; request)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    request.addMarker(<span class="string">"cache-queue-take"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the request has been canceled, don't bother dispatching it.</span></span><br><span class="line">    <span class="keyword">if</span> (request.isCanceled()) &#123;</span><br><span class="line">        request.finish(<span class="string">"cache-discard-canceled"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Attempt to retrieve this item from cache.</span></span><br><span class="line">    Cache.Entry entry = mCache.get(request.getCacheKey());</span><br><span class="line">    <span class="keyword">if</span> (entry == <span class="keyword">null</span>) &#123;</span><br><span class="line">        request.addMarker(<span class="string">"cache-miss"</span>);</span><br><span class="line">        <span class="comment">// Cache miss; send off to the network dispatcher.</span></span><br><span class="line">        <span class="keyword">if</span> (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) &#123;</span><br><span class="line">            mNetworkQueue.put(request);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If it is completely expired, just send it to the network.</span></span><br><span class="line">    <span class="keyword">if</span> (entry.isExpired()) &#123;</span><br><span class="line">        request.addMarker(<span class="string">"cache-hit-expired"</span>);</span><br><span class="line">        request.setCacheEntry(entry);</span><br><span class="line">        <span class="keyword">if</span> (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) &#123;</span><br><span class="line">            mNetworkQueue.put(request);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// We have a cache hit; parse its data for delivery back to the request.</span></span><br><span class="line">    request.addMarker(<span class="string">"cache-hit"</span>);</span><br><span class="line">    Response&lt;?&gt; response =</span><br><span class="line">            request.parseNetworkResponse(</span><br><span class="line">                    <span class="keyword">new</span> NetworkResponse(entry.data, entry.responseHeaders));</span><br><span class="line">    request.addMarker(<span class="string">"cache-hit-parsed"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!entry.refreshNeeded()) &#123;</span><br><span class="line">        <span class="comment">// Completely unexpired cache hit. Just deliver the response.</span></span><br><span class="line">        mDelivery.postResponse(request, response);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Soft-expired cache hit. We can deliver the cached response,</span></span><br><span class="line">        <span class="comment">// but we need to also send the request to the network for</span></span><br><span class="line">        <span class="comment">// refreshing.</span></span><br><span class="line">        request.addMarker(<span class="string">"cache-hit-refresh-needed"</span>);</span><br><span class="line">        request.setCacheEntry(entry);</span><br><span class="line">        <span class="comment">// Mark the response as intermediate.</span></span><br><span class="line">        response.intermediate = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!mWaitingRequestManager.maybeAddToWaitingRequests(request)) &#123;</span><br><span class="line">            <span class="comment">// Post the intermediate response back to the user and have</span></span><br><span class="line">            <span class="comment">// the delivery then forward the request along to the network.</span></span><br><span class="line">            mDelivery.postResponse(</span><br><span class="line">                    request,</span><br><span class="line">                    response,</span><br><span class="line">                    <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                mNetworkQueue.put(request);</span><br><span class="line">                            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                                <span class="comment">// Restore the interrupted status</span></span><br><span class="line">                                Thread.currentThread().interrupt();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// request has been added to list of waiting requests</span></span><br><span class="line">            <span class="comment">// to receive the network response from the first request once it returns.</span></span><br><span class="line">            mDelivery.postResponse(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 request 被取消，就退出该方法 <br> 如果 request 没被取消，就判断 request 是否有缓存的 response，<br>如果有且没过期，就判断是否需要刷新，<br>如果需要，就对缓存的 response 进行解析并回调给主线程，同时把 request 放入网络请求队列，等待网络调度线程轮询 <br> 如果 request 没有缓存的 response 或缓存的 response 已经过期，就把 request 放入网络请求队列，等待网络调度线程轮询</p>
+<h2 id="NetworkDispatcher"><a href="#NetworkDispatcher" class="headerlink" title="NetworkDispatcher"></a>NetworkDispatcher</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            processRequest();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="comment">// We may have been interrupted because it was time to quit.</span></span><br><span class="line">            <span class="keyword">if</span> (mQuit) &#123;</span><br><span class="line">                Thread.currentThread().interrupt();</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            VolleyLog.e(</span><br><span class="line">                    <span class="string">"Ignoring spurious interrupt of NetworkDispatcher thread;"</span></span><br><span class="line">                            + <span class="string">"use quit() to terminate it"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不断从网络请求队列中取出网络请求，执行 processRequest 方法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processRequest</span><span class="params">(Request&lt;?&gt; request)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> startTimeMs = SystemClock.elapsedRealtime();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        request.addMarker(<span class="string">"network-queue-take"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the request was cancelled already, do not perform the</span></span><br><span class="line">        <span class="comment">// network request.</span></span><br><span class="line">        <span class="keyword">if</span> (request.isCanceled()) &#123;</span><br><span class="line">            request.finish(<span class="string">"network-discard-cancelled"</span>);</span><br><span class="line">            request.notifyListenerResponseNotUsable();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        addTrafficStatsTag(request);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Perform the network request.</span></span><br><span class="line">        NetworkResponse networkResponse = mNetwork.performRequest(request);</span><br><span class="line">        request.addMarker(<span class="string">"network-http-complete"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the server returned 304 AND we delivered a response already,</span></span><br><span class="line">        <span class="comment">// we're done -- don't deliver a second identical response.</span></span><br><span class="line">        <span class="keyword">if</span> (networkResponse.notModified &amp;&amp; request.hasHadResponseDelivered()) &#123;</span><br><span class="line">            request.finish(<span class="string">"not-modified"</span>);</span><br><span class="line">            request.notifyListenerResponseNotUsable();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Parse the response here on the worker thread.</span></span><br><span class="line">        Response&lt;?&gt; response = request.parseNetworkResponse(networkResponse);</span><br><span class="line">        request.addMarker(<span class="string">"network-parse-complete"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Write to cache if applicable.</span></span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> Only update cache metadata instead of entire record for 304s.</span></span><br><span class="line">        <span class="keyword">if</span> (request.shouldCache() &amp;&amp; response.cacheEntry != <span class="keyword">null</span>) &#123;</span><br><span class="line">            mCache.put(request.getCacheKey(), response.cacheEntry);</span><br><span class="line">            request.addMarker(<span class="string">"network-cache-written"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Post the response back.</span></span><br><span class="line">        request.markDelivered();</span><br><span class="line">        mDelivery.postResponse(request, response);</span><br><span class="line">        request.notifyListenerResponseReceived(response);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (VolleyError volleyError) &#123;</span><br><span class="line">        volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);</span><br><span class="line">        parseAndDeliverNetworkError(request, volleyError);</span><br><span class="line">        request.notifyListenerResponseNotUsable();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        VolleyLog.e(e, <span class="string">"Unhandled exception %s"</span>, e.toString());</span><br><span class="line">        VolleyError volleyError = <span class="keyword">new</span> VolleyError(e);</span><br><span class="line">        volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);</span><br><span class="line">        mDelivery.postError(request, volleyError);</span><br><span class="line">        request.notifyListenerResponseNotUsable();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果 request 被取消，就退出该方法 <br> 如果 request 没被取消，就调用 Network(即 BasicNetwork)的 performRequest 方法，把返回的 response 回调到主线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> NetworkResponse <span class="title">performRequest</span><span class="params">(Request&lt;?&gt; request)</span> <span class="keyword">throws</span> VolleyError </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> requestStart = SystemClock.elapsedRealtime();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        HttpResponse httpResponse = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] responseContents = <span class="keyword">null</span>;</span><br><span class="line">        List&lt;Header&gt; responseHeaders = Collections.emptyList();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// Gather headers.</span></span><br><span class="line">            Map&lt;String, String&gt; additionalRequestHeaders =</span><br><span class="line">                    getCacheHeaders(request.getCacheEntry());</span><br><span class="line">            httpResponse = mBaseHttpStack.executeRequest(request, additionalRequestHeaders);</span><br><span class="line">            <span class="keyword">int</span> statusCode = httpResponse.getStatusCode();</span><br><span class="line"></span><br><span class="line">            responseHeaders = httpResponse.getHeaders();</span><br><span class="line">            <span class="comment">// Handle cache validation.</span></span><br><span class="line">            <span class="keyword">if</span> (statusCode == HttpURLConnection.HTTP_NOT_MODIFIED) &#123;</span><br><span class="line">                Entry entry = request.getCacheEntry();</span><br><span class="line">                <span class="keyword">if</span> (entry == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> NetworkResponse(</span><br><span class="line">                            HttpURLConnection.HTTP_NOT_MODIFIED,</span><br><span class="line">                            <span class="comment">/* data= */</span> <span class="keyword">null</span>,</span><br><span class="line">                            <span class="comment">/* notModified= */</span> <span class="keyword">true</span>,</span><br><span class="line">                            SystemClock.elapsedRealtime() - requestStart,</span><br><span class="line">                            responseHeaders);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// Combine cached and response headers so the response will be complete.</span></span><br><span class="line">                List&lt;Header&gt; combinedHeaders = combineHeaders(responseHeaders, entry);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> NetworkResponse(</span><br><span class="line">                        HttpURLConnection.HTTP_NOT_MODIFIED,</span><br><span class="line">                        entry.data,</span><br><span class="line">                        <span class="comment">/* notModified= */</span> <span class="keyword">true</span>,</span><br><span class="line">                        SystemClock.elapsedRealtime() - requestStart,</span><br><span class="line">                        combinedHeaders);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Some responses such as 204s do not have content.  We must check.</span></span><br><span class="line">            InputStream inputStream = httpResponse.getContent();</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                responseContents =</span><br><span class="line">                        inputStreamToBytes(inputStream, httpResponse.getContentLength());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// Add 0 byte response as a way of honestly representing a</span></span><br><span class="line">                <span class="comment">// no-content request.</span></span><br><span class="line">                responseContents = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// if the request is slow, log it.</span></span><br><span class="line">            <span class="keyword">long</span> requestLifetime = SystemClock.elapsedRealtime() - requestStart;</span><br><span class="line">            logSlowRequests(requestLifetime, request, responseContents, statusCode);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (statusCode &lt; <span class="number">200</span> || statusCode &gt; <span class="number">299</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IOException();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> NetworkResponse(</span><br><span class="line">                    statusCode,</span><br><span class="line">                    responseContents,</span><br><span class="line">                    <span class="comment">/* notModified= */</span> <span class="keyword">false</span>,</span><br><span class="line">                    SystemClock.elapsedRealtime() - requestStart,</span><br><span class="line">                    responseHeaders);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SocketTimeoutException e) &#123;</span><br><span class="line">            attemptRetryOnException(<span class="string">"socket"</span>, request, <span class="keyword">new</span> TimeoutError());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Bad URL"</span> + request.getUrl(), e);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">int</span> statusCode;</span><br><span class="line">            <span class="keyword">if</span> (httpResponse != <span class="keyword">null</span>) &#123;</span><br><span class="line">                statusCode = httpResponse.getStatusCode();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NoConnectionError(e);</span><br><span class="line">            &#125;</span><br><span class="line">            VolleyLog.e(<span class="string">"Unexpected response code %d for %s"</span>, statusCode, request.getUrl());</span><br><span class="line">            NetworkResponse networkResponse;</span><br><span class="line">            <span class="keyword">if</span> (responseContents != <span class="keyword">null</span>) &#123;</span><br><span class="line">                networkResponse =</span><br><span class="line">                        <span class="keyword">new</span> NetworkResponse(</span><br><span class="line">                                statusCode,</span><br><span class="line">                                responseContents,</span><br><span class="line">                                <span class="comment">/* notModified= */</span> <span class="keyword">false</span>,</span><br><span class="line">                                SystemClock.elapsedRealtime() - requestStart,</span><br><span class="line">                                responseHeaders);</span><br><span class="line">                <span class="keyword">if</span> (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED</span><br><span class="line">                        || statusCode == HttpURLConnection.HTTP_FORBIDDEN) &#123;</span><br><span class="line">                    attemptRetryOnException(</span><br><span class="line">                            <span class="string">"auth"</span>, request, <span class="keyword">new</span> AuthFailureError(networkResponse));</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (statusCode &gt;= <span class="number">400</span> &amp;&amp; statusCode &lt;= <span class="number">499</span>) &#123;</span><br><span class="line">                    <span class="comment">// Don't retry other client errors.</span></span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ClientError(networkResponse);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (statusCode &gt;= <span class="number">500</span> &amp;&amp; statusCode &lt;= <span class="number">599</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (request.shouldRetryServerErrors()) &#123;</span><br><span class="line">                        attemptRetryOnException(</span><br><span class="line">                                <span class="string">"server"</span>, request, <span class="keyword">new</span> ServerError(networkResponse));</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> ServerError(networkResponse);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 3xx? No reason to retry.</span></span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ServerError(networkResponse);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                attemptRetryOnException(<span class="string">"network"</span>, request, <span class="keyword">new</span> NetworkError());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 mBaseHttpStack 的 executeRequest 方法获取 response，<br>其实 mBaseHttpStack 就是 RequestQueue 在初始化时构造的 HulStack 和 HttpClientStack 的父类 <br> 回到 NetworkDispatcher 请求网络后，会将响应结果存在缓存中，并调用 mDelivery(即 ExecutorDelivery)的 postResponse 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postResponse</span><span class="params">(Request&lt;?&gt; request, Response&lt;?&gt; response, Runnable runnable)</span> </span>&#123;</span><br><span class="line">    request.markDelivered();</span><br><span class="line">    request.addMarker(<span class="string">"post-response"</span>);</span><br><span class="line">    mResponsePoster.execute(<span class="keyword">new</span> ResponseDeliveryRunnable(request, response, runnable));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">NOTE:</span> If cancel() is called off the thread that we're currently running in (by</span></span><br><span class="line">            <span class="comment">// default, the main thread), we cannot guarantee that deliverResponse()/deliverError()</span></span><br><span class="line">            <span class="comment">// won't be called, since it may be canceled after we check isCanceled() but before we</span></span><br><span class="line">            <span class="comment">// deliver the response. Apps concerned about this guarantee must either call cancel()</span></span><br><span class="line">            <span class="comment">// from the same thread or implement their own guarantee about not invoking their</span></span><br><span class="line">            <span class="comment">// listener after cancel() has been called.</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// If this request has canceled, finish it and don't deliver.</span></span><br><span class="line">            <span class="keyword">if</span> (mRequest.isCanceled()) &#123;</span><br><span class="line">                mRequest.finish(<span class="string">"canceled-at-delivery"</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Deliver a normal response or error, depending.</span></span><br><span class="line">            <span class="keyword">if</span> (mResponse.isSuccess()) &#123;</span><br><span class="line">                mRequest.deliverResponse(mResponse.result);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                mRequest.deliverError(mResponse.error);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// If this is an intermediate response, add a marker, otherwise we're done</span></span><br><span class="line">            <span class="comment">// and the request can be finished.</span></span><br><span class="line">            <span class="keyword">if</span> (mResponse.intermediate) &#123;</span><br><span class="line">                mRequest.addMarker(<span class="string">"intermediate-response"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                mRequest.finish(<span class="string">"done"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// If we have been provided a post-delivery runnable, run it.</span></span><br><span class="line">            <span class="keyword">if</span> (mRunnable != <span class="keyword">null</span>) &#123;</span><br><span class="line">                mRunnable.run();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>如果响应成功将会执行 Request 的 deliverResponse 方法，并把响应结果传进去，最后传递到 Request 的 onResponse 方法；<br>如果响应失败，就执行 deliverError 方法，并把响应失败的对象传进去，最后传递到 Request 的 onErrorResponse 方法。</p>
+<p>Tips：</p>
+<ol>
+<li>Volley 是如何把请求的数据回调回主线程中的？<br>使用 Handler.postRunnable（Runnable）方法回调回主线程中进行处理<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ExecutorDelivery</span><span class="params">(<span class="keyword">final</span> Handler handler)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Make an Executor that just wraps the handler.</span></span><br><span class="line">    mResponsePoster =</span><br><span class="line">            <span class="keyword">new</span> Executor() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">                    handler.post(command);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">RequestQueue</span><span class="params">(Cache cache, Network network, <span class="keyword">int</span> threadPoolSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(</span><br><span class="line">            cache,</span><br><span class="line">            network,</span><br><span class="line">            threadPoolSize,</span><br><span class="line">            <span class="keyword">new</span> ExecutorDelivery(<span class="keyword">new</span> Handler(Looper.getMainLooper())));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>优点  </p>
+<p>自动调度网络请求 <br> 多并发网络请求 <br> 可以缓存 http 请求 <br> 支持请求的优先级 <br> 支持取消网络请求<br>REST API  </p>
+<p>缺点  </p>
+<p>使用 httpclient，httpurlconnection<br>不适合大文件 I/O 操作，因为 Volley 会把所有服务器返回的数据在解析期间缓存到内存 <br> 只支持 http 请求 <br> 图片加载性能一般</p>
+<p>参考资料：</p>
+<p><a href="https://my.oschina.net/tingzi/blog/3019686" target="_blank" rel="noopener">https://my.oschina.net/tingzi/blog/3019686</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_launch_mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/activity_launch_mode/" class="post-title-link" itemprop="url">Activity 启动模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 16:50:13" itemprop="dateCreated datePublished" datetime="2020-06-28T16:50:13+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="LaunchMode"><a href="#LaunchMode" class="headerlink" title="LaunchMode"></a>LaunchMode</h3><h4 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h4><p>标准模式 or 默认模式。每次启动一个 activity 都会重新创建一个新的实例，不管这个实例是否已经存在。</p>
+<blockquote>
+<p>当使用 ApplicationContext 启动 Standard 模式的 Activity 的时候会报错，<br>这是因为 Standard 模式 的 activity 默认会进入启动它的 activity 所在的任务栈中，但是非 activity 类型的 Context 并没有任务栈。<br>解决方法是 为待启动的 activity 指定标记为 FLAG_ACTIVITY_NEW_TASK，这样启动的时候就会创建一个新的任务栈，实际上是以 SingleTask 模式启动的。</p>
+</blockquote>
+<h4 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h4><p>栈顶复用模式。如果新 activity 已经位于任务栈的顶部，那么此 activity 不会被重新创建，同时回调 onNewIntent 方法。<br>如果新 activity 的实例已经存在但不是在栈顶，那么新的 activity 仍然会重新创建。</p>
+<h4 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h4><p>栈内复用模式。只要 Activity 在一个栈内存在，那么多次启动该 Activity 都不会重新创建实例，同时回调 onNewIntent 方法。</p>
+<blockquote>
+<p>当一个具有 SingleTask 模式的 Activity 请求启动后，比如 Activity A, 系统首先会寻找是否存在 A <code>想要的任务栈 </code><br> 如果不存在，就重新创建一个任务栈，然后创建 A 的实例后放入栈中。<br>如果存在 A <code>所需的任务栈 </code>，就查看栈中是否存在 A 的实例，<br> 如果不存在，就创建 A 的实例后放入栈中，<br>如果存在，就会弹出 A 上面的 activity，把 A 调到栈顶(具有 clearTop 的效果)，并回调 onNewIntent 方法。</p>
+</blockquote>
+<p>p.s. 这里有提到所需的任务栈，其实就是参数 TaskAffinity，标示了一个 Activity 所需要的任务栈的名字。<br>默认情况下，所有 Activity 所需的任务栈的名字是应用的包名。自定义的话，属性值是字符串，且中间必须含有包名分隔符 <code>.</code></p>
+<p>一般情况下 TaskAffinity 结合 singleTask 启动模式 或者 allowTaskReparenting 属性一起使用。</p>
+<ul>
+<li>TaskAffinity and singleTask ：待启动的 Activity 会运行在名字和 TaskAffinity 相同的任务栈中。</li>
+<li>TaskAffinity and allowTaskReparenting ：跨应用启动 Activity 时，allowTaskReparenting 如果为 true，待启动的 Activity 会转移到该应用的任务栈中。</li>
+</ul>
+<p>任务栈分为前台任务栈和后台任务栈，后台任务栈中的 Activity 处于暂停状态，可以通过启动后台任务栈中的 Activity，将后台任务栈再次调到前台。</p>
+<h4 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h4><p>单实例模式。具有此种模式的 Activity 只能单独位于一个任务栈中，当被复用时，同样会回调 onNewIntent 方法。</p>
+<h3 id="Intent-Flag"><a href="#Intent-Flag" class="headerlink" title="Intent Flag"></a>Intent Flag</h3><p>通过代码来设置 Activity 的启动模式的方式，优先级比清单文件设置更高</p>
+<ul>
+<li><p>FLAG_ACTIVITY_NEW_TASK<br>等同 SingleTask</p>
+</li>
+<li><p>FLAG_ACTIVITY_SINGLE_TOP<br>等同 SingleTop</p>
+</li>
+<li><p>FLAG_ACTIVITY_CLEAR_TOP<br>具有此标记的 Activity 启动时，在同一个任务栈内所有位于它上面的 Activity 都要出栈。</p>
+</li>
+<li><p>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS<br>具有此标记的 Activity 不会出现在历史 Activity 的列表中。等同 XML 中指定 Activity 的属性 <code>android:excludeFromRecents=&quot;true&quot;&quot;</code></p>
+</li>
+</ul>
+<h3 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h3><p> 以上就是给 Activity 指定启动模式的两种方式了。当两种同时存在时，优先级以 Intent Flag 为准。  </p>
+<p>另外，LaunchMode 无法 <code> 直接 </code> 给 Activity 设置 FLAG_ACTIVITY_CLEAR_TOP 标示，而 Intent Flag 无法为 Activity 指定 SingleInstance 模式。</p>
+<p>注意上面说的是 直接，其实 SingleTask 默认具有 clearTop 的效果。</p>
+<h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h3><p>《Android 开发艺术探索》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/activity_life_cycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/activity_life_cycle/" class="post-title-link" itemprop="url">Activity 生命周期</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 15:43:36" itemprop="dateCreated datePublished" datetime="2020-06-28T15:43:36+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="正常情况下的生命周期"><a href="# 正常情况下的生命周期" class="headerlink" title="正常情况下的生命周期"></a>正常情况下的生命周期 </h3><p> 在有用户参与的情况下，Activity 生命周期的改变</p>
+<h4 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate()"></a>onCreate()</h4><p>表示 Activity 正在被创建。在 Activity 第一次被创建的时候调用，可以做一些初始化操作，比如加载布局，绑定事件，初始化 Activity 所需数据等。</p>
+<h4 id="onRestart-✳✳✳"><a href="#onRestart-✳✳✳" class="headerlink" title="onRestart()    ✳✳✳"></a>onRestart()    ✳✳✳</h4><p>表示 Activity 正在重新启动。<code>当当前 Activity 从不可见重新变为可见状态时，onRestart 就会被调用。</code><br>这种情况一般是用户行为导致的，比如用户按 Home 键切换到桌面或者用户打开了一个新的 Activity，这时当前的 Activity 就会回调 onPause 和 onStop，接着用户又返回这个 Activity 时，就会回调 onRestart 方法。</p>
+<h4 id="onStart"><a href="#onStart" class="headerlink" title="onStart()"></a>onStart()</h4><p>表示 Activity 正在启动。这时 Activity 从不可见变为可见，但是还没有出现在前台，无法和用户交互。</p>
+<h4 id="onResume"><a href="#onResume" class="headerlink" title="onResume()"></a>onResume()</h4><p>表示 Activity 已经可见，而且出现在前台，可以和用户交互。此时的 Activity 一定位于返回栈的栈顶，并且处于运行状态。<br>注意和 onStart 的对比，都表示 Activity 可见，但是 onStart 的时候 Activity 在后台，而 onResume 的时候 Activity 在前台。</p>
+<h4 id="onPause"><a href="#onPause" class="headerlink" title="onPause()"></a>onPause()</h4><p>表示 Activity 正在停止。正常情况下，onStop 接下来会被调用，特殊情况下，快速返回当前 Activity，onResume 会被调用。<br>通常会在这个方法中将一些及其消耗 CPU 的资源释放掉（比如显示地图或者大规模图形），以及保存一些关键数据（比如用户输入的数据等等），但这个方法不能执行耗时的操作，不然会影响到新的栈顶 Activity 的 onResume()方法回调。</p>
+<h4 id="onStop"><a href="#onStop" class="headerlink" title="onStop()"></a>onStop()</h4><p>表示 Activity 即将停止。可以做一些稍微重量级的资源回收，同样不能太耗时。<br>这个方法在活动完全不可见的时候调用。它和 onPause()方法的主要区别在于，如果启动的新活动是一个对话框式的活动，那么 onPause() 方法会得到执行，而 onStop()方法并不会执行。</p>
+<blockquote>
+<p>另外注意 Activity 之间跳转时，onStop()不一定会被调用！！！比如 DialogActivity 或者 透明的 Activity</p>
+</blockquote>
+<h4 id="onDestroy"><a href="#onDestroy" class="headerlink" title="onDestroy()"></a>onDestroy()</h4><p>表示 Activity 即将被销毁。可以做一些回收工作和最终的资源释放。<br>这个方法在活动被销毁之前调用，之后活动的状态将变为销毁状态。</p>
+<h4 id="常见生命周期调用"><a href="# 常见生命周期调用" class="headerlink" title="常见生命周期调用"></a>常见生命周期调用</h4><ol>
+<li><p>当某个 Activity 第一次启动<br>onCreate -&gt; onStart -&gt; onResume</p>
+</li>
+<li><p>当跳转新的 Activity 或者 切换到桌面 <br>onPause -&gt; onStop<br> 特殊情况，当新的 Activity 是 dialog 或者透明主题，当前 activity 不会回调 onStop</p>
+</li>
+<li><p>当用户再次回到原 Activity<br>onRestart -&gt; onStart -&gt; onResume</p>
+</li>
+<li><p>当用户按 back 键回退<br>onPause -&gt; onStop -&gt; onDestroy</p>
+</li>
+<li><p>当 activity 被系统回收后重新打开，同 1.</p>
+</li>
+</ol>
+<h3 id="异常情况下的生命周期"><a href="# 异常情况下的生命周期" class="headerlink" title="异常情况下的生命周期"></a>异常情况下的生命周期</h3><p>Activity 被系统回调或者由于当前设备 Configuration 横竖屏切换导致 Activity 被销毁重建</p>
+<h4 id="系统配置改变导致 -Activity- 被杀死并重建"><a href="# 系统配置改变导致 -Activity- 被杀死并重建" class="headerlink" title="系统配置改变导致 Activity 被杀死并重建"></a>系统配置改变导致 Activity 被杀死并重建 </h4><h5 id="默认 -configChanges"><a href="# 默认 -configChanges" class="headerlink" title="默认 configChanges"></a> 默认 configChanges</h5><p>默认情况下，当系统配置发生改变后，Activity 会被销毁，依次调用 onPause，onStop，onDestroy。<br>同时由于 Activity 是在异常情况下终止的，系统会调用 onSaveInstanceState 来保存当前 Activity 的状态。调用时机发生在 onStop 之前，另外可能在 onPause 前，也可能在 onPause 后。</p>
+<p>当 Activity 被重新创建时，依次调用 onCreate，onStart，onResume。<br>同时系统会调用 onRestoreInstanceState，把 Activity 销毁时 onSaveInstanceState 方法保存的 Bundle 对象作为参数传递给 onRestoreInstanceState 和 onCreate 方法。<br>所以，可以在 onRestoreInstanceState 和 onCreate 方法判断 Activity 是否发生重建，如果被重建了，就通过 Bundle 中保存的数据来恢复状态。<br>当 onRestoreInstanceState 发生调用，其参数 Bundle 一定有值，但 onCreate 在正常启动时，其参数 Bundle 是 null，只有在异常时才是有值的。</p>
+<blockquote>
+<p>onSaveInstanceState 与 onRestoreInstanceState 均在异常情况下才会被执行，onSaveInstanceState 发生在 onStop 之前，onRestoreInstanceState 发生在 onStart 之后。<br>当 Activity 被意外终止时，Activity 会调用 onSaveInstanceState 去保存数据，同时委托 Window 去保存数据，接着 Window 还会委托它上面的顶层容器 ViewGroup 去保存数据。<br>顶层容器 ViewGroup 可能是 DecorView，最后顶层容器再通知子元素来保存数据，完成整个数据保存过程。<br>这是一种委托思想，上层委托下层，父布局委托子元素。可以类比 View 绘制流程 以及 事件分发机制。   </p>
+</blockquote>
+<h5 id="自定义 -configChanges"><a href="# 自定义 -configChanges" class="headerlink" title="自定义 configChanges"></a>自定义 configChanges</h5><ol>
+<li><p>orientation<br>屏幕方向发生了改变，如旋转了手机屏幕</p>
+</li>
+<li><p>keyboardHidden<br>键盘可访问性发生了改变，如用户调出了键盘</p>
+</li>
+<li><p>screenSize<br>屏幕尺寸发生了变化，如旋转了手机屏幕。API 小于 13 不会导致重启，否则会导致 Activity 重启，一般结合 orientation 一起使用</p>
+</li>
+<li><p>locale<br>设备的本地位置发生了改变，如切换了系统语言</p>
+</li>
+<li><p>smallestScreenSize<br>物理屏幕尺寸发生了变化，如切换了外部显示设备。API 小于 13 不会导致重启，否则会导致 Activity 重启。</p>
+</li>
+</ol>
+<blockquote>
+<p>当设置 orientation 和 screenSize 时，旋转屏幕 activity 不再重建，并且不会调用 onSaveInstanceState 和 onRestoreInstanceState 保存和恢复数据，但会调用 onConfigurationChanged 方法。</p>
+</blockquote>
+<h4 id="系统内存不足导致 -Activity- 被杀死并重建"><a href="# 系统内存不足导致 -Activity- 被杀死并重建" class="headerlink" title="系统内存不足导致 Activity 被杀死并重建"></a>系统内存不足导致 Activity 被杀死并重建 </h4><p> 根据 Activity 优先级杀死目标 Activity，具体数据存储和恢复过程同情景 1.</p>
+<ul>
+<li>前台 Activity, 正在和用户交互，优先级最高</li>
+<li>可见 但 非前台 Activity，弹出 dialog 导致 activity 可见，但处于后台无法和用户直接交互</li>
+<li>后台 且 不可见 Activity, 对用户已经不可见，优先级最低</li>
+</ul>
+<h3 id="UML-For-Lifecycle"><a href="#UML-For-Lifecycle" class="headerlink" title="UML For Lifecycle"></a>UML For Lifecycle</h3><p><img src="https://tva3.sinaimg.cn/large/d7f9b0f4gy1ghba8tno1fj20ty0zcq6k.jpg" alt="activity_lifecycle"></p>
+<h3 id="面试知识点"><a href="# 面试知识点" class="headerlink" title="面试知识点"></a>面试知识点</h3><ol>
+<li><p>onRestart()调用的时机<br>Home 键切换桌面 或者 Activity 跳转后返回</p>
+</li>
+<li><p>onPause()为什么不能执行耗时操作？<br>分析从 A activity 跳转到 B activity，A 的 onPause 与 B 的 onResume 调用顺序 <br> 源码角度分析，在 Activity 的启动过程中，调用 ActivityStack 的 resumeTopActivityInnerLocked() 在新的 Activity 启动之前，先回调栈顶 Activity 的 onPause 方法。<br>最终会执行到 ActivityThread 的 handleLaunchActivity()方法，完成新 activity 的 onCreate，onStart，onResume 的调用过程。（具体细节在 Activity 启动流程文章中分析）</p>
+</li>
+<li><p>View 绘制发生在哪一步？<br>onResume() ps. 结合 View 绘制流程分析</p>
+</li>
+<li><p>onStart, onResume 和 onPause, onStop 的对比分析</p>
+</li>
+<li><p>Dialog 弹出时，是否回调 onStop ？或者 DialogActivity or 透明的 Activity</p>
+</li>
+<li><p>onSaveInstanceState, onRestoreInstanceState 调用的时机</p>
+</li>
+</ol>
+<p>待补充</p>
+<h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h3><p>《Android 开发艺术探索》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/25/markdown-tutorial/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1156,114 +1539,10 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2013/02/17/%E5%A4%A7%E5%AD%A6%E6%83%85%E4%BE%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2013/02/17/%E5%A4%A7%E5%AD%A6%E6%83%85%E4%BE%A3/" class="post-title-link" itemprop="url">大学情侣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2013-02-17 17:31:17" itemprop="dateCreated datePublished" datetime="2013-02-17T17:31:17+08:00">2013-02-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p> 真正的大学情侣，就应该是这个样子（是一个女生曾写的，很深邃……大学，很期待这样平淡、朴实、真诚的感情…相互理解、关心和付出……）</p>
-<p> 我对于你的意义是：我的出现，抹掉了你许多和空虚有关的坏习惯… </p>
-<p> 我要你上课时不再挂着 QQ，自习时不再插着耳机，我愿意你能找回高三是那种能甘寂寞、清苦但平静的心境。</p>
-<p> 经过这么久，我们不是都不约而同的怀念起高三的种种吗？那时的笑容和充实感，都是源于一颗平静的心…… 我更愿意你在睡前收拾一下乱了一天的书桌和衣橱，明天醒来有个清清爽爽的开头，然后看看课程表或图书馆借来的书。因为你的精神寄托不应该是个并不渊博并不深邃的我，而应该是那些我们从前没时间现在没心情关心的各种知识。还有，我也不希望你每晚举着电话影响了室友的睡眠，让他们对你有一点小小的不满，让他们认为你是个被爱情冲昏头脑的小男人，因为我知道，在你的大学生活中，他们的尊重和支持，会比我睡前的甜言蜜语更重要。</p>
-<p> 我要你不再翘掉“不太重要”的课，来补各种实验报告和作业本，或是陪我出游，因为每翘一节课你的进程链就比别人松一扣，知道吗，空虚和堕落就是在这种松懈中累积起来的。 </p>
-<p> 我要你不再从周五就打算着带我去哪里玩，看什么电影，我愿意你去找一份规律的兼职工作，或者学一门外语。这样，在有一天你面临择业问题时，不会突然发现我占用了你太多的时间，我们都可以作为一个有竞争力的求职者，坦然地说起我们很充实大学生活。 </p>
-<p> 我要你不再对学校组织的各种活动一味反感和怀疑，因为这些活动无论组织的好与坏，都会使参与的人得到锻炼，没有活动的大学不是完整的大学，没有参与活动的大学生也不是完整的大学生，我愿意你参与其中，渐渐在竞争中树立自信，拓宽胸襟。 </p>
-<p> 我想我不再是一个你空虚时亲亲抱抱的对象，而是你疲惫时的倾听者; 我想你在多少年后记起我们的恋情时，不会是夹杂着负担和后悔的，而是溢着阳光的味道; 我想你的母亲看到你恋爱中的变化时，不再是对我心存怀疑和埋怨，而是为他的儿子有了更规律更有目标的大学生活而感到欣慰……儿子的生命里出现了另一个女人，她难免会有这样那样的担心，所以我会更努力的影响你向一个优秀大学生的方向发展，因为我知道，她的祝福永远是你心中最柔软的地方… </p>
-<p> 我宁愿在这四年里和你聚少离多，也不愿在四年后面临生活时和你做一对苦命鸳鸯。 </p>
-<p> 不管你说的那句“你是我唯一的女孩”是不是真的，我都会按照跟定你一辈子去规划。</p>
-<p> 或许某一天我们都不再固执的坚持那些青涩的誓言，在你回头查点时，会发现背包里满满的，有许多有用的工具。而这些，是在这个你曾经的女孩的陪伴下累积的……而不是空空如也。 </p>
-<p> 亲爱的，别说我不想你，我会把你发来的短信看很多遍…… </p>
-<p> 别说我不够浪漫，我何尝不喜欢被你抱着的味道和温度。 </p>
-<p> 别说我对你要求太多，其实我是最不想让你全部做到的人，因为我也怕孤单…… </p>
-<p> 被问我为什么不当面告诉你这些，因为见到你后，我总不忍心拒绝你的要求。 </p>
-<p> 我知道我们之间的感情还谈不上“爱”，因为爱需要很长时间的积淀。现在只是喜欢，有好感，有默契，想和你一起拼搏，想在你年少轻狂的时光里扮演一个角色……只有一起经历过，各自战斗过，彼此鼓励过，很久很久之后，才敢说我爱你……即时享乐的爱情是短命的！所以我不要…… </p>
-<p> 亲爱的，我多想和你走的更远些，再远些……</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1331,7 +1610,7 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1344,7 +1623,7 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1389,13 +1668,13 @@ function test() {echo &apos;test&apos;;}</code></pre><figure class="highlight ja
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">337k</span>
+    <span title="Symbols count total">342k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">5:07</span>
+    <span title="Reading time total">5:11</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

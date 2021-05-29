@@ -161,6 +161,304 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/HTTP-1-0-1-1-2-0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/HTTP-1-0-1-1-2-0/" class="post-title-link" itemprop="url">HTTP 1.0/1.1/2.0</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-25 16:48:26" itemprop="dateCreated datePublished" datetime="2021-01-25T16:48:26+08:00">2021-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>288</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h3><ul>
+<li> 默认不支持长连接，需要设置 keep-alive 参数 </li>
+<li> 不支持断点续传 </li>
+<li> 强缓存 expired、协商缓存 last-modified\if-modified-since 有一定的缺陷 </li>
+</ul>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP 1.1"></a>HTTP 1.1</h3><ul>
+<li> 默认支持长连接 </li>
+<li> 支持断点续传 </li>
+<li> 纯文本报头 </li>
+<li> 连接复用，http 请求可以复用 Tcp 连接，但是同一时间只能对应一个 http 请求 (http 请求在一个 Tcp 中是串行的)</li>
+<li> 增加了强缓存 cache-control、协商缓存 etag\if-none-match 是对 http/1 缓存的优化 </li>
+</ul>
+<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h3><ul>
+<li> 默认支持长连接 </li>
+<li> 二进制报头 </li>
+<li> 多路复用，一个 Tcp 中多个 http 请求是并行的 </li>
+<li> 数据压缩（HACK 算法）</li>
+<li> 服务器推送 </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/17/2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/17/2020/" class="post-title-link" itemprop="url">2020</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-17 23:41:13" itemprop="dateCreated datePublished" datetime="2021-01-17T23:41:13+08:00">2021-01-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>789</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="过不去的疫情，过得去的生活"><a href="# 过不去的疫情，过得去的生活" class="headerlink" title="过不去的疫情，过得去的生活"></a>过不去的疫情，过得去的生活 </h3><p> 转眼间，2020 已经过去半个月了，记忆中贯穿的回忆只有疫情两个字。</p>
+<p>经历过了疫情才知道：明天和意外，你不知道哪个会先来</p>
+<p>以前总觉得生活就像一湖水，微风吹来，水波荡漾，但总会恢复如初</p>
+<p>s，第一次春节放假这么久，度过了自毕业以来最长的一个假期，</p>
+<p>另外 戴口罩，我想国人以后都会养成这样的习惯。</p>
+<p>疫情之后的经济百废待兴，幸好公司远程办公，并未克扣或者拖欠工资。</p>
+<h3 id="年轻人的第一次买房"><a href="# 年轻人的第一次买房" class="headerlink" title="年轻人的第一次买房"></a>年轻人的第一次买房 </h3><p> 三月份忽然起了买房的念头，于是一发不可收拾，趁着空闲 / 周末 打听了解，远程看房。</p>
+<p>收藏夹里面有了几个中意的楼盘，趁着清明假期，两天的时间看了 7、8 个盘，心里已经有了数。</p>
+<p>买房，首选的就是位置。我想买房就像是开商铺，人越多配套越好，交通越便利。</p>
+<p>最后选中的是一个地铁入户的楼盘，97 平三室一厅，预算只够买这个户型了。</p>
+<p>公积金 + 商贷，把能用的杠杆都用上了，因为公积金异地贷款，一度数次往返上海 - 郑州，好在最后终于搞定，认识到了上海、郑州的政务部门的相互推诿和效率低下。</p>
+<h3 id="有人说：996 是福报"><a href="# 有人说：996 是福报" class="headerlink" title="有人说：996 是福报"></a>有人说：996 是福报 </h3><p> 房子解决了，贷款也下来了，手头就有点捉襟见肘，被公积金贷款耽搁的跳槽念头又唤起了。</p>
+<p>对于跳槽，我的看法是面的越多越好，见多了才好谈价钱，你才有底气去议价。</p>
+<p>只是没想到，谈了 N 多 offer 的我，在这次也栽了跟头。（后续再谈，直到现在才明白）</p>
+<p>虽然面试过程不是很理想，最后还是拿到了比较满意的 offer。</p>
+<p>有个小插曲，跟老板谈了之后，听了一顿分析，许诺了涨薪和年终后，我当时选择拒了 offer（后面又舔回来了），因为我觉得当时自己做的东西还是值得去付出努力的。</p>
+<p>后来的几天，可能是我心态变了，估计应了那句话，提了离职，一切都回不去了。</p>
+<p>拖了一个多月后，还是入职了某陪练公司。</p>
+<p>来了之后，觉得真的香，早餐 / 扁平 / 轻松，直到度过了一个月的蜜月期。</p>
+<p>我遇到了有史以来最大的困难，主力开发一个大型需求，时间很紧张，于是就开始修福报了。</p>
+<p>// 未完待续</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cloud">
+      <meta itemprop="description" content="Less is more.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cloud's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-03 20:18:35" itemprop="dateCreated datePublished" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>357</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/%E4%B9%B0%E6%88%BF%E7%9A%84%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2269,330 +2567,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/dialy_question_02_java_collection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/06/dialy_question_02_java_collection/" class="post-title-link" itemprop="url">「每日一问」Java 集合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-06 19:58:02" itemprop="dateCreated datePublished" datetime="2020-08-06T19:58:02+08:00">2020-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 10:41:53" itemprop="dateModified" datetime="2021-03-17T10:41:53+08:00">2021-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%97%AE/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/daily_question_01_synchronized_volatile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/06/daily_question_01_synchronized_volatile/" class="post-title-link" itemprop="url">「每日一问」聊聊 synchronized, volatile</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-06 19:17:52" itemprop="dateCreated datePublished" datetime="2020-08-06T19:17:52+08:00">2020-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 11:15:46" itemprop="dateModified" datetime="2021-04-09T11:15:46+08:00">2021-04-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%97%AE/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>60</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="synchronized- 与 -volatile- 的异同"><a href="#synchronized- 与 -volatile- 的异同" class="headerlink" title="synchronized 与 volatile 的异同"></a>synchronized 与 volatile 的异同 </h3><h3 id="多线程下如何解决线程安全问题"><a href="# 多线程下如何解决线程安全问题" class="headerlink" title="多线程下如何解决线程安全问题"></a> 多线程下如何解决线程安全问题</h3><h3 id="synchronized：类锁和对象锁的区别"><a href="#synchronized：类锁和对象锁的区别" class="headerlink" title="synchronized：类锁和对象锁的区别"></a>synchronized：类锁和对象锁的区别</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/28/okhttp_source_code_analysis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cloud">
-      <meta itemprop="description" content="Less is more.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cloud's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/28/okhttp_source_code_analysis/" class="post-title-link" itemprop="url">OkHttp 源码分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-28 20:58:40" itemprop="dateCreated datePublished" datetime="2020-07-28T20:58:40+08:00">2020-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-03 20:18:35" itemprop="dateModified" datetime="2021-01-03T20:18:35+08:00">2021-01-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>17k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>15 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="OkHttp 请求流程"><a href="#OkHttp 请求流程" class="headerlink" title="OkHttp 请求流程"></a>OkHttp 请求流程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 OkHttpClient 对象</span></span><br><span class="line">OkHttpClient okHttpClient = <span class="keyword">new</span> OkHttpClient().newBuilder().build();</span><br><span class="line"><span class="comment">// 创建 Request 对象</span></span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">        .url(url)</span><br><span class="line">        .build();</span><br><span class="line"><span class="comment">// 同步发起请求</span></span><br><span class="line">Response execute = okHttpClient.newCall(request).execute();</span><br><span class="line"><span class="comment">// 异步发起请求</span></span><br><span class="line">okHttpClient.newCall(request).enqueue(<span class="keyword">new</span> Callback() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call call, IOException e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建 -OkHttpClient- 对象"><a href="# 创建 -OkHttpClient- 对象" class="headerlink" title="创建 OkHttpClient 对象"></a>创建 OkHttpClient 对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient client = <span class="keyword">new</span> OkHttpClient();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">OkHttpClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(<span class="keyword">new</span> Builder());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建造者模式</span></span><br><span class="line">OkHttpClient(Builder builder) &#123;</span><br><span class="line">    <span class="comment">// 自定义拦截器</span></span><br><span class="line">    <span class="comment">// 自定义连接池</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建 -Request- 对象"><a href="# 创建 -Request- 对象" class="headerlink" title="创建 Request 对象"></a>创建 Request 对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建造者模式</span></span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">    .url(url)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
-
-<h4 id="同步执行请求"><a href="# 同步执行请求" class="headerlink" title="同步执行请求"></a>同步执行请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Response execute = okHttpClient.newCall(request).execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Prepares the &#123;<span class="doctag">@code</span> request&#125; to be executed at some point in the future.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Call <span class="title">newCall</span><span class="params">(Request request)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 实际是通过 RealCall 来执行请求的</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RealCall(<span class="keyword">this</span>, request, <span class="keyword">false</span> <span class="comment">/* for web socket */</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="RealCall-execute"><a href="#RealCall-execute" class="headerlink" title="RealCall#execute()"></a>RealCall#execute()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Response <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 每个 Call 只能执行一次</span></span><br><span class="line">      <span class="keyword">if</span> (executed) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already Executed"</span>);</span><br><span class="line">      executed = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    captureCallStackTrace();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 通知 dispatcher 当前请求进入同步请求队列</span></span><br><span class="line">      client.dispatcher().executed(<span class="keyword">this</span>);</span><br><span class="line">        <span class="comment">// 通过一系列拦截器请求处理和响应处理得到 Response </span></span><br><span class="line">      Response result = getResponseWithInterceptorChain();</span><br><span class="line">      <span class="keyword">if</span> (result == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Canceled"</span>);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 通知 dispatcher 当前请求执行结束，移除队列</span></span><br><span class="line">      client.dispatcher().finished(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Dispatcher-executed"><a href="#Dispatcher-executed" class="headerlink" title="Dispatcher#executed()"></a>Dispatcher#executed()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正在运行的同步请求队列</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Deque&lt;RealCall&gt; runningSyncCalls = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">executed</span><span class="params">(RealCall call)</span> </span>&#123;</span><br><span class="line">    runningSyncCalls.add(call);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="RealCall-getResponseWithInterceptorChain"><a href="#RealCall-getResponseWithInterceptorChain" class="headerlink" title="RealCall#getResponseWithInterceptorChain()"></a>RealCall#getResponseWithInterceptorChain()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Response <span class="title">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 创建 okHttpClient 时设置的 interceptors</span></span><br><span class="line">    interceptors.addAll(client.interceptors());</span><br><span class="line">    <span class="comment">// 负责失败重试以及重定向</span></span><br><span class="line">    interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">    <span class="comment">// 请求时负责添加 header，响应时负责移除 header</span></span><br><span class="line">    interceptors.add(<span class="keyword">new</span> BridgeInterceptor(client.cookieJar()));</span><br><span class="line">    <span class="comment">// 负责写入缓存，读取缓存，更新缓存</span></span><br><span class="line">    interceptors.add(<span class="keyword">new</span> CacheInterceptor(client.internalCache()));</span><br><span class="line">    <span class="comment">// 负责和服务器建立连接</span></span><br><span class="line">    interceptors.add(<span class="keyword">new</span> ConnectInterceptor(client));</span><br><span class="line">    <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">        <span class="comment">// 创建 okHttpClient 设置的 networkInterceptors</span></span><br><span class="line">      interceptors.addAll(client.networkInterceptors());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 负责向服务器发送请求数据，从服务器读取响应数据</span></span><br><span class="line">    interceptors.add(<span class="keyword">new</span> CallServerInterceptor(forWebSocket));</span><br><span class="line"></span><br><span class="line">    Interceptor.Chain chain = <span class="keyword">new</span> RealInterceptorChain(</span><br><span class="line">        interceptors, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="number">0</span>, originalRequest);</span><br><span class="line">    <span class="comment">// 使用责任链模式开启链式调用</span></span><br><span class="line">    <span class="keyword">return</span> chain.proceed(originalRequest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="RealInterceptorChain-proceed"><a href="#RealInterceptorChain-proceed" class="headerlink" title="RealInterceptorChain#proceed()"></a>RealInterceptorChain#proceed()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Response <span class="title">proceed</span><span class="params">(Request request, StreamAllocation streamAllocation, HttpCodec httpCodec,</span></span></span><br><span class="line"><span class="function"><span class="params">      Connection connection)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Call the next interceptor in the chain.</span></span><br><span class="line">    <span class="comment">// 实例化下一个拦截器对应的 RealInterceptorChain 对象 </span></span><br><span class="line">    RealInterceptorChain next = <span class="keyword">new</span> RealInterceptorChain(</span><br><span class="line">        interceptors, streamAllocation, httpCodec, connection, index + <span class="number">1</span>, request);</span><br><span class="line">    <span class="comment">// 获取当前拦截器</span></span><br><span class="line">    Interceptor interceptor = interceptors.get(index);</span><br><span class="line">    <span class="comment">// 调用当前拦截器的 intercept() 方法，并传入下一个拦截器的 RealInterceptorChain 对象，最后得到响应</span></span><br><span class="line">    Response response = interceptor.intercept(next);</span><br><span class="line"></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步执行请求"><a href="# 异步执行请求" class="headerlink" title="异步执行请求"></a>异步执行请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">okHttpClient.newCall(request).enqueue(<span class="keyword">new</span> Callback() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call call, IOException e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="RealCall-enqueue"><a href="#RealCall-enqueue" class="headerlink" title="RealCall#enqueue()"></a>RealCall#enqueue()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(Callback responseCallback)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (executed) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Already Executed"</span>);</span><br><span class="line">      executed = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    captureCallStackTrace();</span><br><span class="line">    <span class="comment">// 通知 dispatcher 添加请求到异步请求队列</span></span><br><span class="line">    client.dispatcher().enqueue(<span class="keyword">new</span> AsyncCall(responseCallback));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Dispatcher-enqueue"><a href="#Dispatcher-enqueue" class="headerlink" title="Dispatcher#enqueue()"></a>Dispatcher#enqueue()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 准备中的异步请求队列</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Deque&lt;AsyncCall&gt; readyAsyncCalls = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line"><span class="comment">// 正在运行的异步请求队列</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Deque&lt;AsyncCall&gt; runningAsyncCalls = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(AsyncCall call)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果正在运行的异步请求队列长度小于最大请求数，且 call 占用的 host 小于最大 host 数</span></span><br><span class="line">    <span class="comment">// 就把 call 放入 runningAsyncCalls 中，同时使用线程池执行 call</span></span><br><span class="line">    <span class="comment">// 否则将 call 放入 readyAsyncCalls 等待执行</span></span><br><span class="line">    <span class="keyword">if</span> (runningAsyncCalls.size() &lt; maxRequests &amp;&amp; runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">      runningAsyncCalls.add(call);</span><br><span class="line">      executorService().execute(call);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      readyAsyncCalls.add(call);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="AsyncCall-execute"><a href="#AsyncCall-execute" class="headerlink" title="AsyncCall#execute()"></a>AsyncCall#execute()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">boolean</span> signalledCallback = <span class="keyword">false</span>;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 通过一系列拦截器请求处理和响应处理得到 Response </span></span><br><span class="line">        Response response = getResponseWithInterceptorChain();</span><br><span class="line">        <span class="keyword">if</span> (retryAndFollowUpInterceptor.isCanceled()) &#123;</span><br><span class="line">          signalledCallback = <span class="keyword">true</span>;</span><br><span class="line">          responseCallback.onFailure(RealCall.<span class="keyword">this</span>, <span class="keyword">new</span> IOException(<span class="string">"Canceled"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          signalledCallback = <span class="keyword">true</span>;</span><br><span class="line">          responseCallback.onResponse(RealCall.<span class="keyword">this</span>, response);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (signalledCallback) &#123;</span><br><span class="line">          <span class="comment">// Do not signal the callback twice!</span></span><br><span class="line">          Platform.get().log(INFO, <span class="string">"Callback failure for"</span> + toLoggableString(), e);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          responseCallback.onFailure(RealCall.<span class="keyword">this</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        client.dispatcher().finished(<span class="keyword">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>最后拦截器的链式调用对 okhttp 做了以下处理：</p>
-<ul>
-<li>okHttpClient 配置的自定义普通拦截器</li>
-<li>RetryAndFollowUpInterceptor(重试，重定向)</li>
-<li>BridgeInterceptor(header 处理)</li>
-<li>CacheInterceptor(缓存处理)</li>
-<li>ConnectInterceptor(服务器连接处理)</li>
-<li>okHttpClient 配置的自定义网络拦截器</li>
-<li>CallServerInterceptor(向服务器发起请求，读取响应)</li>
-</ul>
-<h3 id="缓存处理 -CacheInterceptor"><a href="# 缓存处理 -CacheInterceptor" class="headerlink" title="缓存处理 CacheInterceptor"></a>缓存处理 CacheInterceptor</h3><h4 id="CacheInterceptor-intercept"><a href="#CacheInterceptor-intercept" class="headerlink" title="CacheInterceptor#intercept()"></a>CacheInterceptor#intercept()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// okhttp 的缓存接口，具体实现其实是 Cache 类，缓存是通过 DiskLruCache 对象实现的</span></span><br><span class="line"><span class="keyword">final</span> InternalCache cache;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 根据 request 获取 cache 中缓存的 response</span></span><br><span class="line">    Response cacheCandidate = cache != <span class="keyword">null</span></span><br><span class="line">        ? cache.get(chain.request())</span><br><span class="line">        : <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> now = System.currentTimeMillis();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// request 判断缓存策略，是否使用网络请求缓存，响应数据缓存或两者都有</span></span><br><span class="line">    CacheStrategy strategy = <span class="keyword">new</span> CacheStrategy.Factory(now, chain.request(), cacheCandidate).get();</span><br><span class="line">    Request networkRequest = strategy.networkRequest;</span><br><span class="line">    Response cacheResponse = strategy.cacheResponse;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cache != <span class="keyword">null</span>) &#123;</span><br><span class="line">      cache.trackResponse(strategy);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cacheCandidate != <span class="keyword">null</span> &amp;&amp; cacheResponse == <span class="keyword">null</span>) &#123;</span><br><span class="line">      closeQuietly(cacheCandidate.body()); <span class="comment">// The cache candidate wasn't applicable. Close it.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we're forbidden from using the network and the cache is insufficient, fail.</span></span><br><span class="line">    <span class="keyword">if</span> (networkRequest == <span class="keyword">null</span> &amp;&amp; cacheResponse == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> Response.Builder()</span><br><span class="line">          .request(chain.request())</span><br><span class="line">          .protocol(Protocol.HTTP_1_1)</span><br><span class="line">          .code(<span class="number">504</span>)</span><br><span class="line">          .message(<span class="string">"Unsatisfiable Request (only-if-cached)"</span>)</span><br><span class="line">          .body(Util.EMPTY_RESPONSE)</span><br><span class="line">          .sentRequestAtMillis(-<span class="number">1L</span>)</span><br><span class="line">          .receivedResponseAtMillis(System.currentTimeMillis())</span><br><span class="line">          .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we don't need the network, we're done.</span></span><br><span class="line">    <span class="comment">// 不执行网络请求，直接返回缓存的响应数据</span></span><br><span class="line">    <span class="keyword">if</span> (networkRequest == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> cacheResponse.newBuilder()</span><br><span class="line">          .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">          .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Response networkResponse = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 调用下一个拦截器, 传入缓存的网络请求获取 response</span></span><br><span class="line">      networkResponse = chain.proceed(networkRequest);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="comment">// If we're crashing on I/O or otherwise, don't leak the cache body.</span></span><br><span class="line">      <span class="keyword">if</span> (networkResponse == <span class="keyword">null</span> &amp;&amp; cacheCandidate != <span class="keyword">null</span>) &#123;</span><br><span class="line">        closeQuietly(cacheCandidate.body());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we have a cache response too, then we're doing a conditional get.</span></span><br><span class="line">    <span class="comment">// 如果本地已经存在 cacheResponse，同网络获取的 networkResponse 做比较，决定是否更新 cacheResponse</span></span><br><span class="line">    <span class="keyword">if</span> (cacheResponse != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (networkResponse.code() == HTTP_NOT_MODIFIED) &#123;</span><br><span class="line">        Response response = cacheResponse.newBuilder()</span><br><span class="line">            .headers(combine(cacheResponse.headers(), networkResponse.headers()))</span><br><span class="line">            .sentRequestAtMillis(networkResponse.sentRequestAtMillis())</span><br><span class="line">            .receivedResponseAtMillis(networkResponse.receivedResponseAtMillis())</span><br><span class="line">            .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">            .networkResponse(stripBody(networkResponse))</span><br><span class="line">            .build();</span><br><span class="line">        networkResponse.body().close();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Update the cache after combining headers but before stripping the</span></span><br><span class="line">        <span class="comment">// Content-Encoding header (as performed by initContentStream()).</span></span><br><span class="line">        cache.trackConditionalCacheHit();</span><br><span class="line">        cache.update(cacheResponse, response);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        closeQuietly(cacheResponse.body());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Response response = networkResponse.newBuilder()</span><br><span class="line">        .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">        .networkResponse(stripBody(networkResponse))</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (HttpHeaders.hasBody(response)) &#123;</span><br><span class="line">        <span class="comment">// 缓存 之前没有缓存的 response</span></span><br><span class="line">      CacheRequest cacheRequest = maybeCache(response, networkResponse.request(), cache);</span><br><span class="line">      response = cacheWritingResponse(cacheRequest, response);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="CacheInterceptor-maybeCache"><a href="#CacheInterceptor-maybeCache" class="headerlink" title="CacheInterceptor#maybeCache()"></a>CacheInterceptor#maybeCache()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> CacheRequest <span class="title">maybeCache</span><span class="params">(Response userResponse, Request networkRequest,</span></span></span><br><span class="line"><span class="function"><span class="params">      InternalCache responseCache)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (responseCache == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Should we cache this response for this request?</span></span><br><span class="line">    <span class="keyword">if</span> (!CacheStrategy.isCacheable(userResponse, networkRequest)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (HttpMethod.invalidatesCache(networkRequest.method())) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          responseCache.remove(networkRequest);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ignored) &#123;</span><br><span class="line">          <span class="comment">// The cache cannot be written.</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Offer this request to the cache.</span></span><br><span class="line">    <span class="keyword">return</span> responseCache.put(userResponse);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>缓存拦截器会根据网络请求的信息和缓存响应的信息来判断是否存在缓存可用，如果有可以使用的缓存，那么就返回该缓存给用户，否则就继续使用责任链模式来从服务器中获取响应。当获取到响应的时候，又会把响应缓存到磁盘上。</p>
-<h3 id="连接处理 -ConnectInterceptor"><a href="# 连接处理 -ConnectInterceptor" class="headerlink" title="连接处理 ConnectInterceptor"></a>连接处理 ConnectInterceptor</h3><h4 id="连接复用"><a href="# 连接复用" class="headerlink" title="连接复用"></a>连接复用</h4><h5 id="ConnectInterceptor-intercept"><a href="#ConnectInterceptor-intercept" class="headerlink" title="ConnectInterceptor#intercept()"></a>ConnectInterceptor#intercept()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    RealInterceptorChain realChain = (RealInterceptorChain) chain;</span><br><span class="line">    Request request = realChain.request();</span><br><span class="line">    StreamAllocation streamAllocation = realChain.streamAllocation();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// We need the network to satisfy this request. Possibly for validating a conditional GET.</span></span><br><span class="line">    <span class="keyword">boolean</span> doExtensiveHealthChecks = !request.method().equals(<span class="string">"GET"</span>);</span><br><span class="line">    <span class="comment">// HttpCodec 负责 HTTP 协议的封装和解析，有两个实现：Http1Codec 和 Http2Codec 分别对应 HTTP/1.1 和 HTTP/2</span></span><br><span class="line">    HttpCodec httpCodec = streamAllocation.newStream(client, doExtensiveHealthChecks);</span><br><span class="line">    RealConnection connection = streamAllocation.connection();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> realChain.proceed(request, streamAllocation, httpCodec, connection);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="StreamAllocation-newStream"><a href="#StreamAllocation-newStream" class="headerlink" title="StreamAllocation#newStream()"></a>StreamAllocation#newStream()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现连接池的复用处理</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpCodec <span class="title">newStream</span><span class="params">(OkHttpClient client, <span class="keyword">boolean</span> doExtensiveHealthChecks)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> connectTimeout = client.connectTimeoutMillis();</span><br><span class="line">    <span class="keyword">int</span> readTimeout = client.readTimeoutMillis();</span><br><span class="line">    <span class="keyword">int</span> writeTimeout = client.writeTimeoutMillis();</span><br><span class="line">    <span class="keyword">boolean</span> connectionRetryEnabled = client.retryOnConnectionFailure();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      RealConnection resultConnection = findHealthyConnection(connectTimeout, readTimeout,</span><br><span class="line">          writeTimeout, connectionRetryEnabled, doExtensiveHealthChecks);</span><br><span class="line">      HttpCodec resultCodec = resultConnection.newCodec(client, <span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">synchronized</span> (connectionPool) &#123;</span><br><span class="line">        codec = resultCodec;</span><br><span class="line">        <span class="keyword">return</span> resultCodec;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RouteException(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="StreamAllocation-findHealthyConnection"><a href="#StreamAllocation-findHealthyConnection" class="headerlink" title="StreamAllocation#findHealthyConnection()"></a>StreamAllocation#findHealthyConnection()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Finds a connection and returns it if it is healthy. If it is unhealthy the process is repeated</span></span><br><span class="line"><span class="comment">   * until a healthy connection is found.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> RealConnection <span class="title">findHealthyConnection</span><span class="params">(<span class="keyword">int</span> connectTimeout, <span class="keyword">int</span> readTimeout,</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">int</span> writeTimeout, <span class="keyword">boolean</span> connectionRetryEnabled, <span class="keyword">boolean</span> doExtensiveHealthChecks)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="comment">// 循环查找可用的连接</span></span><br><span class="line">      RealConnection candidate = findConnection(connectTimeout, readTimeout, writeTimeout,</span><br><span class="line">          connectionRetryEnabled);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// If this is a brand new connection, we can skip the extensive health checks.</span></span><br><span class="line">      <span class="keyword">synchronized</span> (connectionPool) &#123;</span><br><span class="line">        <span class="keyword">if</span> (candidate.successCount == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> candidate;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Do a (potentially slow) check to confirm that the pooled connection is still good. If it</span></span><br><span class="line">      <span class="comment">// isn't, take it out of the pool and start again.</span></span><br><span class="line">      <span class="keyword">if</span> (!candidate.isHealthy(doExtensiveHealthChecks)) &#123;</span><br><span class="line">        noNewStreams();</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> candidate;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="StreamAllocation-findConnection"><a href="#StreamAllocation-findConnection" class="headerlink" title="StreamAllocation#findConnection()"></a>StreamAllocation#findConnection()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns a connection to host a new stream. This prefers the existing connection if it exists,</span></span><br><span class="line"><span class="comment">   * then the pool, finally building a new connection.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> RealConnection <span class="title">findConnection</span><span class="params">(<span class="keyword">int</span> connectTimeout, <span class="keyword">int</span> readTimeout, <span class="keyword">int</span> writeTimeout,</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">boolean</span> connectionRetryEnabled)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Route selectedRoute;</span><br><span class="line">    <span class="keyword">synchronized</span> (connectionPool) &#123;</span><br><span class="line">      <span class="keyword">if</span> (released) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"released"</span>);</span><br><span class="line">      <span class="keyword">if</span> (codec != <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"codec != null"</span>);</span><br><span class="line">      <span class="keyword">if</span> (canceled) <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Canceled"</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Attempt to use an already-allocated connection.</span></span><br><span class="line">        <span class="comment">// 尝试使用已分配的连接，如果连接可以创建新的流，就直接返回</span></span><br><span class="line">      RealConnection allocatedConnection = <span class="keyword">this</span>.connection;</span><br><span class="line">      <span class="keyword">if</span> (allocatedConnection != <span class="keyword">null</span> &amp;&amp; !allocatedConnection.noNewStreams) &#123;</span><br><span class="line">        <span class="keyword">return</span> allocatedConnection;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Attempt to get a connection from the pool.</span></span><br><span class="line">        <span class="comment">// 尝试从连接池中获取一个连接，如果连接不为空，就直接返回</span></span><br><span class="line">      Internal.instance.get(connectionPool, address, <span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> connection;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      selectedRoute = route;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If we need a route, make one. This is a blocking operation.</span></span><br><span class="line">    <span class="keyword">if</span> (selectedRoute == <span class="keyword">null</span>) &#123;</span><br><span class="line">      selectedRoute = routeSelector.next();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a connection and assign it to this allocation immediately. This makes it possible for</span></span><br><span class="line">    <span class="comment">// an asynchronous cancel() to interrupt the handshake we're about to do.</span></span><br><span class="line">    RealConnection result;</span><br><span class="line">    <span class="keyword">synchronized</span> (connectionPool) &#123;</span><br><span class="line">      route = selectedRoute;</span><br><span class="line">      refusedStreamCount = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 创建一个新的连接，并立即分配</span></span><br><span class="line">      result = <span class="keyword">new</span> RealConnection(connectionPool, selectedRoute);</span><br><span class="line">      acquire(result);</span><br><span class="line">      <span class="keyword">if</span> (canceled) <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Canceled"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Do TCP + TLS handshakes. This is a blocking operation.</span></span><br><span class="line">    <span class="comment">// 进行 TCP 和 TLS 握手</span></span><br><span class="line">    result.connect(connectTimeout, readTimeout, writeTimeout, connectionRetryEnabled);</span><br><span class="line">    routeDatabase().connected(result.route());</span><br><span class="line"></span><br><span class="line">    Socket socket = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">synchronized</span> (connectionPool) &#123;</span><br><span class="line">      <span class="comment">// Pool the connection.</span></span><br><span class="line">        <span class="comment">// 将该连接放入连接池中</span></span><br><span class="line">      Internal.instance.put(connectionPool, result);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// If another multiplexed connection to the same address was created concurrently, then</span></span><br><span class="line">      <span class="comment">// release this connection and acquire that one.</span></span><br><span class="line">        <span class="comment">// 如果同时创建了另一个到同一地址的多路复用连接，则释放这个连接并获取那个连接。</span></span><br><span class="line">      <span class="keyword">if</span> (result.isMultiplexed()) &#123;</span><br><span class="line">        socket = Internal.instance.deduplicate(connectionPool, address, <span class="keyword">this</span>);</span><br><span class="line">        result = connection;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    closeQuietly(socket);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>以上源码分析可知：</p>
-<p>StreamAllocation 对象，它相当于一个管理类，维护了服务器连接、并发流和请求之间的关系，该类还会初始化一个 Socket 连接对象，获取输入 / 输出流对象。</p>
-<ul>
-<li>判断当前的连接是否可以使用：流是否关闭，且已经被限制创建新的流</li>
-<li>如果当前 de 连接无法使用，就从连接池中获取一个连接</li>
-<li>如果连接池中没有可用的连接，就创建一个新的连接，进行握手，然后放入连接池中</li>
-</ul>
-<p>连接复用的好处：省去了进行 TCP 和 TLS 握手的一个过程（因为建立连接需要消耗一些时间，连接复用后可以提升网络访问的效率）</p>
-<p>那么，ConnectionPool 是如何实现连接管理的？</p>
-<h4 id="连接管理"><a href="# 连接管理" class="headerlink" title="连接管理"></a>连接管理 </h4><p>OkHttp 的缓存管理分成两个步骤，一边当我们创建了一个新的连接的时候，我们要把它放进连接池里面；另一边，我们还要来对连接池进行清理。<br> 在 ConnectionPool 中，当我们向连接池中缓存一个连接的时候，只要调用双端队列的 add() 方法，将其加入到双端队列即可，而清理连接缓存的操作则交给线程池来定时执行。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 双端队列的设计意义是什么？</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Deque&lt;RealConnection&gt; connections = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(RealConnection connection)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">assert</span> (Thread.holdsLock(<span class="keyword">this</span>));</span><br><span class="line">    <span class="keyword">if</span> (!cleanupRunning) &#123;</span><br><span class="line">      cleanupRunning = <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">// 使用线程池执行清理任务 </span></span><br><span class="line">      executor.execute(cleanupRunnable);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将新建的连接插入到双端队列中</span></span><br><span class="line">    connections.add(connection);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Runnable cleanupRunnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="comment">// 调用 cleanup() 方法清理无效的连接</span></span><br><span class="line">        <span class="keyword">long</span> waitNanos = cleanup(System.nanoTime());</span><br><span class="line">        <span class="keyword">if</span> (waitNanos == -<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (waitNanos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">long</span> waitMillis = waitNanos / <span class="number">1000000L</span>;</span><br><span class="line">          waitNanos -= (waitMillis * <span class="number">1000000L</span>);</span><br><span class="line">          <span class="keyword">synchronized</span> (ConnectionPool.<span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              ConnectionPool.<span class="keyword">this</span>.wait(waitMillis, (<span class="keyword">int</span>) waitNanos);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ignored) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> maxIdleConnections; <span class="comment">// 最大闲置连接数，默认是 5 个，可以通过传参配置</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> keepAliveDurationNs; <span class="comment">// 最长连接存活时间，默认是 5 分钟，可以通过传参配置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">cleanup</span><span class="params">(<span class="keyword">long</span> now)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> inUseConnectionCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> idleConnectionCount = <span class="number">0</span>;</span><br><span class="line">    RealConnection longestIdleConnection = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">long</span> longestIdleDurationNs = Long.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Find either a connection to evict, or the time that the next eviction is due.</span></span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 遍历连接池</span></span><br><span class="line">      <span class="keyword">for</span> (Iterator&lt;RealConnection&gt; i = connections.iterator(); i.hasNext();) &#123;</span><br><span class="line">        RealConnection connection = i.next();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the connection is in use, keep searching.</span></span><br><span class="line">        <span class="comment">// 如果当前连接正在使用，继续遍历</span></span><br><span class="line">        <span class="keyword">if</span> (pruneAndGetAllocationCount(connection, now) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          inUseConnectionCount++;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        idleConnectionCount++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the connection is ready to be evicted, we're done.</span></span><br><span class="line">        <span class="comment">// 如果找到了一个可以被清理的连接，对比最长闲置时间，寻找闲置最久的连接进行释放</span></span><br><span class="line">        <span class="keyword">long</span> idleDurationNs = now - connection.idleAtNanos;</span><br><span class="line">        <span class="keyword">if</span> (idleDurationNs &gt; longestIdleDurationNs) &#123;</span><br><span class="line">          longestIdleDurationNs = idleDurationNs;</span><br><span class="line">          longestIdleConnection = connection;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// </span></span><br><span class="line">      <span class="keyword">if</span> (longestIdleDurationNs &gt;= <span class="keyword">this</span>.keepAliveDurationNs</span><br><span class="line">          || idleConnectionCount &gt; <span class="keyword">this</span>.maxIdleConnections) &#123;</span><br><span class="line">        <span class="comment">// We've found a connection to evict. Remove it from the list, then close it below (outside</span></span><br><span class="line">        <span class="comment">// of the synchronized block).</span></span><br><span class="line">        <span class="comment">// 该连接的时长超出了最长闲置时间或闲置的连接数量超出了最大闲置数量，直接移除</span></span><br><span class="line">        connections.remove(longestIdleConnection);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (idleConnectionCount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// A connection will be ready to evict soon.</span></span><br><span class="line">        <span class="comment">// 闲置的连接数量大于 0，等待一段时间</span></span><br><span class="line">        <span class="keyword">return</span> keepAliveDurationNs - longestIdleDurationNs;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inUseConnectionCount &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// All connections are in use. It'll be at least the keep alive duration'til we run again.</span></span><br><span class="line">        <span class="comment">// 所有连接都在使用中，等待最长闲置时间</span></span><br><span class="line">        <span class="keyword">return</span> keepAliveDurationNs;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// No connections, idle or in use.</span></span><br><span class="line">        <span class="comment">// 没有连接</span></span><br><span class="line">        cleanupRunning = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    closeQuietly(longestIdleConnection.socket());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Cleanup again immediately.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>首先会对缓存中的连接进行遍历，以寻找一个闲置时间最长的连接，然后根据该连接的闲置时长和最大允许的连接数量等参数来决定是否应该清理该连接。<br>同时注意上面的方法的返回值是一个时间，如果闲置时间最长的连接仍然需要一段时间才能被清理的时候，会返回这段时间的时间差，然后会在这段时间之后再次对连接池进行清理。</p>
-<h3 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h3><h3 id="参考"><a href="# 参考" class="headerlink" title="参考"></a> 参考</h3><ul>
-<li>OkHttp-3.6.0-source</li>
-<li><a href="https://jsonchao.github.io/2018/12/01/Android 主流三方库源码分析（一、深入理解 OKHttp 源码）/" target="_blank" rel="noopener">https://jsonchao.github.io/2018/12/01/Android 主流三方库源码分析（一、深入理解 OKHttp 源码）/</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2660,7 +2638,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2673,7 +2651,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -2718,13 +2696,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">337k</span>
+    <span title="Symbols count total">342k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">5:07</span>
+    <span title="Reading time total">5:11</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
