@@ -2,7 +2,8 @@
 title: 剑指-Offer-31-栈的压入-弹出序列
 date: 2021-04-23 17:14:17
 tags:
-categories:
+    - 栈
+categories: 剑指Offer
 ---
 
 ```
