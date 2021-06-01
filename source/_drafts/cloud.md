@@ -65,13 +65,15 @@ VR影音是一款Android平台播放软件，该播放器能够无缝兼容市�
 
 + 熟练掌握Android事件分发机制、消息处理机制、View工作原理等
 
-+ 熟练掌握性能优化，如编译优化，启动优化，卡顿优化，内存优化等  
-
-+ 熟悉第三方框架(Glide，OkHttp，Rxjava2，Retrofit2等)原理
++ 熟悉常见第三方框架(Glide，OkHttp，Rxjava2，Retrofit2等)原理
 
 + 熟悉Android系统服务，AMS、WMS、PMS等
 
 + 熟悉Android网络通信机制，如socket，http等
+
++ 熟悉Kotlin开发，能够对APP进行高质量的快速开发和迭代
+
++ 熟悉Android性能优化，如编译优化，启动优化，卡顿优化，内存优化等
 
 + 熟悉OpenGL ES、OpenCV的使用  
 
