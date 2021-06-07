@@ -2,10 +2,11 @@
 title: PMS
 date: 2021-05-31 22:00:45
 tags:
-categories: 
+    - PMS
+categories: AOSP
 ---
 
-本文基于android-29源码分析
+本文基于android-30源码分析
 
 # PMS 
 
@@ -30,8 +31,9 @@ zygote --> SystemServer#main()
 ```java 
     // com.android.server.SystemServer#run
     private void run() {
+        TimingsTraceAndSlog t = new TimingsTraceAndSlog();
         try {
-            traceBeginAndSlog("InitBeforeStartServices");
+            t.traceBegin("InitBeforeStartServices");
 
             // Record the process start information in sys props.
             SystemProperties.set(SYSPROP_START_COUNT, String.valueOf(mStartCount));
@@ -40,15 +42,6 @@ zygote --> SystemServer#main()
 
             EventLog.writeEvent(EventLogTags.SYSTEM_SERVER_START,
                     mStartCount, mRuntimeStartUptime, mRuntimeStartElapsedTime);
-
-            // If a device's clock is before 1970 (before 0), a lot of
-            // APIs crash dealing with negative numbers, notably
-            // java.io.File#setLastModified, so instead we fake it and
-            // hope that time from cell towers or NTP fixes it shortly.
-            if (System.currentTimeMillis() < EARLIEST_SUPPORTED_TIME) {
-                Slog.w(TAG, "System clock is before 1970; setting to 1970.");
-                SystemClock.setCurrentTimeMillis(EARLIEST_SUPPORTED_TIME);
-            }
 
             //
             // Default the timezone property to GMT if not set.
@@ -89,15 +82,18 @@ zygote --> SystemServer#main()
 
             // Here we go!
             Slog.i(TAG, "Entered the Android system server!");
-            int uptimeMillis = (int) SystemClock.elapsedRealtime();
+            final long uptimeMillis = SystemClock.elapsedRealtime();
             EventLog.writeEvent(EventLogTags.BOOT_PROGRESS_SYSTEM_RUN, uptimeMillis);
             if (!mRuntimeRestart) {
-                MetricsLogger.histogram(null, "boot_system_server_init", uptimeMillis);
+                FrameworkStatsLog.write(FrameworkStatsLog.BOOT_TIME_EVENT_ELAPSED_TIME_REPORTED,
+                        FrameworkStatsLog
+                                .BOOT_TIME_EVENT_ELAPSED_TIME__EVENT__SYSTEM_SERVER_INIT_START,
+                        uptimeMillis);
             }
 
             // In case the runtime switched since last boot (such as when
             // the old runtime was removed in an OTA), set the system
-            // property so that it is in sync. We can | xq oqi't do this in
+            // property so that it is in sync. We can't do this in
             // libnativehelper's JniInvocation::Init code where we already
             // had to fallback to a different runtime because it is
             // running as root and we need to be the system user to set
@@ -106,10 +102,6 @@ zygote --> SystemServer#main()
 
             // Mmmmmm... more memory!
             VMRuntime.getRuntime().clearGrowthLimit();
-
-            // The system server has to run all of the time, so it needs to be
-            // as efficient as possible with its memory usage.
-            VMRuntime.getRuntime().setTargetHeapUtilization(0.8f);
 
             // Some devices rely on runtime fingerprint generation, so make sure
             // we've defined it before booting further.
@@ -140,12 +132,17 @@ zygote --> SystemServer#main()
             Looper.getMainLooper().setSlowLogThresholdMs(
                     SLOW_DISPATCH_THRESHOLD_MS, SLOW_DELIVERY_THRESHOLD_MS);
 
+            SystemServiceRegistry.sEnableServiceNotFoundWtf = true;
+
             // Initialize native services.
             System.loadLibrary("android_servers");
 
-            // Debug builds - allow heap profiling.
+            // Allow heap / perf profiling.
+            initZygoteChildHeapProfiling();
+
+            // Debug builds - spawn a thread to monitor for fd leaks.
             if (Build.IS_DEBUGGABLE) {
-                initZygoteChildHeapProfiling();
+                spawnFdLeakCheckThread();
             }
 
             // Check whether we failed to shut down last time we tried.
@@ -155,39 +152,64 @@ zygote --> SystemServer#main()
             // Initialize the system context.
             createSystemContext();
 
+            // Call per-process mainline module initialization.
+            ActivityThread.initializeMainlineModules();
+
             // Create the system service manager.
             mSystemServiceManager = new SystemServiceManager(mSystemContext);
             mSystemServiceManager.setStartInfo(mRuntimeRestart,
                     mRuntimeStartElapsedTime, mRuntimeStartUptime);
             LocalServices.addService(SystemServiceManager.class, mSystemServiceManager);
             // Prepare the thread pool for init tasks that can be parallelized
-            SystemServerInitThreadPool.get();
+            SystemServerInitThreadPool.start();
+            // Attach JVMTI agent if this is a debuggable build and the system property is set.
+            if (Build.IS_DEBUGGABLE) {
+                // Property is of the form "library_path=parameters".
+                String jvmtiAgent = SystemProperties.get("persist.sys.dalvik.jvmtiagent");
+                if (!jvmtiAgent.isEmpty()) {
+                    int equalIndex = jvmtiAgent.indexOf('=');
+                    String libraryPath = jvmtiAgent.substring(0, equalIndex);
+                    String parameterList =
+                            jvmtiAgent.substring(equalIndex + 1, jvmtiAgent.length());
+                    // Attach the agent.
+                    try {
+                        Debug.attachJvmtiAgent(libraryPath, parameterList, null);
+                    } catch (Exception e) {
+                        Slog.e("System", "*************************************************");
+                        Slog.e("System", "********** Failed to load jvmti plugin: " + jvmtiAgent);
+                    }
+                }
+            }
         } finally {
-            traceEnd();  // InitBeforeStartServices
+            t.traceEnd();  // InitBeforeStartServices
         }
+
+        // Setup the default WTF handler
+        RuntimeInit.setDefaultApplicationWtfHandler(SystemServer::handleEarlySystemWtf);
 
         // Start services.
         try {
-            traceBeginAndSlog("StartServices");
-            startBootstrapServices();
-            startCoreServices();
-            startOtherServices();
-            SystemServerInitThreadPool.shutdown();
+            t.traceBegin("StartServices");
+            startBootstrapServices(t);
+            startCoreServices(t);
+            startOtherServices(t);
         } catch (Throwable ex) {
             Slog.e("System", "******************************************");
             Slog.e("System", "************ Failure starting system services", ex);
             throw ex;
         } finally {
-            traceEnd();
+            t.traceEnd(); // StartServices
         }
 
         StrictMode.initVmDefaults(null);
 
         if (!mRuntimeRestart && !isFirstBootOrUpgrade()) {
-            int uptimeMillis = (int) SystemClock.elapsedRealtime();
-            MetricsLogger.histogram(null, "boot_system_server_ready", uptimeMillis);
-            final int MAX_UPTIME_MILLIS = 60 * 1000;
-            if (uptimeMillis > MAX_UPTIME_MILLIS) {
+            final long uptimeMillis = SystemClock.elapsedRealtime();
+            FrameworkStatsLog.write(FrameworkStatsLog.BOOT_TIME_EVENT_ELAPSED_TIME_REPORTED,
+                    FrameworkStatsLog.BOOT_TIME_EVENT_ELAPSED_TIME__EVENT__SYSTEM_SERVER_READY,
+                    uptimeMillis);
+            final long maxUptimeMillis = 60 * 1000;
+            if (uptimeMillis > maxUptimeMillis) {
                 Slog.wtf(SYSTEM_SERVER_TIMING_TAG,
                         "SystemServer init took too long. uptimeMillis=" + uptimeMillis);
             }
@@ -213,40 +235,59 @@ zygote --> SystemServer#main()
      * in one place here.  Unless your service is also entwined in these dependencies, it should be
      * initialized in one of the other functions.
      */
-    private void startBootstrapServices() {
+    private void startBootstrapServices(@NonNull TimingsTraceAndSlog t) {
+        t.traceBegin("startBootstrapServices");
+
         // Start the watchdog as early as possible so we can crash the system server
         // if we deadlock during early boot
-        traceBeginAndSlog("StartWatchdog");
+        t.traceBegin("StartWatchdog");
         final Watchdog watchdog = Watchdog.getInstance();
         watchdog.start();
-        traceEnd();
+        t.traceEnd();
 
         Slog.i(TAG, "Reading configuration...");
         final String TAG_SYSTEM_CONFIG = "ReadingSystemConfig";
-        traceBeginAndSlog(TAG_SYSTEM_CONFIG);
-        SystemServerInitThreadPool.get().submit(SystemConfig::getInstance, TAG_SYSTEM_CONFIG);
-        traceEnd();
+        t.traceBegin(TAG_SYSTEM_CONFIG);
+        SystemServerInitThreadPool.submit(SystemConfig::getInstance, TAG_SYSTEM_CONFIG);
+        t.traceEnd();
+
+        // Platform compat service is used by ActivityManagerService, PackageManagerService, and
+        // possibly others in the future. b/135010838.
+        t.traceBegin("PlatformCompat");
+        PlatformCompat platformCompat = new PlatformCompat(mSystemContext);
+        ServiceManager.addService(Context.PLATFORM_COMPAT_SERVICE, platformCompat);
+        ServiceManager.addService(Context.PLATFORM_COMPAT_NATIVE_SERVICE,
+                new PlatformCompatNative(platformCompat));
+        AppCompatCallbacks.install(new long[0]);
+        t.traceEnd();
+
+        // FileIntegrityService responds to requests from apps and the system. It needs to run after
+        // the source (i.e. keystore) is ready, and before the apps (or the first customer in the
+        // system) run.
+        t.traceBegin("StartFileIntegrityService");
+        mSystemServiceManager.startService(FileIntegrityService.class);
+        t.traceEnd();
 
         // Wait for installd to finish starting up so that it has a chance to
         // create critical directories such as /data/user with the appropriate
         // permissions.  We need this to complete before we initialize other services.
-        traceBeginAndSlog("StartInstaller");
+        t.traceBegin("StartInstaller");
         Installer installer = mSystemServiceManager.startService(Installer.class);
-        traceEnd();
+        t.traceEnd();
 
         // In some cases after launching an app we need to access device identifiers,
         // therefore register the device identifier policy before the activity manager.
-        traceBeginAndSlog("DeviceIdentifiersPolicyService");
+        t.traceBegin("DeviceIdentifiersPolicyService");
         mSystemServiceManager.startService(DeviceIdentifiersPolicyService.class);
-        traceEnd();
+        t.traceEnd();
 
         // Uri Grants Manager.
-        traceBeginAndSlog("UriGrantsManagerService");
+        t.traceBegin("UriGrantsManagerService");
         mSystemServiceManager.startService(UriGrantsManagerService.Lifecycle.class);
-        traceEnd();
+        t.traceEnd();
 
         // Activity manager runs the show.
-        traceBeginAndSlog("StartActivityManager");
+        t.traceBegin("StartActivityManager");
         // TODO: Might need to move after migration to WM.
         ActivityTaskManagerService atm = mSystemServiceManager.startService(
                 ActivityTaskManagerService.Lifecycle.class).getService();
@@ -255,58 +296,70 @@ zygote --> SystemServer#main()
         mActivityManagerService.setSystemServiceManager(mSystemServiceManager);
         mActivityManagerService.setInstaller(installer);
         mWindowManagerGlobalLock = atm.getGlobalLock();
-        traceEnd();
+        t.traceEnd();
+
+        // Data loader manager service needs to be started before package manager
+        t.traceBegin("StartDataLoaderManagerService");
+        mDataLoaderManagerService = mSystemServiceManager.startService(
+                DataLoaderManagerService.class);
+        t.traceEnd();
+
+        // Incremental service needs to be started before package manager
+        t.traceBegin("StartIncrementalService");
+        mIncrementalServiceHandle = startIncrementalService();
+        t.traceEnd();
 
         // Power manager needs to be started early because other services need it.
         // Native daemons may be watching for it to be registered so it must be ready
         // to handle incoming binder calls immediately (including being able to verify
         // the permissions for those calls).
-        traceBeginAndSlog("StartPowerManager");
+        t.traceBegin("StartPowerManager");
         mPowerManagerService = mSystemServiceManager.startService(PowerManagerService.class);
-        traceEnd();
+        t.traceEnd();
 
-        traceBeginAndSlog("StartThermalManager");
+        t.traceBegin("StartThermalManager");
         mSystemServiceManager.startService(ThermalManagerService.class);
-        traceEnd();
+        t.traceEnd();
 
         // Now that the power manager has been started, let the activity manager
         // initialize power management features.
-        traceBeginAndSlog("InitPowerManagement");
+        t.traceBegin("InitPowerManagement");
         mActivityManagerService.initPowerManagement();
-        traceEnd();
+        t.traceEnd();
 
         // Bring up recovery system in case a rescue party needs a reboot
-        traceBeginAndSlog("StartRecoverySystemService");
-        mSystemServiceManager.startService(RecoverySystemService.class);
-        traceEnd();
+        t.traceBegin("StartRecoverySystemService");
+        mSystemServiceManager.startService(RecoverySystemService.Lifecycle.class);
+        t.traceEnd();
 
         // Now that we have the bare essentials of the OS up and running, take
         // note that we just booted, which might send out a rescue party if
         // we're stuck in a runtime restart loop.
-        RescueParty.noteBoot(mSystemContext);
+        RescueParty.registerHealthObserver(mSystemContext);
+        PackageWatchdog.getInstance(mSystemContext).noteBoot();
 
         // Manages LEDs and display backlight so we need it to bring up the display.
-        traceBeginAndSlog("StartLightsService");
+        t.traceBegin("StartLightsService");
         mSystemServiceManager.startService(LightsService.class);
-        traceEnd();
+        t.traceEnd();
 
-        traceBeginAndSlog("StartSidekickService");
+        t.traceBegin("StartSidekickService");
         // Package manager isn't started yet; need to use SysProp not hardware feature
         if (SystemProperties.getBoolean("config.enable_sidekick_graphics", false)) {
             mSystemServiceManager.startService(WEAR_SIDEKICK_SERVICE_CLASS);
         }
-        traceEnd();
+        t.traceEnd();
 
         // Display manager is needed to provide display metrics before package manager
         // starts up.
-        traceBeginAndSlog("StartDisplayManager");
+        t.traceBegin("StartDisplayManager");
         mDisplayManagerService = mSystemServiceManager.startService(DisplayManagerService.class);
-        traceEnd();
+        t.traceEnd();
 
         // We need the default display before we can initialize the package manager.
-        traceBeginAndSlog("WaitForDisplay");
-        mSystemServiceManager.startBootPhase(SystemService.PHASE_WAIT_FOR_DEFAULT_DISPLAY);
-        traceEnd();
+        t.traceBegin("WaitForDisplay");
+        mSystemServiceManager.startBootPhase(t, SystemService.PHASE_WAIT_FOR_DEFAULT_DISPLAY);
+        t.traceEnd();
 
         // Only run "core" apps if we're encrypting the device.
         String cryptState = VoldProperties.decrypt().orElse("");
@@ -320,10 +373,13 @@ zygote --> SystemServer#main()
 
         // Start the package manager.
         if (!mRuntimeRestart) {
-            MetricsLogger.histogram(null, "boot_package_manager_init_start",
-                    (int) SystemClock.elapsedRealtime());
+            FrameworkStatsLog.write(FrameworkStatsLog.BOOT_TIME_EVENT_ELAPSED_TIME_REPORTED,
+                    FrameworkStatsLog
+                            .BOOT_TIME_EVENT_ELAPSED_TIME__EVENT__PACKAGE_MANAGER_INIT_START,
+                    SystemClock.elapsedRealtime());
         }
-        traceBeginAndSlog("StartPackageManagerService");
+
+        t.traceBegin("StartPackageManagerService");
         try {
             Watchdog.getInstance().pauseWatchingCurrentThread("packagemanagermain");
             mPackageManagerService = PackageManagerService.main(mSystemContext, installer,
@@ -331,12 +387,20 @@ zygote --> SystemServer#main()
         } finally {
             Watchdog.getInstance().resumeWatchingCurrentThread("packagemanagermain");
         }
+
+        // Now that the package manager has started, register the dex load reporter to capture any
+        // dex files loaded by system server.
+        // These dex files will be optimized by the BackgroundDexOptService.
+        SystemServerDexLoadReporter.configureSystemServerDexReporter(mPackageManagerService);
+
         mFirstBoot = mPackageManagerService.isFirstBoot();
         mPackageManager = mSystemContext.getPackageManager();
-        traceEnd();
+        t.traceEnd();
         if (!mRuntimeRestart && !isFirstBootOrUpgrade()) {
-            MetricsLogger.histogram(null, "boot_package_manager_init_ready",
-                    (int) SystemClock.elapsedRealtime());
+            FrameworkStatsLog.write(FrameworkStatsLog.BOOT_TIME_EVENT_ELAPSED_TIME_REPORTED,
+                    FrameworkStatsLog
+                            .BOOT_TIME_EVENT_ELAPSED_TIME__EVENT__PACKAGE_MANAGER_INIT_READY,
+                    SystemClock.elapsedRealtime());
         }
         // Manages A/B OTA dexopting. This is a bootstrap service as we need it to rename
         // A/B artifacts after boot, before anything else might touch/need them.
@@ -345,7 +409,7 @@ zygote --> SystemServer#main()
             boolean disableOtaDexopt = SystemProperties.getBoolean("config.disable_otadexopt",
                     false);
             if (!disableOtaDexopt) {
-                traceBeginAndSlog("StartOtaDexOptService");
+                t.traceBegin("StartOtaDexOptService");
                 try {
                     Watchdog.getInstance().pauseWatchingCurrentThread("moveab");
                     OtaDexoptService.main(mSystemContext, mPackageManagerService);
@@ -353,43 +417,43 @@ zygote --> SystemServer#main()
                     reportWtf("starting OtaDexOptService", e);
                 } finally {
                     Watchdog.getInstance().resumeWatchingCurrentThread("moveab");
-                    traceEnd();
+                    t.traceEnd();
                 }
             }
         }
 
-        traceBeginAndSlog("StartUserManagerService");
+        t.traceBegin("StartUserManagerService");
         mSystemServiceManager.startService(UserManagerService.LifeCycle.class);
-        traceEnd();
+        t.traceEnd();
 
         // Initialize attribute cache used to cache resources from packages.
-        traceBeginAndSlog("InitAttributerCache");
+        t.traceBegin("InitAttributerCache");
         AttributeCache.init(mSystemContext);
-        traceEnd();
+        t.traceEnd();
 
         // Set up the Application instance for the system process and get started.
-        traceBeginAndSlog("SetSystemProcess");
+        t.traceBegin("SetSystemProcess");
         mActivityManagerService.setSystemProcess();
-        traceEnd();
+        t.traceEnd();
 
         // Complete the watchdog setup with an ActivityManager instance and listen for reboots
         // Do this only after the ActivityManagerService is properly started as a system process
-        traceBeginAndSlog("InitWatchdog");
+        t.traceBegin("InitWatchdog");
         watchdog.init(mSystemContext, mActivityManagerService);
-        traceEnd();
+        t.traceEnd();
 
         // DisplayManagerService needs to setup android.display scheduling related policies
         // since setSystemProcess() would have overridden policies due to setProcessGroup
         mDisplayManagerService.setupSchedulerPolicies();
 
         // Manages Overlay packages
-        traceBeginAndSlog("StartOverlayManagerService");
-        mSystemServiceManager.startService(new OverlayManagerService(mSystemContext, installer));
-        traceEnd();
+        t.traceBegin("StartOverlayManagerService");
+        mSystemServiceManager.startService(new OverlayManagerService(mSystemContext));
+        t.traceEnd();
 
-        traceBeginAndSlog("StartSensorPrivacyService");
+        t.traceBegin("StartSensorPrivacyService");
         mSystemServiceManager.startService(new SensorPrivacyService(mSystemContext));
-        traceEnd();
+        t.traceEnd();
 
         if (SystemProperties.getInt("persist.sys.displayinset.top", 0) > 0) {
             // DisplayManager needs the overlay immediately.
@@ -401,13 +465,14 @@ zygote --> SystemServer#main()
         // service, and permissions service, therefore we start it after them.
         // Start sensor service in a separate thread. Completion should be checked
         // before using it.
-        mSensorServiceStart = SystemServerInitThreadPool.get().submit(() -> {
-            TimingsTraceLog traceLog = new TimingsTraceLog(
-                    SYSTEM_SERVER_TIMING_ASYNC_TAG, Trace.TRACE_TAG_SYSTEM_SERVER);
+        mSensorServiceStart = SystemServerInitThreadPool.submit(() -> {
+            TimingsTraceAndSlog traceLog = TimingsTraceAndSlog.newAsyncLog();
             traceLog.traceBegin(START_SENSOR_SERVICE);
             startSensorService();
             traceLog.traceEnd();
         }, START_SENSOR_SERVICE);
+
+        t.traceEnd(); // startBootstrapServices
     }
 ```
 
@@ -419,10 +484,77 @@ zygote --> SystemServer#main()
             boolean factoryTest, boolean onlyCore) {
         // Self-check for initial settings.
         PackageManagerServiceCompilerMapping.checkProperties();
+        final TimingsTraceAndSlog t = new TimingsTraceAndSlog(TAG + "Timing",
+                Trace.TRACE_TAG_PACKAGE_MANAGER);
+        t.traceBegin("create package manager");
+        final Object lock = new Object();
+        final Object installLock = new Object();
 
-        PackageManagerService m = new PackageManagerService(context, installer,
-                factoryTest, onlyCore);
-        m.enableSystemUserPackages();
+        Injector injector = new Injector(
+                context, lock, installer, installLock, new PackageAbiHelperImpl(),
+                (i, pm) ->
+                        new ComponentResolver(i.getUserManagerService(), pm.mPmInternal, lock),
+                (i, pm) ->
+                        PermissionManagerService.create(context, lock),
+                (i, pm) ->
+                        new UserManagerService(context, pm,
+                                new UserDataPreparer(installer, installLock, context, onlyCore),
+                                lock),
+                (i, pm) ->
+                        new Settings(Environment.getDataDirectory(),
+                                i.getPermissionManagerServiceInternal().getPermissionSettings(),
+                                lock),
+                new Injector.LocalServicesProducer<>(ActivityTaskManagerInternal.class),
+                new Injector.LocalServicesProducer<>(ActivityManagerInternal.class),
+                new Injector.LocalServicesProducer<>(DeviceIdleInternal.class),
+                new Injector.LocalServicesProducer<>(StorageManagerInternal.class),
+                new Injector.LocalServicesProducer<>(NetworkPolicyManagerInternal.class),
+                new Injector.LocalServicesProducer<>(PermissionPolicyInternal.class),
+                new Injector.LocalServicesProducer<>(DeviceStorageMonitorInternal.class),
+                new Injector.SystemServiceProducer<>(DisplayManager.class),
+                new Injector.SystemServiceProducer<>(StorageManager.class),
+                new Injector.SystemServiceProducer<>(AppOpsManager.class),
+                (i, pm) -> AppsFilter.create(pm.mPmInternal, i),
+                (i, pm) -> (PlatformCompat) ServiceManager.getService("platform_compat"));
+
+        PackageManagerService m = new PackageManagerService(injector, onlyCore, factoryTest);
+        t.traceEnd(); // "create package manager"
+
+        injector.getCompatibility().registerListener(SELinuxMMAC.SELINUX_LATEST_CHANGES,
+                packageName -> {
+                    synchronized (m.mInstallLock) {
+                        final AndroidPackage pkg;
+                        final PackageSetting ps;
+                        final SharedUserSetting sharedUser;
+                        final String oldSeInfo;
+                        synchronized (m.mLock) {
+                            ps = m.mSettings.getPackageLPr(packageName);
+                            if (ps == null) {
+                                Slog.e(TAG, "Failed to find package setting " + packageName);
+                                return;
+                            }
+                            pkg = ps.pkg;
+                            sharedUser = ps.getSharedUser();
+                            oldSeInfo = AndroidPackageUtils.getSeInfo(pkg, ps);
+                        }
+
+                        if (pkg == null) {
+                            Slog.e(TAG, "Failed to find package " + packageName);
+                            return;
+                        }
+                        final String newSeInfo = SELinuxMMAC.getSeInfo(pkg, sharedUser,
+                                m.mInjector.getCompatibility());
+
+                        if (!newSeInfo.equals(oldSeInfo)) {
+                            Slog.i(TAG, "Updating seInfo for package " + packageName + " from: "
+                                    + oldSeInfo + " to: " + newSeInfo);
+                            ps.getPkgState().setOverrideSeInfo(newSeInfo);
+                            m.prepareAppDataAfterInstallLIF(pkg);
+                        }
+                    }
+                });
+
+        m.installWhitelistedSystemPackages();
         ServiceManager.addService("package", m);
         final PackageManagerNative pmn = m.new PackageManagerNative();
         ServiceManager.addService("package_native", pmn);
@@ -463,6 +595,10 @@ zygote --> SystemServer#main()
 ## PackageInstaller创建
 
 PMS的作用是对APK进行安装、解析、删除以及卸载等，那么这里以安装APK为例子分析，我们需要知道从应用安装器PackageInstaller到PMS处理APK安装的流程
+
+```java 
+
+```
 
 ## PackageInstaller安装APK
 
