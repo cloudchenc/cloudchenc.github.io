@@ -1,13 +1,15 @@
 ---
 title: ActivityThread工作原理
 tags:
-categories:
+    - 源码
+categories: Android
 ---
 
 ActivityThread，也就是主线程，但不一定是UI线程
 
 因为UI线程的赋值是在activity的attach方法中
-```java
+
+```java 
 final void attach(Context context, ...) {
  // 这里的Thread.currentThread()就是 ViewRootImpl 创建时的线程
  mUiThread = Thread.currentThread();
