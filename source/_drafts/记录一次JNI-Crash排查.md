@@ -37,7 +37,7 @@ signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0
     r8  000003c0  r9  91360800  r10 91360000  r11 bee5ec80
     ip  992fc3c0  sp  992fc378  lr  992fc3c4  pc  9621fc18
 
-backtrace:
+backtrace:                                                                                                  
     #00 pc 0001fc18  /data/app/com.yangle.xiaoyuzhou-05dGXL3mMI6mFvODW6C8Rg==/lib/arm/libaudio-mix-lib.so (_ZN8AudioMix7ProcessEPsS0_S0_PS0_S1_+359)
     #01 pc 00016503  /data/app/com.yangle.xiaoyuzhou-05dGXL3mMI6mFvODW6C8Rg==/lib/arm/libaudio-mix-lib.so (Java_com_app_audio_IAudioMixer_process2+222)
     #02 pc 002e96bd  /data/app/com.yangle.xiaoyuzhou-05dGXL3mMI6mFvODW6C8Rg==/oat/arm/base.odex (com.app.audio.IAudioMixer.process [DEDUPED]+212)
@@ -65,8 +65,11 @@ SEGV_MAPERR：表示堆栈映射错误
 
 以上基本得出某个参数指针的内存地址为空，发生了空指针异常。
 
-下面的回溯信息就比较关键了，从左到右依次是栈帧，所处寄存器，地址信息，问题路径，主要关注点在于'0001fc18'和'00016503'这两个地址信息，可以利用add2line工具来定位到对应so的代码方法。
-注意这里使用到的so是对应平台arm的release编译，且未strip，否则无法获得对应问题代码！
+下面的回溯信息就比较关键了，从左到右依次是栈帧，所处寄存器，地址信息，问题路径，主要关注点在于'0001fc18'和'00016503'这两个地址信息，可以利用add2line工具和objdump工具来定位到对应so的代码方法。
+注意这里使用到的so是对应平台arm的release编译(版本0.3.57)，且未strip，否则无法获得对应问题代码！
+
+### add2line
+
 ```
 dzsb-002300@clouds-MacBook-Pro bin % aarch64-linux-android-addr2line -e ~/Downloads/test/release/obj/armeabi-v7a/libaudio-mix-lib.so 0001fc18 00016503
 /Users/dzsb-002300/ypp/ypp-audio-android/audio/src/main/cpp/AudioMix/AudioMix.cpp:246
@@ -75,6 +78,37 @@ dzsb-002300@clouds-MacBook-Pro bin % aarch64-linux-android-addr2line -e ~/Downlo
 p.s. addr2line工具路径在 '/Users/dzsb-002300/Library/Android/sdk/ndk/21.0.6113669/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin/' 文件夹下，'-e'参数是为了指定需要转换地址的可执行文件名，这里指定的so文件是通过audio-mix库源码编译的release库
 
 根据Terminal输出可以看到问题代码是在 'AudioMix.cpp' line.246
+
+### objdump
+
+```
+// objdump工具路径和addr2line一致，为方便使用可以在环境变量配置alias
+dzsb-002300@clouds-MacBook-Pro bin % aarch64-linux-android-objdump -d ~/Downloads/test/audio/release/obj/armeabi-v7a/libaudio-mix-lib.so > ~/Downloads/test/audio/dump.log
+```
+
+得到dump.log文件，文件内搜索'1fc18'，可以进一步把问题确认在RenderMicAudio函数中
+
+唯一困扰我的是根据tombstone显示的地址和偏移量无法对应'1fc18'（十六进制的'1fa38'加上十进制的'359'无法对齐十六进制的'1fc18'）
+```
+0001fc10 <_ZN8AudioMix14RenderMicAudioEPs>:
+   1fc10:	b5d0      	push	{r4, r6, r7, lr}
+   1fc12:	af02      	add	r7, sp, #8
+   1fc14:	69c2      	ldr	r2, [r0, #28]
+   1fc16:	4604      	mov	r4, r0
+   1fc18:	6b80      	ldr	r0, [r0, #56]	; 0x38
+   1fc1a:	0092      	lsls	r2, r2, #2
+   1fc1c:	f7f4 eee0 	blx	149e0 <__aeabi_memcpy@plt>
+   1fc20:	6be0      	ldr	r0, [r4, #60]	; 0x3c
+   1fc22:	b110      	cbz	r0, 1fc2a <_ZN8AudioMix14RenderMicAudioEPs+0x1a>
+   1fc24:	6ba1      	ldr	r1, [r4, #56]	; 0x38
+   1fc26:	f7f4 ef48 	blx	14ab8 <_ZN11AudioRender11RenderAudioEPh@plt>
+   1fc2a:	6ba0      	ldr	r0, [r4, #56]	; 0x38
+   1fc2c:	bdd0      	pop	{r4, r6, r7, pc}
+```
+
+### 结论
+
+通过add2line工具和objdump工具联合定位
 
 ```
 79 void AudioMix::Process(short* micBuffer, short* bgmBuffer, short* accomBuffer, short** mixOutBuffer, short** mixBgmAccomOutBuffer)
@@ -100,7 +134,7 @@ p.s. addr2line工具路径在 '/Users/dzsb-002300/Library/Android/sdk/ndk/21.0.6
 253 }
 ```
 
-可以得出crash发生在memcpy方法中，但是明明在调用前判断了micBuffer是否为空，这时把怀疑的重点投向了'm_micRenderBuffer'
+可以得出crash发生在'memcpy'方法中，但是明明在调用前判断了micBuffer是否为空，这时把怀疑的重点投向了'm_micRenderBuffer'
 
 ```
 //audio/src/main/cpp/AudioMix/AudioMix.cpp
