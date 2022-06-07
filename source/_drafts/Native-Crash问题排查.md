@@ -6,6 +6,14 @@ tags:
 categories:
 ---
 
+todo 
+1. 需要加一下总结，这种不能算是技术沉淀：
+我觉得问题解决的投稿要么是针对某一类问题进行解决，得出该类问题解决方法论；
+要么就是教会大家解决jni问题的方法，别人可以学会你这个方案，然后去解决其他的jni问题，现在问题是解决一个具体的问题，可以再想一下你要突出什么主题
+
+2. 最好把需要表达的主题放到文章开头，吸引大家来看；下面解决问题的过程作为一个例子来做演示
+
+
 本文以一次Native Crash问题排查为例，描述该类线上问题的排查方法，主要有addr2line和objdump两种方式。
 
 举例：http://jira.yupaopao.com/browse/CRAS-93609
@@ -322,3 +330,7 @@ static inline void unInit() {
 改动：根据 IAudioMixer 的 init 与 uninit 状态设置变量，根据是否初始化来判断调用 setSoundTouchDouble() 与 process2()
 
 总结：每个JNI的问题定位都需要结合业务代码一起判断
+
+参考链接：
+
+https://www.twblogs.net/a/5b7ce90b2b71770a43dd1d34
